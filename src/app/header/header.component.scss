@@ -5,6 +5,9 @@
     transition: all .5s;
 }
 @media screen and (max-width:991px) {
+    .navbar-brand img{
+        height: 106px;
+    }
     div.col-12 .navbar-light{
         padding-left: 0%;
         padding-right: 0%;
@@ -15,6 +18,8 @@
     }
     .container .navbar-collapse{
         margin-top: 8px;
+        margin-bottom: 20px;
+        padding-bottom: 4px;
     }
     .navbar-nav .nav-item{
         border: none;
@@ -27,14 +32,31 @@
         border-top-right-radius: 0px;
         border-bottom-left-radius: 14px;
     }
+    .navbar-nav .nav-item{
+        border-bottom: 1px solid #efefefa3;
+    }
+    .navbar-nav .nav-item:last-of-type{
+        border: none;
+    }
+    .nav-item.dropdown{
+        padding: 0px;
+    }
 }
 @media screen and (max-width: 576px){
+    .col-12.header{
+        position: relative;
+    }
     .navbar-light .container{
         max-width: 100%;
     }
 }
+.header{
+    position: fixed;
+    z-index: 2;
+    box-shadow: 0px 0px 10px;
+}
 .navbar-light{
-    background-color: #f3dce4;
+    background-color: #f3dce4de;
 }
 .logo{
     height: 135px;
@@ -42,7 +64,6 @@
 }
 .navbar-collapse {
     flex-grow: 0;
-    background-color: #cd0bff;
     box-shadow: inset 2px 5px 9px #d9d9d9, inset -2px -2px 7px #8f8585, 0px 0px 5px #898989;
     border-radius: 14px;
 }
@@ -70,20 +91,25 @@
     color: white;
     font-weight: 400;
     margin: 0px 16px;
+    text-transform: uppercase;
+    font-size:15px;
+    text-align: center;
 }
 .dropdown-menu{
     padding: 0px;
+    margin-top: 4px;
 }
-.dropdown-item{
-    background-color: #fae8ff;
+.dropdown-menu .dropdown-item{
+    color: white;
+    background-color: #e691ff;
     text-align: center;
     padding: 10px;
-    margin-bottom: 1.5px;
-}
-.dropdown-item:last-of-type,
-.dropdown-item:last-of-type{
+    margin-bottom: 2px;
     border-radius: 5px;
 }
-.dropdown-item:hover{
-    background-color: rgb(239 239 239);
+.dropdown-menu .dropdown-item:hover{
+    background-color: rgb(221 221 221);
+}
+.drop-item-edit{
+    border-radius: 0% !important;
 }

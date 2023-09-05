@@ -1,0 +1,25 @@
+
+
+
+
+<div class="col-12 dash-content mt-5 p-2">
+  <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoul()" >
+        <label for="logo">Upload Carasoul Image : </label>
+        <input type="file" class="form-control" id="logo"  (change)=" uploadCarasoul($event)">
+        <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingCarasoul' "> uploading ... </span> <span><img [src]="CarasoulURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'"></span>
+      <div class="text-center">
+          <button type="submit" class="btn btn-secondary p-1"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'">save</button>
+      </div>
+    </form>
+</div>
+
+<div class="col-12 dash-content mt-5 p-2">
+  <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendImg()" >
+        <label for="logo">Upload Product Image : </label>
+        <input type="file" class="form-control" id="logo"  (change)=" uploadImg($event)">
+        <span class="text-warning" *ngIf="uploadingImg == 'uploadingImg'"> uploading ... </span> <span><img [src]="productURL" alt="" class="logo-photo"  *ngIf="uploadingImg == 'imgUploaded'"></span>
+      <div class="text-center">
+          <button type="submit" class="btn btn-secondary p-1" *ngIf="uploadingImg == 'imgUploaded'" >save</button>
+      </div>
+    </form>
+</div>
