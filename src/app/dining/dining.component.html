@@ -1,1 +1,20 @@
-<p>dining works!</p>
+
+
+<div class="col-12 bg-pink global-content-padding dining-content">
+    <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item" [ngClass]="{'active' : i === 0}" *ngFor="let item of carasoulImages ; let i=index" >
+              <img [src]="item.img" class="d-block w-100" alt="...">
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="dining-data" *ngFor="let item of DiningContent ; let i=index" >
+            <p class="title">{{item.title}}</p>
+            <p class="paragraph">{{item.paragraph}}</p>
+        </div>
+    </div>
+</div>

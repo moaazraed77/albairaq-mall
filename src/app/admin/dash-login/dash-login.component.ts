@@ -10,9 +10,6 @@ import { Router } from '@angular/router';
 export class DashLoginComponent implements OnInit {
 
   constructor(private fb:FormBuilder ,private route:Router) { 
-    if(sessionStorage.getItem("showHeader")=="yes"){
-      location.reload()
-    }
   }
 
   login=this.fb.group({

@@ -13,10 +13,6 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if(location.hash.toString().split("").slice(2,6).join("")=="dash"){
-      this.display=false;
-      sessionStorage.setItem("showHeader","No")
-    }
   }
 
 }

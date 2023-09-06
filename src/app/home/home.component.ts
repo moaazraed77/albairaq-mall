@@ -10,7 +10,8 @@ import * as $ from 'jquery';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dataServ:DataService) { }
+  constructor(private dataServ:DataService) {
+   }
 
   imgSource:string="";
 
@@ -19,12 +20,6 @@ export class HomeComponent implements OnInit {
   seeMoreImgs:boolean=false;
 
   ngOnInit(): void {
-    if(sessionStorage.getItem("showHeader")=="No"){
-      location.reload();
-      sessionStorage.setItem("showHeader","yes")
-    }else{
-      sessionStorage.setItem("showHeader","yes")
-    }
     this.dataServ.getCarsoul().subscribe(data =>{
       for (const key in data) {
         this.carasoulImages.push(data[key])

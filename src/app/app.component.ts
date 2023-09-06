@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'albiraq-mall';
+
+  showHeader:boolean=true;
+  constructor(private route:Router){
+    route.events.subscribe( val =>{
+      if( val instanceof NavigationEnd){
+        if(val.url == "/dash" || val.url == "/dashlogin"){
+          this.showHeader=false;
+        }else{
+          this.showHeader=true;
+        }
+      }
+    })
+  console.log(new Date().getTime())
+  }
 }

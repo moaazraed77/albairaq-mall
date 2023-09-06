@@ -1,14 +1,7 @@
 
-@media screen and (max-width: 991px) and (min-width: 600px){
-    .col-12.home{
-        padding-top: 140px;
-    }
-}
+
 
 @media screen and (max-width: 600px){
-    .col-12.home{
-        padding-top: 0px;
-    }
     .col-12.bg-pink{
         padding-bottom: 135px;
         margin-bottom: 40px;
@@ -36,6 +29,7 @@
         margin-top: 4px;
     }
 }
+
 .col-lg-4{
     padding: 10px;
     float: left;
@@ -56,9 +50,6 @@
 }
 .AlBairaq-Mall-text ul li {
     font-size: 10px;
-}
-.home{
-    padding-top: 162px;
 }
 .container {
     overflow: hidden;

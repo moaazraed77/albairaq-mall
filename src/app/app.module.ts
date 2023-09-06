@@ -21,8 +21,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage'
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { DiningComponent } from './dining/dining.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
-import { ServicesComponent } from './services/services.component';
 import { AboutComponent } from './about/about.component';
+import { ServicessComponent } from './servicess/servicess.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,8 @@ import { AboutComponent } from './about/about.component';
     DashLoginComponent,
     DiningComponent,
     EntertainmentComponent,
-    ServicesComponent,
-    AboutComponent
+    AboutComponent,
+    ServicessComponent
   ],
   imports: [
     BrowserModule,

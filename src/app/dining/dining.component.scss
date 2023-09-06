@@ -1,0 +1,32 @@
+
+@media screen and (max-width: 600px){
+    .carousel-inner .carousel-item img{
+        height: 270px;
+    }
+    div.dining-content{
+        padding-bottom: 180px;
+    }
+}
+.carousel-item img{
+    height: 420px;
+}
+.container{
+    background-color: white;
+    padding: 0%;
+}
+.title{
+    color: #BC0EC2;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    padding: 6px;
+}
+.paragraph{
+    font-family: 'Fira Sans', sans-serif;
+}
+.dining-data{
+    padding: 15px;
+}
+p{
+    margin-bottom: 1px;
+}
