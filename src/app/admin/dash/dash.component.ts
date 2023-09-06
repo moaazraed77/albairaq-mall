@@ -33,6 +33,12 @@ export class DashComponent implements OnInit {
     img:[""],
     id:[new Date().getTime()]
   })
+  
+  dining=this.fb.group({
+    title:[""],
+    paragraph:[""],
+    id:[new Date().getTime()]
+  })
 
   ngOnInit(): void {
     
@@ -79,5 +85,13 @@ export class DashComponent implements OnInit {
     this.dataServ.createCarasoul(this.homeImg.value);
     this.uploadingCarasoul="null";
   }
+
+  sendCarasoulDining(){
+
+  }
+  sendDining(){
+
+  }
+
 }
 

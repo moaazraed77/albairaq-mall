@@ -7,4 +7,36 @@
     margin: 7px;
     border-radius: 10px;
     height: 50px;
+    width: 280px;
 }
+
+.leftside{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+}
+
+.content{
+    position: fixed;
+    top: 0px;
+    left: 285px;
+    height: 100vh;
+    overflow: auto;
+    width: calc(100% - 295px);
+}
+
+label{
+    text-transform: capitalize;
+}
+
+
+
+
+
+
+
+
+
+
+

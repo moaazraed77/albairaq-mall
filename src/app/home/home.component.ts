@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
     if(sessionStorage.getItem("showHeader")=="No"){
       location.reload();
       sessionStorage.setItem("showHeader","yes")
+    }else{
+      sessionStorage.setItem("showHeader","yes")
     }
     this.dataServ.getCarsoul().subscribe(data =>{
       for (const key in data) {

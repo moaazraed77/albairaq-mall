@@ -1,25 +1,111 @@
 
 
-
-
-<div class="col-12 dash-content mt-5 p-2">
-  <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoul()" >
-        <label for="logo">Upload Carasoul Image : </label>
-        <input type="file" class="form-control" id="logo"  (change)=" uploadCarasoul($event)">
-        <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingCarasoul' "> uploading ... </span> <span><img [src]="CarasoulURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'"></span>
-      <div class="text-center">
-          <button type="submit" class="btn btn-secondary p-1"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'">save</button>
-      </div>
-    </form>
+<div class="col-12 flex-column flex-shrink-0 p-3 text-white bg-dark leftside" style="width: 280px;">
+  <a routerlink="/dash" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+    <span class="fs-4">Sidebar</span>
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a routerLink="#home" target="_self" class="nav-link active" aria-current="page">
+        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+        Home
+      </a>
+    </li>
+    <li>
+      <a routerLink="#Dining"  target="_self" class="nav-link text-white">
+        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+        Dining
+      </a>
+    </li>
+    <li>
+      <a routerLink="#"  target="_self" class="nav-link text-white">
+        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+        entertainment
+      </a>
+    </li>
+    <li>
+      <a routerLink="#"  target="_self" class="nav-link text-white">
+        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+        services
+      </a>
+    </li>
+    <li>
+      <a routerLink="#"  target="_self" class="nav-link text-white">
+        <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+        About Albairaq
+      </a>
+    </li>
+  </ul>
+  <hr>
+  <div class="dropdown">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="assets/البيرق لوجو.png" alt="" width="32" height="32" class="rounded-circle me-2 bg-light">
+      <strong>More</strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+      <li><a class="dropdown-item" routerLink="#">OPENING HOURS</a></li>
+      <li><a class="dropdown-item drop-item-edit" routerLink="#">GETTING HERE </a></li>
+      <li><a class="dropdown-item drop-item-edit" routerLink="#">MALL LOCATION</a></li>
+      <li><a class="dropdown-item drop-item-edit" routerLink="#">STORE LOCATION</a></li>
+      <li><a class="dropdown-item" routerLink="#">CONTACT US</a></li>
+    </ul>
+  </div>
 </div>
 
-<div class="col-12 dash-content mt-5 p-2">
-  <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendImg()" >
-        <label for="logo">Upload Product Image : </label>
-        <input type="file" class="form-control" id="logo"  (change)=" uploadImg($event)">
-        <span class="text-warning" *ngIf="uploadingImg == 'uploadingImg'"> uploading ... </span> <span><img [src]="productURL" alt="" class="logo-photo"  *ngIf="uploadingImg == 'imgUploaded'"></span>
-      <div class="text-center">
-          <button type="submit" class="btn btn-secondary p-1" *ngIf="uploadingImg == 'imgUploaded'" >save</button>
-      </div>
-    </form>
+
+<div class="col-12 content">
+  <!-- ----- Home ------- -->
+  <div class="col-12" id="home">
+    <div class="col-12 dash-content mt-5 p-2">
+      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoul()" >
+            <label for="logo">home Carasoul Image : </label>
+            <input type="file" class="form-control" id="logo"  (change)=" uploadCarasoul($event)">
+            <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingCarasoul' "> uploading ... </span> <span><img [src]="CarasoulURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'"></span>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary p-1"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'">save</button>
+          </div>
+        </form>
+    </div>
+    
+    <div class="col-12 dash-content mt-5 p-2">
+      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendImg()" >
+            <label for="logo">home Product Image : </label>
+            <input type="file" class="form-control" id="logo"  (change)=" uploadImg($event)">
+            <span class="text-warning" *ngIf="uploadingImg == 'uploadingImg'"> uploading ... </span> <span><img [src]="productURL" alt="" class="logo-photo"  *ngIf="uploadingImg == 'imgUploaded'"></span>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary p-1" *ngIf="uploadingImg == 'imgUploaded'" >save</button>
+          </div>
+        </form>
+    </div>
+  </div>
+  <!-- ----- Dining ------- -->
+  <div class="col-12" id="Dining">
+    <div class="col-12 dash-content mt-5 p-2">
+      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulDining()" >
+          <label for="logo">Dining Carasoul Image : </label>
+          <input type="file" class="form-control" id="logo"  (change)=" uploadCarasoul($event)">
+          <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingCarasoulDining' "> uploading ... </span> <span><img [src]="CarasoulURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'CarasoulDiningUploaded'"></span>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary p-1"  *ngIf="uploadingCarasoul == 'CarasoulDiningUploaded'">save</button>
+          </div>
+        </form>
+    </div>
+    <div class="col-12 dash-content mt-5 p-2">
+      <form [formGroup]="dining" class="card p-2" (ngSubmit)="sendDining()" >
+          <div class="form-group">
+            <label for="Title">Dining Title : </label>
+            <input type="file" class="form-control" id="Title" formControlName="title">
+          </div>
+          <div class="form-group">
+            <label for="logo">Dining Pragraph : </label>
+            <input type="file" class="form-control" id="logo" formControlName="pragraph">
+          </div>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary p-1" >save</button>
+          </div>
+        </form>
+    </div>
+  </div>
 </div>
