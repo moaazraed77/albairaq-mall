@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { homePhoto } from '../interfaces/home.interface';
+import { DataService } from '../services/data.service';
+import { EntertainmentData } from '../interfaces/Entertainment.interface';
 
 @Component({
   selector: 'app-entertainment',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntertainmentComponent implements OnInit {
 
-  constructor() { }
+  carasoulImages:homePhoto[]=[]
+  Content:EntertainmentData[]=[]
+
+  constructor(private dataServ:DataService) { 
+    if(sessionStorage.getItem("runCarsouel")!="entertainmentReloaded"){
+      sessionStorage.setItem("runCarsouel","entertainmentReloaded")
+      location.reload();
+    }
+    // -------   get the data -------
+    this.dataServ.getEntertainmentCarsoul().subscribe(data =>{
+      for (const key in data) {
+        this.carasoulImages.push(data[key])
+      }
+    })
+    this.dataServ.getEntertainmentContent().subscribe(data =>{
+      for (const key in data) {
+        this.Content.push(data[key])
+      }
+    })
+  }
 
   ngOnInit(): void {
+    
   }
 
 }

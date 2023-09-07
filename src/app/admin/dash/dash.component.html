@@ -8,31 +8,31 @@
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a (click)="showPart('home')" class="nav-link active" aria-current="page">
+      <a (click)="showPart('home')" class="nav-link text-white" aria-current="page" [ngClass]="{'active' : showActiveLink=='home'}">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
         Home
       </a>
     </li>
     <li>
-      <a (click)="showPart('Dining')" class="nav-link text-white">
+      <a (click)="showPart('Dining')" class="nav-link text-white"  [ngClass]="{'active' : showActiveLink=='Dining'}">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
         Dining
       </a>
     </li>
     <li>
-      <a (click)="showPart('entertainment')" class="nav-link text-white">
+      <a (click)="showPart('Entertainment')" class="nav-link text-white" [ngClass]="{'active' : showActiveLink=='Entertainment'}">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-        entertainment
+        Entertainment
       </a>
     </li>
     <li>
-      <a (click)="showPart('services')" class="nav-link text-white">
+      <a (click)="showPart('Services')" class="nav-link text-white" [ngClass]="{'active' : showActiveLink=='Services'}">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
         services
       </a>
     </li>
     <li>
-      <a (click)="showPart('About')" class="nav-link text-white">
+      <a (click)="showPart('About')" class="nav-link text-white" [ngClass]="{'active' : showActiveLink=='About'}">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
         About Albairaq
       </a>
@@ -57,43 +57,49 @@
 
 <div class="col-12 content">
   <!-- ----- Home ------- -->
-  <div class="col-12" id="home" *ngIf="viewController == 'home'">
-    <div class="col-12 dash-content mt-5 p-2">
+  <div class="col-12" *ngIf="viewController == 'home'">
+    <div class="d-flex justify-content-center">
+      <h1 class="part-title">home part </h1>
+    </div>
+    <div class="col-12 dash-content p-2">
       <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoul()" >
             <label for="logo">home Carasoul Image : </label>
             <input type="file" class="form-control" id="logo"  (change)=" uploadCarasoul($event)">
             <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingCarasoul' "> uploading ... </span> <span><img [src]="CarasoulURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'"></span>
           <div class="text-center">
-              <button type="submit" class="btn btn-secondary p-1"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'">save</button>
+              <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'CarasoulUploaded'">save</button>
           </div>
         </form>
     </div>
     
-    <div class="col-12 dash-content mt-5 p-2">
+    <div class="col-12 dash-content p-2">
       <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendImg()" >
             <label for="logo">home Product Image : </label>
             <input type="file" class="form-control" id="logo"  (change)=" uploadImg($event)">
             <span class="text-warning" *ngIf="uploadingImg == 'uploadingImg'"> uploading ... </span> <span><img [src]="productURL" alt="" class="logo-photo"  *ngIf="uploadingImg == 'imgUploaded'"></span>
           <div class="text-center">
-              <button type="submit" class="btn btn-secondary p-1" *ngIf="uploadingImg == 'imgUploaded'" >save</button>
+              <button type="submit" class="btn btn-secondary " *ngIf="uploadingImg == 'imgUploaded'" >save</button>
           </div>
         </form>
     </div>
   </div>
   <!-- ----- Dining ------- -->
-  <div class="col-12" id="Dining" *ngIf="viewController == 'Dining'">
-    <div class="col-12 dash-content mt-5 p-2">
+  <div class="col-12" *ngIf="viewController == 'Dining'">
+    <div class="d-flex justify-content-center">
+      <h1 class="part-title">Dining part </h1>
+    </div>
+    <div class="col-12 dash-content p-2">
       <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulDining()" >
           <label for="logo">Dining Carasoul Image : </label>
           <input type="file" class="form-control" id="logo"  (change)=" uploadDiningCarasoul($event)">
           <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingDiningCarasoul' "> uploading ... </span> <span><img [src]="CarasoulDiningURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'uploadedDiningCarasoul'"></span>
           <div class="text-center">
-              <button type="submit" class="btn btn-secondary p-1"  *ngIf="uploadingCarasoul == 'uploadedDiningCarasoul'">save</button>
+              <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'uploadedDiningCarasoul'">save</button>
           </div>
         </form>
     </div>
-    <div class="col-12 dash-content mt-5 p-2">
-      <form [formGroup]="dining" class="card p-2" (ngSubmit)="sendDiningData()" >
+    <div class="col-12 dash-content p-2">
+      <form [formGroup]="dining_or_Services" class="card p-2" (ngSubmit)="sendDiningData()" >
           <div class="form-group">
             <label for="Title">Dining Title : </label>
             <input type="text" class="form-control" id="Title" formControlName="title">
@@ -103,7 +109,99 @@
             <input type="text" class="form-control" id="logo" formControlName="paragraph">
           </div>
           <div class="text-center">
-              <button type="submit" class="btn btn-secondary p-1" >save</button>
+              <button type="submit" class="btn btn-secondary " >save</button>
+          </div>
+        </form>
+    </div>
+  </div>
+  <!-- ----- Entertainment ------- -->
+  <div class="col-12" *ngIf="viewController == 'Entertainment'">
+    <div class="d-flex justify-content-center">
+      <h1 class="part-title">Entertainment part </h1>
+    </div>
+    <div class="col-12 dash-content p-2">
+      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulEntertainment()" >
+          <label for="logo">Entertainment Carasoul Image : </label>
+          <input type="file" class="form-control" id="logo"  (change)=" uploadEntertainmentCarasoul($event)">
+          <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingEntertainmentCarasoul' "> uploading ... </span> <span><img [src]="CarasoulEntertainmentURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'uploadedEntertainmentCarasoul'"></span>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'uploadedEntertainmentCarasoul'">save</button>
+          </div>
+        </form>
+    </div>
+    <div class="col-12 dash-content p-2">
+      <form [formGroup]="Entertainment" class="card p-2" (ngSubmit)="sendEntertainmentData()" >
+          <label for="logo">Entertainment Product Image : </label>
+          <input type="file" class="form-control" id="logo"  (change)=" uploadEntertainmentProduct($event)">
+          <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingEntertainmentProduct' "> uploading ... </span> <span><img [src]="productEntertainmentURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'uploadedEntertainmentProduct'"></span>
+          <div class="form-group">
+            <label for="Title">Entertainment Title : </label>
+            <input type="text" class="form-control" id="Title" formControlName="title">
+          </div>
+          <div class="form-group">
+            <label for="logo">Entertainment Pragraph : </label>
+            <input type="text" class="form-control" id="logo" formControlName="paragraph">
+          </div>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary " >save</button>
+          </div>
+        </form>
+    </div>
+  </div>
+  <!-- ----- Services ------- -->
+  <div class="col-12" *ngIf="viewController == 'Services'">
+    <div class="d-flex justify-content-center">
+      <h1 class="part-title">Services part </h1>
+    </div>
+    <div class="col-12 dash-content p-2">
+      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulServices()" >
+          <label for="logo">Services Carasoul Image : </label>
+          <input type="file" class="form-control" id="logo"  (change)=" uploadServicesCarasoul($event)">
+          <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingServicesCarasoul' "> uploading ... </span> <span><img [src]="CarasoulServicesURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'uploadedServicesCarasoul'"></span>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'uploadedServicesCarasoul'">save</button>
+          </div>
+        </form>
+    </div>
+    <div class="col-12 dash-content p-2">
+      <form [formGroup]="dining_or_Services" class="card p-2" (ngSubmit)="sendServicesData()" >
+          <div class="form-group">
+            <label for="Title">Services Title : </label>
+            <input type="text" class="form-control" id="Title" formControlName="title">
+          </div>
+          <div class="form-group">
+            <label for="logo">Services Pragraph : </label>
+            <input type="text" class="form-control" id="logo" formControlName="paragraph">
+          </div>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary " >save</button>
+          </div>
+        </form>
+    </div>
+  </div>
+  <!-- ----- About ------- -->
+  <div class="col-12" *ngIf="viewController == 'About'">
+    <div class="d-flex justify-content-center">
+      <h1 class="part-title">About part </h1>
+    </div>
+    <div class="col-12 dash-content p-2">
+      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulAbout()" >
+          <label for="logo">About Carasoul Image : </label>
+          <input type="file" class="form-control" id="logo"  (change)=" uploadAboutCarasoul($event)">
+          <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingAboutCarasoul' "> uploading ... </span> <span><img [src]="CarasoulAboutURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'uploadedAboutCarasoul'"></span>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'uploadedAboutCarasoul'">save</button>
+          </div>
+        </form>
+    </div>
+    <div class="col-12 dash-content p-2">
+      <form [formGroup]="About" class="card p-2" (ngSubmit)="sendAboutData()" >
+          <div class="form-group">
+            <label for="logo">About Pragraph : </label>
+            <input type="text" class="form-control" id="logo" formControlName="paragraph">
+          </div>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary " >save</button>
           </div>
         </form>
     </div>

@@ -11,9 +11,14 @@ import { diningData } from '../interfaces/dining.interface';
 export class DiningComponent implements OnInit {
 
   carasoulImages:homePhoto[]=[]
-  DiningContent:diningData[]=[]
+  Content:diningData[]=[]
 
-  constructor(private dataServ:DataService) { 
+  constructor(private dataServ:DataService) {
+    if(sessionStorage.getItem("runCarsouel")!="diningReloaded"){
+      sessionStorage.setItem("runCarsouel","diningReloaded")
+      location.reload();
+    } 
+    // -------   get the data -------
     this.dataServ.getDiningCarsoul().subscribe(data =>{
       for (const key in data) {
         this.carasoulImages.push(data[key])
@@ -21,12 +26,13 @@ export class DiningComponent implements OnInit {
     })
     this.dataServ.getDiningContent().subscribe(data =>{
       for (const key in data) {
-        this.DiningContent.push(data[key])
+        this.Content.push(data[key])
       }
     })
   }
 
   ngOnInit(): void {
+    
   }
 
 }

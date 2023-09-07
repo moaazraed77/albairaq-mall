@@ -80,6 +80,8 @@
 }
 .active{
     background-color: rgb(207 203 203);
+    border-radius: 5px;
+    border: none;
 }
 .nav-item:last-of-type{
     border: none;
@@ -97,7 +99,7 @@
     font-weight: 400;
     margin: 0px 16px;
     text-transform: uppercase;
-    font-size:15px;
+    font-size:13px;
     text-align: center;
 }
 .dropdown-menu{

@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 // @import 'node_modules/ngx-toastr/toastr';
-
+@import url(../node_modules/bootstrap/dist/css/bootstrap.min.css);
 *{
     box-sizing: border-box;
     transition: .5s;
@@ -14,6 +14,12 @@
     div.global-content-padding{
         padding-top: 0px;
     }
+    .carousel-inner .carousel-item img{
+        height: 270px;
+    }
+    div.dining-content{
+        padding-bottom: 180px;
+    }
 }
 .bg-pink{
     background-color :#cd0bff;
@@ -21,12 +27,13 @@
 .global-content-padding{
     padding-top: 162px;
 }
+.carousel-item img{
+    height: 350px;
+}
 // for dashboard small img show
 .logo-photo{
-    width: 80px;
+    height: 80px;
     width: 120px;
     margin: 7px;
     border-radius: 10px;
-    height: 50px;
-    width: 280px;
 }

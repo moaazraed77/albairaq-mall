@@ -11,10 +11,13 @@ import * as $ from 'jquery';
 export class HomeComponent implements OnInit {
 
   constructor(private dataServ:DataService) {
+    if(sessionStorage.getItem("runCarsouel")!="homeReloaded"){
+      sessionStorage.setItem("runCarsouel","homeReloaded")
+      location.reload();
+    }
    }
 
   imgSource:string="";
-
   carasoulImages:homePhoto[]=[]
   images:homePhoto[]=[];
   seeMoreImgs:boolean=false;

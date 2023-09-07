@@ -23,6 +23,7 @@ import { DiningComponent } from './dining/dining.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
 import { AboutComponent } from './about/about.component';
 import { ServicessComponent } from './servicess/servicess.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { ServicessComponent } from './servicess/servicess.component';
     AboutComponent,
     ServicessComponent
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -47,7 +48,7 @@ import { ServicessComponent } from './servicess/servicess.component';
     HttpClientModule, 
     AngularFireStorageModule,
     AngularFireModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)), provideDatabase(() => getDatabase()), provideStorage(() => getStorage()),
+    provideFirebaseApp(() => initializeApp(environment.firebase)), provideDatabase(() => getDatabase()), provideStorage(() => getStorage()), NgbModule,
   ],
   providers: [
      // write this special code for upload img 

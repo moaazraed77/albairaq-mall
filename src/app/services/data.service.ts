@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Database } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { diningData } from '../interfaces/dining.interface';
+import { EntertainmentData } from '../interfaces/Entertainment.interface';
+import { About } from '../interfaces/About.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,32 +27,45 @@ export class DataService {
     this.databaseURL=this.database.app.options.databaseURL;
   }
 
+  // get Home data
   getCarsoul():Observable<homePhoto[]>{
     return this.http.get<homePhoto[]>(`${this.databaseURL}/carasoul.json`)
-  }
-  getDiningCarsoul():Observable<homePhoto[]>{
-    return this.http.get<homePhoto[]>(`${this.databaseURL}/diningCarasoul.json`)
   }
   gethomeImages():Observable<homePhoto[]>{
     return this.http.get<homePhoto[]>(`${this.databaseURL}/products.json`)
   }
+  // get Dining data
+  getDiningCarsoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/diningCarasoul.json`)
+  }
   getDiningContent():Observable<diningData[]>{
     return this.http.get<diningData[]>(`${this.databaseURL}/diningContent.json`)
   }
-
+  // get Entertainment data
+  getEntertainmentCarsoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/EntertainmentCarasoul.json`)
+  }
+  getEntertainmentContent():Observable<EntertainmentData[]>{
+    return this.http.get<EntertainmentData[]>(`${this.databaseURL}/EntertainmentContent.json`)
+  }
+  // get Services data
+  getServicesCarsoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/ServicesCarasoul.json`)
+  }
+  getServicesContent():Observable<diningData[]>{
+    return this.http.get<diningData[]>(`${this.databaseURL}/ServicesContent.json`)
+  }
+  // get Services data
+  getAboutCarsoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/AboutCarasoul.json`)
+  }
+  getAboutContent():Observable<About[]>{
+    return this.http.get<About[]>(`${this.databaseURL}/AboutContent.json`)
+  }
 
   
-  createCarasoul(data:any , carasoulType:string){
-    if(carasoulType=="home"){
-      this.http.post(`${this.databaseURL}/carasoul.json`,data).subscribe();
-    }else if(carasoulType=="dining"){
-      this.http.post(`${this.databaseURL}/diningCarasoul.json`,data).subscribe();
-    }
-  }
-  createProduct(data:any){
-    this.http.post(`${this.databaseURL}/products.json`,data).subscribe();
-  }
-  createDinigContent(data:any){
-    this.http.post(`${this.databaseURL}/diningContent.json`,data).subscribe();
+  // create the data
+  create(data:any , type:string){
+    this.http.post(`${this.databaseURL}/${type}.json`,data).subscribe();
   }
 }
