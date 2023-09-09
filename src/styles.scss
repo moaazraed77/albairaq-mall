@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 // @import 'node_modules/ngx-toastr/toastr';
-@import url(../node_modules/bootstrap/dist/css/bootstrap.min.css);
 *{
     box-sizing: border-box;
     transition: .5s;
@@ -18,7 +17,7 @@
         height: 270px;
     }
     div.dining-content{
-        padding-bottom: 180px;
+        // padding-bottom: 180px;
     }
 }
 .bg-pink{

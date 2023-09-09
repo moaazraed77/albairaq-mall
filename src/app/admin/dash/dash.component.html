@@ -61,26 +61,54 @@
     <div class="d-flex justify-content-center">
       <h1 class="part-title">home part </h1>
     </div>
-    <div class="col-12 dash-content p-2">
-      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoul()" >
+    <div class="col-12 d-flex justify-content-end">
+      <div class="btn btn-info text-light" (click)="openPart('home','add home Carasoul','add')">add data</div>
+      <div class="btn btn-info text-light" (click)="openPart('table','home-products','')">show products</div>
+      <div class="btn btn-info text-light" (click)="openPart('table','home-carsouel','')">show carsouel</div>
+    </div>
+    <div *ngIf="partViewController=='home'">
+      <div class="col-12 dash-content p-2">
+        <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoul(carsouelControl)" >
             <label for="logo">home Carasoul Image : </label>
             <input type="file" class="form-control" id="logo"  (change)=" uploadCarasoul($event)">
             <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingCarasoul' "> uploading ... </span> <span><img [src]="CarasoulURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'"></span>
-          <div class="text-center">
-              <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'CarasoulUploaded'">save</button>
-          </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'CarasoulUploaded'">save</button>
+            </div>
         </form>
-    </div>
-    
-    <div class="col-12 dash-content p-2">
-      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendImg()" >
+      </div>
+      <div class="col-12 dash-content p-2">
+        <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendImg(carsouelControl)" >
             <label for="logo">home Product Image : </label>
             <input type="file" class="form-control" id="logo"  (change)=" uploadImg($event)">
             <span class="text-warning" *ngIf="uploadingImg == 'uploadingImg'"> uploading ... </span> <span><img [src]="productURL" alt="" class="logo-photo"  *ngIf="uploadingImg == 'imgUploaded'"></span>
-          <div class="text-center">
-              <button type="submit" class="btn btn-secondary " *ngIf="uploadingImg == 'imgUploaded'" >save</button>
-          </div>
-        </form>
+            <div class="text-center">
+                <button type="submit" class="btn btn-secondary " *ngIf="uploadingImg == 'imgUploaded'" >save</button>
+            </div>
+          </form>
+      </div>
+    </div>
+    <div class="col-12 table-div" *ngIf="partViewController=='table'">
+      <p class="part-view">home carsouel images</p>
+      <table class="table table-striped text-center">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">carasoul</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of datalist;let i=index">
+            <th scope="row" class="item">{{i+1}}</th>
+            <td><img [src]="item.img" class="imgView" alt=""></td>
+            <td class="item">
+              <button class="btn btn-warning m-1" (click)="openPart('home','Edit home Carasoul','add');update(item)">edit</button>  
+              <button class="btn btn-danger m-1">delete</button>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <!-- ----- Dining ------- -->
@@ -198,7 +226,7 @@
       <form [formGroup]="About" class="card p-2" (ngSubmit)="sendAboutData()" >
           <div class="form-group">
             <label for="logo">About Pragraph : </label>
-            <input type="text" class="form-control" id="logo" formControlName="paragraph">
+            <textarea type="text" class="form-control" id="logo" formControlName="paragraph" cols="5" rows="5"></textarea>
           </div>
           <div class="text-center">
               <button type="submit" class="btn btn-secondary " >save</button>
@@ -207,3 +235,7 @@
     </div>
   </div>
 </div>
+
+
+
+

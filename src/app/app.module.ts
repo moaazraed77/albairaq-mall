@@ -24,6 +24,11 @@ import { EntertainmentComponent } from './entertainment/entertainment.component'
 import { AboutComponent } from './about/about.component';
 import { ServicessComponent } from './servicess/servicess.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OpeningHoursComponent } from './opening-hours/opening-hours.component';
+import { GettingHereComponent } from './getting-here/getting-here.component';
+import { MallLocationComponent } from './mall-location/mall-location.component';
+import { StoreLocationComponent } from './store-location/store-location.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DiningComponent,
     EntertainmentComponent,
     AboutComponent,
-    ServicessComponent
+    ServicessComponent,
+    OpeningHoursComponent,
+    GettingHereComponent,
+    MallLocationComponent,
+    StoreLocationComponent,
+    ContactUsComponent
   ],
   imports: [ 
     BrowserModule,

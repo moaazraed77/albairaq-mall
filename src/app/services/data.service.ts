@@ -65,7 +65,10 @@ export class DataService {
 
   
   // create the data
-  create(data:any , type:string){
-    this.http.post(`${this.databaseURL}/${type}.json`,data).subscribe();
+  create(data:any , position:string,key:string){
+    if(key=="add")
+      this.http.post(`${this.databaseURL}/${position}.json`,data).subscribe();
+    else
+      this.http.put(`${this.databaseURL}/${position}/${key}.json`,data).subscribe();
   }
 }

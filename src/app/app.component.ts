@@ -20,6 +20,5 @@ export class AppComponent {
         }
       }
     })
-  console.log(new Date().getTime())
   }
 }

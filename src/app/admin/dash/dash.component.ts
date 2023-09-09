@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
+import { homePhoto } from 'src/app/interfaces/home.interface';
 
 
 @Component({
@@ -29,32 +30,26 @@ export class DashComponent implements OnInit {
 
   homeImg=this.fb.group({
     img:[""],
-    // dateCreated:[new Date().toLocaleDateString()],
-    // dateEdited:[new Date().toLocaleDateString()],
     id:[new Date().getTime()]
   })
   dining_or_Services=this.fb.group({
     title:["",Validators.required],
     paragraph:["",Validators.required],
-    // dateCreated:[new Date().toLocaleDateString()],
-    // dateEdited:[new Date().toLocaleDateString()],
     id:[new Date().getTime()]
   })
   Entertainment=this.fb.group({
     img:[""],
     title:["",Validators.required],
     paragraph:["",Validators.required],
-    // dateCreated:[new Date().toLocaleDateString()],
-    // dateEdited:[new Date().toLocaleDateString()],
     id:[new Date().getTime()]
   })
   About=this.fb.group({
     paragraph:["",Validators.required],
-    // dateCreated:[new Date().toLocaleDateString()],
-    // dateEdited:[new Date().toLocaleDateString()],
     id:[new Date().getTime()]
   })
+
   ngOnInit(): void {
+    this.openPart('table','home-carsouel','')
   }
 
   productURL:string="";
@@ -64,6 +59,9 @@ export class DashComponent implements OnInit {
   productEntertainmentURL:string="";
   CarasoulServicesURL:string="";
   CarasoulAboutURL:string="";
+  partViewController:string="";
+  // --------------------------------------------  upload photos -----------------------------------------
+
   // funcion to upload img file and get image url   ---- for home carasoul -------
   async uploadCarasoul(event:any){
     this.uploadingCarasoul="uploadingCarasoul";
@@ -155,21 +153,50 @@ export class DashComponent implements OnInit {
     }
     this.uploadingCarasoul="uploadedAboutCarasoul";
   }
-// -------------------------------- send data to add to database --------------------------------
+
+  //-----------------------------------------------------------------------------------------------------
+
+
+// ------------------------------------- send data to add to database -----------------------------------
   // ---- Carasoul function for home ----
-  sendCarasoul(){
+  
+  sendCarasoul(type:string){
     this.homeImg.patchValue({
       img:this.CarasoulURL
     })
-    this.dataServ.create(this.homeImg.value,"carasoul");
+    console.log(this.homeImg.value)
+    if(type=="add home Carasoul"){
+      this.dataServ.create(this.homeImg.value,"carasoul","add");
+    }else{
+      this.dataServ.getCarsoul().subscribe(data=>{
+        for (const key in data) {
+          if(this.updateCarsouelItem.id==data[key].id){
+            this.updateCarsouelItem.img=this.CarasoulURL
+            this.dataServ.create(this.homeImg.value,"carasoul",key);
+            break;
+          }
+        }
+      })
+    }
     this.uploadingCarasoul="null";
   }
   // -- send product data --
-  sendImg(){
+  sendImg(type:string){
     this.homeImg.patchValue({
       img:this.productURL
     })
-    this.dataServ.create(this.homeImg.value,"products");
+    if(type=="add home Carasoul"){
+      this.dataServ.create(this.homeImg.value,"products","add");
+    }else{
+      this.dataServ.gethomeImages().subscribe(data=>{
+        for (const key in data) {
+          if(this.updateCarsouelItem.id==data[key].id){
+            this.dataServ.create(this.homeImg.value,"products",key);
+            break;
+          }
+        }
+      })
+    }
     this.uploadingImg="null";
   }
   // -- Carasoul function for Dining --
@@ -177,12 +204,12 @@ export class DashComponent implements OnInit {
     this.homeImg.patchValue({
       img:this.CarasoulDiningURL
     })
-    this.dataServ.create(this.homeImg.value,"diningCarasoul");
+    this.dataServ.create(this.homeImg.value,"diningCarasoul","add");
     this.uploadingCarasoul="null";
   }
   sendDiningData(){
     if(this.dining_or_Services.valid){
-      this.dataServ.create(this.dining_or_Services.value,"dinigContent")
+      this.dataServ.create(this.dining_or_Services.value,"diningContent","add")
     }
   }
   // -- Carasoul function for Entertainment --
@@ -190,7 +217,7 @@ export class DashComponent implements OnInit {
     this.homeImg.patchValue({
       img:this.CarasoulEntertainmentURL
     })
-    this.dataServ.create(this.homeImg.value,"EntertainmentCarasoul");
+    this.dataServ.create(this.homeImg.value,"EntertainmentCarasoul","add");
     this.uploadingCarasoul="null";
   }
   sendEntertainmentData(){
@@ -198,7 +225,7 @@ export class DashComponent implements OnInit {
       this.Entertainment.patchValue({
         img:this.productEntertainmentURL
       })
-      this.dataServ.create(this.Entertainment.value,"EntertainmentContent")
+      this.dataServ.create(this.Entertainment.value,"EntertainmentContent","add")
     }
   }
   // -- Carasoul function for Services --
@@ -206,13 +233,13 @@ export class DashComponent implements OnInit {
     this.homeImg.patchValue({
       img:this.CarasoulServicesURL
     })
-    this.dataServ.create(this.homeImg.value,"ServicesCarasoul");
+    this.dataServ.create(this.homeImg.value,"ServicesCarasoul","add");
     this.uploadingCarasoul="null";
   }
   sendServicesData(){
     // we use dining formBuilder becase the same structure
     if(this.dining_or_Services.valid){
-      this.dataServ.create(this.dining_or_Services.value,"ServicesContent")
+      this.dataServ.create(this.dining_or_Services.value,"ServicesContent","add")
     }
   }
   // -- Carasoul function for About --
@@ -220,15 +247,52 @@ export class DashComponent implements OnInit {
     this.homeImg.patchValue({
       img:this.CarasoulAboutURL
     })
-    this.dataServ.create(this.homeImg.value,"AboutCarasoul");
+    this.dataServ.create(this.homeImg.value,"AboutCarasoul","add");
     this.uploadingCarasoul="null";
   }
   sendAboutData(){
     // we use dining formBuilder becase the same structure
     if(this.About.valid){
-      this.dataServ.create(this.About.value,"AboutContent")
+      this.dataServ.create(this.About.value,"AboutContent","add")
     }
   }
+
+  //-----------------------------------------------------------------------------------------------------
+
+  datalist:any[]=[];
+  carsouelControl:string=""
+  openPart(part:string,type:string,action:string){
+    this.partViewController=part;
+    this.carsouelControl=type;
+    if(part=="table"){
+      this.show(type);
+    }
+  }
+  show(type:string){
+    this.datalist=[]
+    if(type=="home-carsouel"){
+      this.dataServ.getCarsoul().subscribe(data=>{
+        for (const key in data) {
+          this.datalist.push(data[key])
+        }
+      })
+    }else  if(type=="home-products"){
+      this.dataServ.gethomeImages().subscribe(data=>{
+        for (const key in data) {
+          this.datalist.push(data[key])
+        }
+      })
+    }
+  }
+
+  updateCarsouelItem:homePhoto={
+    img:"",
+    id:""
+}
+ update(item:homePhoto){
+  this.updateCarsouelItem=item;
+ }
+
 //control view function
   showPart(text:string){
     this.viewController=text;

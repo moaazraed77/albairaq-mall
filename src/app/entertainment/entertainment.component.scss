@@ -1,4 +1,16 @@
 
+@media screen and (max-width:650px) {
+    .data .sideImg{
+        height: 70px;
+        width: 70px;
+    }
+    .data .title{
+        font-size: 16px;
+    }
+    .data .paragraph{
+        font-size: 14px;
+    }
+}
 .container{
     background-color: white;
     padding: 0%;
