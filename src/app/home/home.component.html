@@ -1,8 +1,10 @@
-<div class="col-12 global-content-padding">
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item" [ngClass]="{'active' : i === 0}" *ngFor="let item of carasoulImages ; let i=index" >
-        <img [src]="item.img" class="d-block w-100" alt="...">
+<div class="col-12 global-content-padding bg-pink">
+  <div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item" [ngClass]="{'active' : i === 0}" *ngFor="let item of carasoulImages ; let i=index" >
+          <img [src]="item.img" class="d-block w-100" alt="...">
+        </div>
       </div>
     </div>
   </div>

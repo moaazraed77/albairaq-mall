@@ -16,9 +16,6 @@
     .carousel-inner .carousel-item img{
         height: 270px;
     }
-    div.dining-content{
-        // padding-bottom: 180px;
-    }
 }
 .bg-pink{
     background-color :#cd0bff;
@@ -28,6 +25,10 @@
 }
 .carousel-item img{
     height: 350px;
+}
+.container {
+    position: relative;
+    padding: 0px;
 }
 // for dashboard small img show
 .logo-photo{

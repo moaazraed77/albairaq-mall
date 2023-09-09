@@ -6,10 +6,6 @@
     }
 }
 @media screen and (max-width: 600px){
-    .col-12.bg-pink{
-        padding-bottom: 135px;
-        margin-bottom: 40px;
-    }
     .carousel-inner .carousel-item img{
         height: 270px;
     }
@@ -19,6 +15,9 @@
     div.showImg{
         padding-top: 30px;
         align-items: flex-start;
+    }
+    .row .productImg{
+        padding: 5px;
     }
     .showImg img{
         height:355px !important;
@@ -59,16 +58,17 @@
     position: relative;
 }
 .carousel-item img{
-    height: 420px;
+    height: 390px;
 }
-.col-sm-4 img{
-    width: 100%;
-    height: 280px;
+.productImg img{
+    width: 90%;
+    height: 275px;
     margin: 5px;
     border-radius: 10px;
     border: 1px solid #c109ef;
+    margin-left: 5%;
 }
-.col-sm-4 img:hover{
+.productImg img:hover{
     filter: brightness(55%);
 }
 .btnSeeDiv{

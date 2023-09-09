@@ -26,6 +26,7 @@
     }
     .nav-item .nav-link{
         text-align: left;
+        font-size: 11px;
     }
     .navbar-nav .nav-item:first-of-type:hover{
         border-top-left-radius: 14px;
@@ -44,6 +45,9 @@
     .nav-item.dropdown{
         padding: 0px;
     }
+    .dropdown-menu .dropdown-item{
+        font-size: 11px;
+    }
 }
 @media screen and (max-width: 576px){
     .col-12.header{
@@ -52,6 +56,9 @@
     .navbar-light .container{
         max-width: 100%;
     }
+}
+.navbar-toggler{
+    margin-right: 5px;
 }
 .header{
     position: fixed;

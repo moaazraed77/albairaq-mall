@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    if(sessionStorage.getItem("runCarsouel")!="contactReloaded"){
+      sessionStorage.setItem("runCarsouel","contactReloaded")
+      location.reload();
+    }
+  }
 
   ngOnInit(): void {
   }
