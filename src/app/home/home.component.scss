@@ -62,11 +62,14 @@
 }
 .productImg img{
     width: 90%;
-    height: 275px;
+    height: 285px;
     margin: 5px;
     border-radius: 10px;
     border: 1px solid #c109ef;
     margin-left: 5%;
+}
+.productImg{
+    padding: 8px;
 }
 .productImg img:hover{
     filter: brightness(55%);

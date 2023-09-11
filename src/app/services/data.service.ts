@@ -71,4 +71,8 @@ export class DataService {
     else
       this.http.put(`${this.databaseURL}/${position}/${key}.json`,data).subscribe();
   }
+  // delete the data
+  delete(position:string,key:string){
+    this.http.delete(`${this.databaseURL}/${position}/${key}.json`).subscribe();
+  }
 }
