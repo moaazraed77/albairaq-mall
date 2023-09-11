@@ -269,8 +269,10 @@ export class DashComponent implements OnInit {
   partViewController:string="";
   sectionViewController:string="";
   edit_control:string="";
+  parttext:string="";
 
   openPart(part:string,type:string,action:string){
+    this.parttext=`the show of ${type}`
     this.partViewController=part;
     this.sectionViewController=action;
     this.carsouelFormControl=action;
