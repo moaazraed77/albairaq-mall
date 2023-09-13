@@ -7,8 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { DashComponent } from './admin/dash/dash.component';
-import { DashLoginComponent } from './admin/dash-login/dash-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { ToastrModule } from 'ngx-toastr';
@@ -29,6 +27,9 @@ import { GettingHereComponent } from './getting-here/getting-here.component';
 import { MallLocationComponent } from './mall-location/mall-location.component';
 import { StoreLocationComponent } from './store-location/store-location.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminModule } from './admin/admin.module';
+import { DashLoginComponent } from './admin/dash-login/dash-login.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,6 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    DashComponent,
-    DashLoginComponent,
     DiningComponent,
     EntertainmentComponent,
     AboutComponent,
@@ -46,7 +45,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     GettingHereComponent,
     MallLocationComponent,
     StoreLocationComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    AdminComponent,
+    DashLoginComponent
   ],
   imports: [ 
     BrowserModule,
@@ -58,6 +59,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     HttpClientModule, 
     AngularFireStorageModule,
     AngularFireModule,
+    AdminModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)), provideDatabase(() => getDatabase()), provideStorage(() => getStorage()), NgbModule,
   ],
   providers: [

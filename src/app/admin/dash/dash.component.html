@@ -1,63 +1,7 @@
 
-
-<div class="col-12 flex-column flex-shrink-0 p-3 text-white bg-dark leftside" style="width: 280px;">
-  <a routerlink="/dash" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-    <span class="fs-4 text-capitalize">albiraq mall</span>
-  </a>
-  <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a (click)="showPart('home')" class="nav-link text-white" aria-current="page" [ngClass]="{'active' : showActiveLink=='home'}">
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-        Home
-      </a>
-    </li>
-    <li>
-      <a (click)="showPart('Dining')" class="nav-link text-white"  [ngClass]="{'active' : showActiveLink=='Dining'}">
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-        Dining
-      </a>
-    </li>
-    <li>
-      <a (click)="showPart('Entertainment')" class="nav-link text-white" [ngClass]="{'active' : showActiveLink=='Entertainment'}">
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-        Entertainment
-      </a>
-    </li>
-    <li>
-      <a (click)="showPart('Services')" class="nav-link text-white" [ngClass]="{'active' : showActiveLink=='Services'}">
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-        services
-      </a>
-    </li>
-    <li>
-      <a (click)="showPart('About')" class="nav-link text-white" [ngClass]="{'active' : showActiveLink=='About'}">
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-        About Albairaq
-      </a>
-    </li>
-  </ul>
-  <hr>
-  <div class="dropdown">
-    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="assets/البيرق لوجو.png" alt="" width="32" height="32" class="rounded-circle me-2 bg-light">
-      <strong>More</strong>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-      <li><a class="dropdown-item" routerLink="#">OPENING HOURS</a></li>
-      <li><a class="dropdown-item drop-item-edit" routerLink="#">GETTING HERE </a></li>
-      <li><a class="dropdown-item drop-item-edit" routerLink="#">MALL LOCATION</a></li>
-      <li><a class="dropdown-item drop-item-edit" routerLink="#">STORE LOCATION</a></li>
-      <li><a class="dropdown-item" routerLink="#">CONTACT US</a></li>
-    </ul>
-  </div>
-</div>
-
-
 <div class="col-12 content">
   <!-- ----- Home ------- -->
-  <div class="col-12" *ngIf="viewController == 'home'">
+  <div class="col-12">
     <div class="d-flex justify-content-center">
       <h1 class="part-title">home part </h1>
     </div>
@@ -79,8 +23,8 @@
       </div>
       <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='home-products')">
         <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoul(edit_control,sectionViewController)" >
-            <label for="logo">home Product Image : </label>
-            <input type="file" class="form-control" id="logo"  (change)=" uploadImg($event,'home-products')">
+            <label for="logo2">home Product Image : </label>
+            <input type="file" class="form-control" id="logo2"  (change)=" uploadImg($event,'home-products')">
             <span class="text-warning" *ngIf="uploadingImg == 'uploadingImg'"> uploading ... </span> <span><img [src]="productURL" alt="" class="logo-photo"  *ngIf="uploadingImg == 'imgUploaded'"></span>
             <div class="text-center">
                 <button type="submit" class="btn btn-secondary " *ngIf="uploadingImg == 'imgUploaded'" >save</button>
@@ -111,71 +55,8 @@
       </table>
     </div>
   </div>
-  <!-- ----- Dining ------- -->
-  <div class="col-12" *ngIf="viewController == 'Dining'">
-    <div class="d-flex justify-content-center">
-      <h1 class="part-title">Dining part </h1>
-    </div>
-    <div class="col-12 dash-content p-2">
-      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulDining()" >
-          <label for="logo">Dining Carasoul Image : </label>
-          <input type="file" class="form-control" id="logo"  (change)=" uploadDiningCarasoul($event)">
-          <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingDiningCarasoul' "> uploading ... </span> <span><img [src]="CarasoulDiningURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'uploadedDiningCarasoul'"></span>
-          <div class="text-center">
-              <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'uploadedDiningCarasoul'">save</button>
-          </div>
-        </form>
-    </div>
-    <div class="col-12 dash-content p-2">
-      <form [formGroup]="dining_or_Services" class="card p-2" (ngSubmit)="sendDiningData()" >
-          <div class="form-group">
-            <label for="Title">Dining Title : </label>
-            <input type="text" class="form-control" id="Title" formControlName="title">
-          </div>
-          <div class="form-group">
-            <label for="logo">Dining Pragraph : </label>
-            <input type="text" class="form-control" id="logo" formControlName="paragraph">
-          </div>
-          <div class="text-center">
-              <button type="submit" class="btn btn-secondary " >save</button>
-          </div>
-        </form>
-    </div>
-  </div>
-  <!-- ----- Entertainment ------- -->
-  <div class="col-12" *ngIf="viewController == 'Entertainment'">
-    <div class="d-flex justify-content-center">
-      <h1 class="part-title">Entertainment part </h1>
-    </div>
-    <div class="col-12 dash-content p-2">
-      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulEntertainment()" >
-          <label for="logo">Entertainment Carasoul Image : </label>
-          <input type="file" class="form-control" id="logo"  (change)=" uploadEntertainmentCarasoul($event)">
-          <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingEntertainmentCarasoul' "> uploading ... </span> <span><img [src]="CarasoulEntertainmentURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'uploadedEntertainmentCarasoul'"></span>
-          <div class="text-center">
-              <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'uploadedEntertainmentCarasoul'">save</button>
-          </div>
-        </form>
-    </div>
-    <div class="col-12 dash-content p-2">
-      <form [formGroup]="Entertainment" class="card p-2" (ngSubmit)="sendEntertainmentData()" >
-          <label for="logo">Entertainment Product Image : </label>
-          <input type="file" class="form-control" id="logo"  (change)=" uploadEntertainmentProduct($event)">
-          <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingEntertainmentProduct' "> uploading ... </span> <span><img [src]="productEntertainmentURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'uploadedEntertainmentProduct'"></span>
-          <div class="form-group">
-            <label for="Title">Entertainment Title : </label>
-            <input type="text" class="form-control" id="Title" formControlName="title">
-          </div>
-          <div class="form-group">
-            <label for="logo">Entertainment Pragraph : </label>
-            <input type="text" class="form-control" id="logo" formControlName="paragraph">
-          </div>
-          <div class="text-center">
-              <button type="submit" class="btn btn-secondary " >save</button>
-          </div>
-        </form>
-    </div>
-  </div>
+  
+  
   <!-- ----- Services ------- -->
   <div class="col-12" *ngIf="viewController == 'Services'">
     <div class="d-flex justify-content-center">

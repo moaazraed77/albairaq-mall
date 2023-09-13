@@ -4,7 +4,6 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
 import { DiningComponent } from './dining/dining.component';
-import { DashComponent } from './admin/dash/dash.component';
 import { DashLoginComponent } from './admin/dash-login/dash-login.component';
 import { ServicessComponent } from './servicess/servicess.component';
 import { OpeningHoursComponent } from './opening-hours/opening-hours.component';
@@ -25,8 +24,8 @@ const routes: Routes = [
   {path:"store-location" , component:StoreLocationComponent},
   {path:"contact-us" , component:ContactUsComponent},
   {path:"services" , component: ServicessComponent},
-  {path:"dashlogin" , component: DashLoginComponent},
-  {path:"dash" , component: DashComponent},
+  {path:"dash-login" , component: DashLoginComponent},
+
 ];
 
 @NgModule({

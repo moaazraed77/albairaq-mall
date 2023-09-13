@@ -1,0 +1,59 @@
+
+
+<div class="col-12 flex-column flex-shrink-0 p-3 text-white bg-dark leftside" *ngIf="hideSideBar">
+    <a routerlink="/admin/dash" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact :true}">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-4 text-capitalize">albiraq mall</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a routerLink="/admin/dash" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}" class="nav-link text-white" aria-current="page" >
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <a class="nav-link text-white" routerLink="/admin/dining-dash" [routerLinkActive]="'active'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          Dining
+        </a>
+      </li>
+      <li>
+        <a class="nav-link text-white" routerLink="/admin/entertainment-dash" [routerLinkActive]="'active'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          Entertainment
+        </a>
+      </li>
+      <li>
+        <a class="nav-link text-white" routerLink="/admin/services-dash" [routerLinkActive]="'active'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          services
+        </a>
+      </li>
+      <li>
+        <a class="nav-link text-white" routerLink="/admin/about-dash" [routerLinkActive]="'active'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          About Albairaq
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="assets/البيرق لوجو.png" alt="" width="32" height="32" class="rounded-circle me-2 bg-light">
+        <strong>More</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" routerLink="#">OPENING HOURS</a></li>
+        <li><a class="dropdown-item drop-item-edit" routerLink="#">GETTING HERE </a></li>
+        <li><a class="dropdown-item drop-item-edit" routerLink="#">MALL LOCATION</a></li>
+        <li><a class="dropdown-item drop-item-edit" routerLink="#">STORE LOCATION</a></li>
+        <li><a class="dropdown-item" routerLink="#">CONTACT US</a></li>
+      </ul>
+    </div>
+</div>
+  
+<div class="col-12 content" >
+    <router-outlet></router-outlet>
+</div>

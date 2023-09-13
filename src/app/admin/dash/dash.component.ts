@@ -23,7 +23,7 @@ export class DashComponent implements OnInit {
 
   constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
     if(sessionStorage.getItem("Admin")!="AdminisTrue"){
-      route.navigate(["/dashlogin"])
+      route.navigate(["/dash-login"])
     }
     this.databaseURL=this.database.app.options.databaseURL;
   }
@@ -37,12 +37,7 @@ export class DashComponent implements OnInit {
     paragraph:["",Validators.required],
     id:[new Date().getTime()]
   })
-  Entertainment=this.fb.group({
-    img:[""],
-    title:["",Validators.required],
-    paragraph:["",Validators.required],
-    id:[new Date().getTime()]
-  })
+
   About=this.fb.group({
     paragraph:["",Validators.required],
     id:[new Date().getTime()]
@@ -54,7 +49,6 @@ export class DashComponent implements OnInit {
 
   productURL:string="";
   CarasoulURL:string="";
-  CarasoulDiningURL:string="";
   CarasoulEntertainmentURL:string="";
   productEntertainmentURL:string="";
   CarasoulServicesURL:string="";
@@ -88,45 +82,10 @@ export class DashComponent implements OnInit {
     }
     this.uploadingImg="imgUploaded";
   }
-  // funcion to upload img file and get image url ---- for dining Carasoul-------
-  async uploadDiningCarasoul(event:any){
-    this.uploadingCarasoul="uploadingDiningCarasoul";
-    let date=new Date()
-    const file=event.target.files[0];
-    if(file){
-      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
-      const uploadTask = await this.firestorage.upload(path,file)
-      const url =await uploadTask.ref.getDownloadURL()
-      this.CarasoulDiningURL=url;
-    }
-    this.uploadingCarasoul="uploadedDiningCarasoul";
-  }
-  // funcion to upload img file and get image url ---- for Entertainment Carasoul-------
-  async uploadEntertainmentCarasoul(event:any){
-    this.uploadingCarasoul="uploadingEntertainmentCarasoul";
-    let date=new Date()
-    const file=event.target.files[0];
-    if(file){
-      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
-      const uploadTask = await this.firestorage.upload(path,file)
-      const url =await uploadTask.ref.getDownloadURL()
-      this.CarasoulEntertainmentURL=url;
-    }
-    this.uploadingCarasoul="uploadedEntertainmentCarasoul";
-  }
-  // funcion to upload img file and get image url ---- for Entertainment Product-------
-  async uploadEntertainmentProduct(event:any){
-    this.uploadingCarasoul="uploadingEntertainmentProduct";
-    let date=new Date()
-    const file=event.target.files[0];
-    if(file){
-      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
-      const uploadTask = await this.firestorage.upload(path,file)
-      const url =await uploadTask.ref.getDownloadURL()
-      this.productEntertainmentURL=url;
-    }
-    this.uploadingCarasoul="uploadedEntertainmentProduct";
-  }
+  
+
+
+
   // funcion to upload img file and get image url ---- for Services Product-------
   async uploadServicesCarasoul(event:any){
     this.uploadingCarasoul="uploadingServicesCarasoul";
@@ -164,75 +123,51 @@ export class DashComponent implements OnInit {
       this.homeImg.patchValue({
         img:this.CarasoulURL,
       })
-      if(edit_control=="home-carsouel" && sectionViewController =="add"){
+      if(edit_control=="home-carsouel" && sectionViewController =="add")
+      {
         this.dataServ.create(this.homeImg.value,"carasoul","add");
-      }else if(edit_control=="home-carsouel" && sectionViewController =="edit"){
-        this.dataServ.getCarsoul().subscribe(data=>{
-          for (const key in data) {
-            if(this.updateObject.id==data[key].id){
-              this.homeImg.patchValue({
-                id:Number(this.updateObject.id)
-              })
-              this.dataServ.create(this.homeImg.value,"carasoul",key);
-              break;
-            }
-          }
-        })
       }
-    }else if(edit_control=="home-products"){
+      else if(edit_control=="home-carsouel" && sectionViewController =="edit"){
+            this.dataServ.getCarsoul().subscribe(data=>{
+              for (const key in data) {
+                if(this.updateObject.id==data[key].id){
+                  this.homeImg.patchValue({
+                    id:Number(this.updateObject.id)
+                  })
+                  this.dataServ.create(this.homeImg.value,"carasoul",key);
+                  break;
+                }
+              }
+            })
+          }
+    }
+    if(edit_control=="home-products"){
       this.homeImg.patchValue({
         img:this.productURL
       })
       if(edit_control=="home-products" && sectionViewController =="add"){
         this.dataServ.create(this.homeImg.value,"products","add");
-      }else if(edit_control=="home-products" && sectionViewController =="edit"){
-        this.dataServ.gethomeImages().subscribe(data=>{
-          this.homeImg.patchValue({
-            id:Number(this.updateObject.id)
-          })
-          for (const key in data) {
-            if(this.updateObject.id==data[key].id){
-              this.dataServ.create(this.homeImg.value,"products",key);
-              break;
-            }
-          }
-        })
       }
-    }
+      else if(edit_control=="home-products" && sectionViewController =="edit"){
+              this.dataServ.gethomeImages().subscribe(data=>{
+                this.homeImg.patchValue({
+                  id:Number(this.updateObject.id)
+                })
+                for (const key in data) {
+                  if(this.updateObject.id==data[key].id){
+                    this.dataServ.create(this.homeImg.value,"products",key);
+                    break;
+                  }
+                }
+              })
+            }
+        }
     this.uploadingCarasoul="null";
     this.uploadingImg="null";
     setTimeout(()=> location.reload(),500)
   }
   
-  // -- Carasoul function for Dining --
-  sendCarasoulDining(){
-    this.homeImg.patchValue({
-      img:this.CarasoulDiningURL
-    })
-    this.dataServ.create(this.homeImg.value,"diningCarasoul","add");
-    this.uploadingCarasoul="null";
-  }
-  sendDiningData(){
-    if(this.dining_or_Services.valid){
-      this.dataServ.create(this.dining_or_Services.value,"diningContent","add")
-    }
-  }
-  // -- Carasoul function for Entertainment --
-  sendCarasoulEntertainment(){
-    this.homeImg.patchValue({
-      img:this.CarasoulEntertainmentURL
-    })
-    this.dataServ.create(this.homeImg.value,"EntertainmentCarasoul","add");
-    this.uploadingCarasoul="null";
-  }
-  sendEntertainmentData(){
-    if(this.Entertainment.valid){
-      this.Entertainment.patchValue({
-        img:this.productEntertainmentURL
-      })
-      this.dataServ.create(this.Entertainment.value,"EntertainmentContent","add")
-    }
-  }
+  
   // -- Carasoul function for Services --
   sendCarasoulServices(){
     this.homeImg.patchValue({
@@ -277,7 +212,6 @@ export class DashComponent implements OnInit {
     this.sectionViewController=action;
     this.carsouelFormControl=action;
     this.edit_control=type;
-
     if(part=="table data"){
       this.showdata(type);
     }
@@ -343,11 +277,6 @@ update(item:any,sectionViewController:string){
     setTimeout(() => { this.showdata(this.edit_control) }, 500);
  }
 
-//control view function
-  showPart(text:string){
-    this.viewController=text;
-    this.showActiveLink=text;
-  }
 
 }
 

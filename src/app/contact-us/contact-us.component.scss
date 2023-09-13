@@ -83,3 +83,12 @@ input:focus,textarea:focus,input:hover,textarea:hover{
     border-color: pink;
     outline-color: pink;
 }
+.submit{
+    padding: 7px 25px;
+    font-family: auto;
+    font-size: 18px;
+    background-color: #f0f8ffa3;
+}
+.submit:hover{
+    background-color: rgba(0, 0, 0, 0.628);
+}

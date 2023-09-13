@@ -23,7 +23,7 @@ export class DashLoginComponent implements OnInit {
   submit(){
     if(this.login.get("email")?.value=="admin@admin" && this.login.get("pass")?.value=="admin2023"){
       sessionStorage.setItem("Admin","AdminisTrue");
-      this.route.navigate(["/dash"])
+      this.route.navigate(["/admin/dash"])
     }else{
       sessionStorage.setItem("Admin","isFalse")
     }

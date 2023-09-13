@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private route:Router){
     route.events.subscribe( val =>{
       if( val instanceof NavigationEnd){
-        if(val.url == "/dash" || val.url == "/dashlogin"){
+        if(val.url.split("/").includes('admin')){
           this.showHeader=false;
         }else{
           this.showHeader=true;
