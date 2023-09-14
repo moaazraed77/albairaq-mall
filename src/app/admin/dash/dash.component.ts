@@ -32,27 +32,19 @@ export class DashComponent implements OnInit {
     img:[""],
     id:[new Date().getTime()]
   })
-  dining_or_Services=this.fb.group({
-    title:["",Validators.required],
-    paragraph:["",Validators.required],
-    id:[new Date().getTime()]
-  })
-
-  About=this.fb.group({
-    paragraph:["",Validators.required],
-    id:[new Date().getTime()]
-  })
-
+  
   ngOnInit(): void {
     this.openPart('table data','home-carsouel','')
   }
 
   productURL:string="";
   CarasoulURL:string="";
-  CarasoulEntertainmentURL:string="";
-  productEntertainmentURL:string="";
-  CarasoulServicesURL:string="";
-  CarasoulAboutURL:string="";
+  datalist:any[]=[];
+  carsouelFormControl:string="";
+  partViewController:string="";
+  sectionViewController:string="";
+  edit_control:string="";
+  parttext:string="";
 
   // --------------------------------------------  upload photos -----------------------------------------
 
@@ -82,39 +74,6 @@ export class DashComponent implements OnInit {
     }
     this.uploadingImg="imgUploaded";
   }
-  
-
-
-
-  // funcion to upload img file and get image url ---- for Services Product-------
-  async uploadServicesCarasoul(event:any){
-    this.uploadingCarasoul="uploadingServicesCarasoul";
-    let date=new Date()
-    const file=event.target.files[0];
-    if(file){
-      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
-      const uploadTask = await this.firestorage.upload(path,file)
-      const url =await uploadTask.ref.getDownloadURL()
-      this.CarasoulServicesURL=url;
-    }
-    this.uploadingCarasoul="uploadedServicesCarasoul";
-  }
-  // funcion to upload img file and get image url ---- for About Product-------
-   async uploadAboutCarasoul(event:any){
-    this.uploadingCarasoul="uploadingAboutCarasoul";
-    let date=new Date()
-    const file=event.target.files[0];
-    if(file){
-      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
-      const uploadTask = await this.firestorage.upload(path,file)
-      const url =await uploadTask.ref.getDownloadURL()
-      this.CarasoulAboutURL=url;
-    }
-    this.uploadingCarasoul="uploadedAboutCarasoul";
-  }
-
-  //-----------------------------------------------------------------------------------------------------
-
 
 // ------------------------------------- send data to add to database -----------------------------------
   // ---- Carasoul function for home ----
@@ -166,45 +125,7 @@ export class DashComponent implements OnInit {
     this.uploadingImg="null";
     setTimeout(()=> location.reload(),500)
   }
-  
-  
-  // -- Carasoul function for Services --
-  sendCarasoulServices(){
-    this.homeImg.patchValue({
-      img:this.CarasoulServicesURL
-    })
-    this.dataServ.create(this.homeImg.value,"ServicesCarasoul","add");
-    this.uploadingCarasoul="null";
-  }
-  sendServicesData(){
-    // we use dining formBuilder becase the same structure
-    if(this.dining_or_Services.valid){
-      this.dataServ.create(this.dining_or_Services.value,"ServicesContent","add")
-    }
-  }
-  // -- Carasoul function for About --
-  sendCarasoulAbout(){
-    this.homeImg.patchValue({
-      img:this.CarasoulAboutURL
-    })
-    this.dataServ.create(this.homeImg.value,"AboutCarasoul","add");
-    this.uploadingCarasoul="null";
-  }
-  sendAboutData(){
-    // we use dining formBuilder becase the same structure
-    if(this.About.valid){
-      this.dataServ.create(this.About.value,"AboutContent","add")
-    }
-  }
-
   //-----------------------------------------------------------------------------------------------------
-
-  datalist:any[]=[];
-  carsouelFormControl:string="";
-  partViewController:string="";
-  sectionViewController:string="";
-  edit_control:string="";
-  parttext:string="";
 
   openPart(part:string,type:string,action:string){
     this.parttext=`the show of ${type}`

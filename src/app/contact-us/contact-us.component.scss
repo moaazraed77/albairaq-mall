@@ -4,7 +4,7 @@
         display: block !important;
     }
     .form .form-group{
-        margin: 5px 0px;
+        margin:0px;
         padding: 5px 20px;
         width: 100%;
     }
@@ -91,4 +91,7 @@ input:focus,textarea:focus,input:hover,textarea:hover{
 }
 .submit:hover{
     background-color: rgba(0, 0, 0, 0.628);
+}
+.insta{
+    border-radius: 5px;
 }

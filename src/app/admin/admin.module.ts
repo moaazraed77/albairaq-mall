@@ -8,6 +8,7 @@ import { DiningDashComponent } from './dining-dash/dining-dash.component';
 import { EntertainmentDashComponent } from './entertainment-dash/entertainment-dash.component';
 import { ServicesDashComponent } from './services-dash/services-dash.component';
 import { AboutDashComponent } from './about-dash/about-dash.component';
+import { ContactusDashComponent } from './contactus-dash/contactus-dash.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AboutDashComponent } from './about-dash/about-dash.component';
     EntertainmentDashComponent,
     ServicesDashComponent,
     AboutDashComponent,
+    ContactusDashComponent,
   ],
   imports: [
     CommonModule,

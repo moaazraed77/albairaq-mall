@@ -22,38 +22,41 @@
                 <p class="paragraph">P.O.Box 232 Fintas 50013 Kuwait.</p>
                 <p class="paragraph">Marketing Department Email : <a href="mailto:info@dealzus.com">info@dealzus.com</a></p>
                 <p class="mt-2"> instagram : 
-                    <a href="https://www.instagram.com/albairaqmall/" target="_blank">  <img src="assets/insta.png" alt="">    </a>
+                    <a href="https://www.instagram.com/albairaqmall/" target="_blank">  <img src="assets/insta.png" class="insta" alt="">    </a>
                 </p>
             </div>
         </div>
         <div class="col-sm-7">
             <div class="form-div">
                 <p class="form-title">We'd Love To Know What You Think </p>
-                <form action="" class="form">
+                <form action="" [formGroup]="ContactUS" class="form" (ngSubmit)="submit()">
                     <div class="form-group">
-                        <label for="fname">frist name</label> <br>
-                        <input type="text" name="fname" id="fname">
+                        <label for="Fname">frist name</label> <br>
+                        <input type="text" name="Fname" id="Fname" formControlName="Fname">
                     </div>
                     <div class="form-group">
-                        <label for="fname">Last Name </label> <br>
-                        <input type="text" name="fname" id="fname">
+                        <label for="Lname">Last Name </label> <br>
+                        <input type="text" name="Lname" id="Lname" formControlName="Lname">
                     </div>
                     <div class="form-group">
-                        <label for="fname">Email</label> <br>
-                        <input type="text" name="fname" id="fname">
+                        <label for="email">Email</label> <br>
+                        <input type="text" name="email" id="email" formControlName="email">
                     </div>
                     <div class="form-group">
-                        <label for="fname">Phone</label> <br>
-                        <input type="text" name="fname" id="fname">
+                        <label for="phone">Phone</label> <br>
+                        <input type="text" name="phone" id="phone" formControlName="phone">
                     </div>
                     <div class="form-group">
-                        <textarea name="" id="" cols="50" rows="5" placeholder="How we can improve ?"></textarea>
+                        <textarea name="msg" id="msg" cols="50" rows="5" placeholder="How we can improve ?" formControlName="msg"></textarea>
                     </div>
 
                     <div class="col-12  text-center mb-4">
                         <button class="btn btn-outline-dark text-capitalize submit">Send feedback</button>
                     </div>
+                    <div class=" container alert alert-success text-center p-1 m-1" *ngIf="sended=='your message sended successfully'">{{sended}}</div>
+                    <div class="container alert alert-danger text-center p-1 m-1" *ngIf="sended=='please: fill all the form data'">{{sended}}</div>
                 </form>
+                
             </div>
         </div>
     </div>

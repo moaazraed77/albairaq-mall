@@ -1,1 +1,68 @@
-<p>services-dash works!</p>
+
+<!-- ----- Entertainment ------- -->
+<div class="col-12">
+    <div class="d-flex justify-content-center">
+      <h1 class="part-title">Services part  </h1>
+    </div>
+    <div class="col-12 d-flex justify-content-end">
+        <div class="btn btn-info text-light" (click)="openPart('form','','add')">add data</div>
+        <div class="btn btn-info text-light" (click)="openPart('table data','content','')">show data</div>
+        <div class="btn btn-info text-light" (click)="openPart('table data','carsouel','')">show carsouel</div>
+      </div>
+    
+    <!-- ----- Services ------- -->
+  <div class="col-12">
+    <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='carsouel')">
+      <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulServices()" >
+          <label for="logo">Services Carasoul Image : </label>
+          <input type="file" class="form-control" id="logo"  (change)=" uploadServicesCarasoul($event)">
+          <span class="text-warning" *ngIf="uploading == 'uploadingServicesCarasoul' "> uploading ... </span> <span><img [src]="CarasoulServicesURL" alt="" class="logo-photo"  *ngIf="uploading == 'uploadedServicesCarasoul'"></span>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary "  *ngIf="uploading == 'uploadedServicesCarasoul'">save</button>
+          </div>
+        </form>
+    </div>
+    <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='content')">
+      <form [formGroup]="Services" class="card p-2" (ngSubmit)="sendServicesData()" >
+          <div class="form-group">
+            <label for="Title">Services Title : </label>
+            <input type="text" class="form-control" id="Title" formControlName="title">
+          </div>
+          <div class="form-group">
+            <label for="logo">Services Pragraph : </label>
+            <input type="text" class="form-control" id="logo" formControlName="paragraph">
+          </div>
+          <div class="text-center">
+              <button type="submit" class="btn btn-secondary " >save</button>
+          </div>
+        </form>
+    </div>
+  </div>
+
+    <div class="col-12 table-div" *ngIf="partViewController=='table data'">
+        <table class="table table-striped text-center">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col" *ngIf="edit_control=='carsouel'">carasoul</th>
+              <th scope="col" *ngIf="edit_control=='content'">img</th>
+              <th scope="col" *ngIf="edit_control=='content'">title</th>
+              <th scope="col" *ngIf="edit_control=='content'">paragraph</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of datalist;let i=index">
+              <th scope="row" class="item">{{i+1}}</th>
+              <td *ngIf="edit_control=='carsouel'"><img [src]="item.img" class="imgView" alt=""></td>
+              <td *ngIf="edit_control=='content'" class="titleContent"><p>{{item.title}}</p></td>
+              <td *ngIf="edit_control=='content'" class="paragraphContent"><p>{{item.paragraph}}</p></td>
+              <td class="item">
+                <button class="btn btn-warning m-1" (click)="openPart('form',edit_control,'edit');update(item,'edit')">edit</button>  
+                <button class="btn btn-danger m-1" (click)="deleteItem(item,'delete')">delete</button>  
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>

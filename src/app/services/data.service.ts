@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { diningData } from '../interfaces/dining.interface';
 import { EntertainmentData } from '../interfaces/Entertainment.interface';
 import { About } from '../interfaces/About.interface';
+import { sendFeedback } from '../interfaces/feedback.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,10 @@ export class DataService {
   getAboutContent():Observable<About[]>{
     return this.http.get<About[]>(`${this.databaseURL}/AboutContent.json`)
   }
+  // get  Feedback
+  getFeedback():Observable<sendFeedback[]>{
+    return this.http.get<sendFeedback[]>(`${this.databaseURL}/feedback.json`)
+  }
 
   
   // create the data
@@ -70,6 +75,9 @@ export class DataService {
       this.http.post(`${this.databaseURL}/${position}.json`,data).subscribe();
     else
       this.http.put(`${this.databaseURL}/${position}/${key}.json`,data).subscribe();
+  }
+  sendFeedback(data:any){
+    this.http.post(`${this.databaseURL}/feedback.json`,data).subscribe();
   }
   // delete the data
   delete(position:string,key:string){

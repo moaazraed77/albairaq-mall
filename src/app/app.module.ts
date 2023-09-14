@@ -30,6 +30,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
 import { DashLoginComponent } from './admin/dash-login/dash-login.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { DashLoginComponent } from './admin/dash-login/dash-login.component';
     AngularFireStorageModule,
     AngularFireModule,
     AdminModule,
+    FontAwesomeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)), provideDatabase(() => getDatabase()), provideStorage(() => getStorage()), NgbModule,
   ],
   providers: [
