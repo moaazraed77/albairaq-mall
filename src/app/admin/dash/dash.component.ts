@@ -141,6 +141,7 @@ export class DashComponent implements OnInit {
     this.edit_control=type;
     // delete texts and old data
     this.uploadingCarasoul=""
+    this.uploadingImg=""
     this.showDeleteDiv=false
     if(part=="table data"){
       this.showdata(type);
