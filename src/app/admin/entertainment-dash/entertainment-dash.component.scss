@@ -62,5 +62,25 @@ label{
 }
 
 
+.delete-show{
+    background-color: whitesmoke;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 77%;
+    margin-top: 148px;
+    width: 98%;
+    z-index: 2;
+}
+.check-data{
+    width: 100%;
+}
+.delete-show .card{
+    max-width: 100%;
+    text-align: center;
+    padding: 10px;
+}
 
 

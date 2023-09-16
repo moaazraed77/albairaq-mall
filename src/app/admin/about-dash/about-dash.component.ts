@@ -24,6 +24,8 @@ export class AboutDashComponent implements OnInit {
   updateObject: any;
   // for check delete
   deletedObject: any;
+  // for popup deleted item show
+  showDeleteDiv:boolean=false;
 
   constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
   }
@@ -47,6 +49,9 @@ export class AboutDashComponent implements OnInit {
     this.sectionViewController=action;
     this.carsouelFormControl=action;
     this.edit_control=type;
+    // delete texts and old data
+    this.uploading=""
+    this.showDeleteDiv=false
     if(part=="table data"){
       this.showdata(type);
     }
@@ -134,12 +139,17 @@ update(item:any,sectionViewController:string){
     }
  }
 // ------------- delete part -------------
-// modalSure(item:any){
-//   this.deletedObject=item;
-// }
-// deleteDone(){
-//   this.deleteItem(this.deletedObject,"delete");
-// }
+DeleteSure(item:any){
+  this.deletedObject=item;
+  this.showDeleteDiv=true;
+}
+deleteDone(){
+  this.deleteItem(this.deletedObject,"delete");
+  this.showDeleteDiv=false;
+}
+cancel_delete(){
+  this.showDeleteDiv=false;
+}
  deleteItem(item:any,sectionViewController:string){
   this.deletedObject=item;
   if(this.edit_control=='carsouel' && sectionViewController=='delete')

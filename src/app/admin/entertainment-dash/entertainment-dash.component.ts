@@ -20,6 +20,11 @@ export class EntertainmentDashComponent implements OnInit {
   productEntertainmentURL: string = "";
   uploading: string = "";
   updateObject: any;
+  // for check delete
+  deletedObject: any;
+  // for popup deleted item show
+  showDeleteDiv:boolean=false;
+
 
   homeImg = this.fb.group({
     img: [""],
@@ -38,7 +43,7 @@ export class EntertainmentDashComponent implements OnInit {
     this.openPart('table data', 'carsouel', '')
   }
 
-  // ------------- Carasoul function for Entertainment -------------
+  // ------------- form function for Entertainment Carasoul -------------
   sendCarasoulEntertainment() {
     this.homeImg.patchValue({
       img: this.CarasoulEntertainmentURL
@@ -59,8 +64,9 @@ export class EntertainmentDashComponent implements OnInit {
       })
     }
     this.uploading = "null";
-    setTimeout(() => { location.reload() }, 500);
+    setTimeout(() => { location.reload() }, 700);
   }
+  // ------------- form function for Entertainment Data -------------
   sendEntertainmentData() {
     if (this.Entertainment.valid) {
       this.Entertainment.patchValue({
@@ -82,7 +88,7 @@ export class EntertainmentDashComponent implements OnInit {
         })
       }
     }
-    setTimeout(() => { location.reload() }, 500);
+    setTimeout(() => { location.reload() }, 700);
   }
   // ------------- open view control -------------
   openPart(part: string, type: string, action: string) {
@@ -90,6 +96,9 @@ export class EntertainmentDashComponent implements OnInit {
     this.sectionViewController = action;
     this.carsouelFormControl = action;
     this.edit_control = type;
+    // delete texts and old data
+    this.uploading=""
+    this.showDeleteDiv=false
     if (part == "table data") {
       this.showdata(type);
     }
@@ -131,6 +140,17 @@ export class EntertainmentDashComponent implements OnInit {
     }
   }
   // ------------- delete part -------------
+  DeleteSure(item:any){
+    this.deletedObject=item;
+    this.showDeleteDiv=true;
+  }
+  deleteDone(){
+    this.deleteItem(this.deletedObject,"delete");
+    this.showDeleteDiv=false;
+  }
+  cancel_delete(){
+    this.showDeleteDiv=false;
+  }
   deleteItem(item: any, sectionViewController: string) {
     if (this.edit_control == 'carsouel' && sectionViewController == 'delete') {
       this.sectionViewController = sectionViewController;
@@ -154,7 +174,7 @@ export class EntertainmentDashComponent implements OnInit {
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 500);
+    setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
 
   // funcion to upload img file and get image url ---- for Entertainment Carasoul-------

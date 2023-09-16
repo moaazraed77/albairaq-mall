@@ -45,7 +45,14 @@ export class DashComponent implements OnInit {
   sectionViewController:string="";
   edit_control:string="";
   parttext:string="";
-
+  updateObject:homePhoto={
+    img:"",
+    id:""
+  }
+  // for check delete
+  deletedObject: any;
+  // for popup deleted item show
+  showDeleteDiv:boolean=false;
   // --------------------------------------------  upload photos -----------------------------------------
 
   // funcion to upload img file and get image url   ---- for home carasoul -------
@@ -99,7 +106,7 @@ export class DashComponent implements OnInit {
       })
     }
     this.uploadingCarasoul="null";
-    setTimeout(()=> location.reload(),500)
+    setTimeout(()=> location.reload(),700)
   }
   sendProducts(edit_control:string,sectionViewController:string){
     this.homeImg.patchValue({
@@ -122,7 +129,7 @@ export class DashComponent implements OnInit {
       })
     }
     this.uploadingImg="null";
-    setTimeout(()=> location.reload(),500)
+    setTimeout(()=> location.reload(),700)
   }
   //-----------------------------------------------------------------------------------------------------
 
@@ -132,11 +139,14 @@ export class DashComponent implements OnInit {
     this.sectionViewController=action;
     this.carsouelFormControl=action;
     this.edit_control=type;
+    // delete texts and old data
+    this.uploadingCarasoul=""
+    this.showDeleteDiv=false
     if(part=="table data"){
       this.showdata(type);
     }
   }
-
+  // show data table
   showdata(type:string){
     this.datalist=[]
     if(type=="home-carsouel"){
@@ -154,10 +164,6 @@ export class DashComponent implements OnInit {
     }
   }
 // ------------- update part -------------
-updateObject:homePhoto={
-  img:"",
-  id:""
-}
 update(item:any,sectionViewController:string){
   this.updateObject=item;
   if(this.edit_control=='home-carsouel' && sectionViewController=='edit')
@@ -168,7 +174,18 @@ update(item:any,sectionViewController:string){
       this.sectionViewController=sectionViewController
     }
  }
-// ------------- delete part -------------
+  // ------------- delete part -------------
+  DeleteSure(item:any){
+    this.deletedObject=item;
+    this.showDeleteDiv=true;
+  }
+  deleteDone(){
+    this.deleteItem(this.deletedObject,"delete");
+    this.showDeleteDiv=false;
+  }
+  cancel_delete(){
+    this.showDeleteDiv=false;
+  }
  deleteItem(item:any,sectionViewController:string){
     if(this.edit_control=='home-carsouel' && sectionViewController=='delete')
     {
@@ -194,7 +211,7 @@ update(item:any,sectionViewController:string){
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 500);
+    setTimeout(() => { this.showdata(this.edit_control) }, 700);
  }
 
 

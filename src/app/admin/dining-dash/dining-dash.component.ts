@@ -21,6 +21,10 @@ export class DiningDashComponent implements OnInit {
   CarasoulDiningURL:string="";
   uploading:string="";
   updateObject:any;
+  // for check delete
+  deletedObject: any;
+  // for popup deleted item show
+  showDeleteDiv:boolean=false;
 
   constructor( private route:Router,private fb:FormBuilder , private dataServ:DataService, private firestorage:AngularFireStorage) { 
     this.partViewController="table data";
@@ -63,7 +67,7 @@ export class DiningDashComponent implements OnInit {
     this.uploading="null";
     setTimeout(() => { location.reload() }, 500);
   }
-
+// -------- data function for Dining --------
   sendDiningData(){
     if(this.dining.valid){
       if(this.sectionViewController=='add'){
@@ -84,13 +88,15 @@ export class DiningDashComponent implements OnInit {
     }
     setTimeout(() => { location.reload() }, 500);
   }
-
   // view control function
   openPart(part:string,type:string,action:string){
     this.partViewController=part;
     this.sectionViewController=action;
     this.carsouelFormControl=action;
     this.edit_control=type;
+    // delete texts and old data
+    this.uploading=""
+    this.showDeleteDiv=false
     if(part=="table data"){
       this.showdata(type);
     }
@@ -134,6 +140,17 @@ export class DiningDashComponent implements OnInit {
       }
   }
   // ------------- delete part -------------
+  DeleteSure(item:any){
+    this.deletedObject=item;
+    this.showDeleteDiv=true;
+  }
+  deleteDone(){
+    this.deleteItem(this.deletedObject,"delete");
+    this.showDeleteDiv=false;
+  }
+  cancel_delete(){
+    this.showDeleteDiv=false;
+  }
   deleteItem(item:any,sectionViewController:string){
     if(this.edit_control=='carsouel' && sectionViewController=='delete')
     {

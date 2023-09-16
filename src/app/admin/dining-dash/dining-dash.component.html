@@ -59,10 +59,25 @@
           <td *ngIf="edit_control=='texts'" class="paragraphContent"><p>{{item.paragraph}}</p></td>
           <td class="item">
             <button class="btn btn-warning m-1" (click)="openPart('form',edit_control,'edit');update(item,'edit')">edit</button>  
-            <button class="btn btn-danger m-1" (click)="deleteItem(item,'delete')">delete</button>  
+            <button class="btn btn-danger m-1" (click)="DeleteSure(item)">delete</button>  
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- deleted item div -->
+  <div class="col-12 delete-show" *ngIf="showDeleteDiv">
+    <div class="row check-data">
+      <div class=" card">
+        <p *ngIf="edit_control=='carsouel'"><img [src]="deletedObject.img" class="imgView" alt=""></p>
+        <p *ngIf="edit_control=='texts'" class="titleContent">{{deletedObject.title}}</p>
+        <p *ngIf="edit_control=='texts'" >{{deletedObject.paragraph}}</p>
+        <div class="text-center">
+          <div class="btn btn-danger" (click)="deleteDone()">delete</div>
+          <div class="btn btn-secondary" (click)="cancel_delete()">cancel</div>
+        </div>  
+      </div>
+    </div>
   </div>
 </div>

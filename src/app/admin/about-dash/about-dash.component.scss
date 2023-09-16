@@ -21,6 +21,7 @@
     height: 100vh;
     overflow: auto;
     width: calc(100% - 295px);
+    overflow-x: hidden;
 }
 label{
     text-transform: capitalize;
@@ -53,8 +54,7 @@ label{
     overflow: auto;
     border: 1px solid lightgray;
 }
-tr{
-}
+
 .item{
     padding-top: 35px;
 }
@@ -84,3 +84,23 @@ tr{
     width: 70%;
 }
 
+.delete-show{
+    background-color: whitesmoke;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 77%;
+    margin-top: 148px;
+    width: 98%;
+    z-index: 2;
+}
+.check-data{
+    width: 100%;
+}
+.delete-show .card{
+    max-width: 100%;
+    text-align: center;
+    padding: 10px;
+}
