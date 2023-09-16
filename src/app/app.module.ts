@@ -22,7 +22,7 @@ import { StoreLocationComponent } from './components/store-location/store-locati
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
-import { DashLoginComponent } from './components/dash-login/dash-login.component';
+import { DashLoginComponent } from './admin/dash-login/dash-login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DiningComponent } from './components/dining/dining.component';
 import { EntertainmentComponent } from './components/entertainment/entertainment.component';

@@ -23,7 +23,7 @@ export class DashComponent implements OnInit {
 
   constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
     if(sessionStorage.getItem("Admin")!="AdminisTrue"){
-      route.navigate(["/dash-login"])
+      route.navigate(["/admin/dash-login"])
     }
     this.databaseURL=this.database.app.options.databaseURL;
   }
