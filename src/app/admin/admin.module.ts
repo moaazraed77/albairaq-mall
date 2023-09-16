@@ -9,6 +9,7 @@ import { EntertainmentDashComponent } from './entertainment-dash/entertainment-d
 import { ServicesDashComponent } from './services-dash/services-dash.component';
 import { AboutDashComponent } from './about-dash/about-dash.component';
 import { ContactusDashComponent } from './contactus-dash/contactus-dash.component';
+import { StoreLocationDashComponent } from './store-location-dash/store-location-dash.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ContactusDashComponent } from './contactus-dash/contactus-dash.componen
     ServicesDashComponent,
     AboutDashComponent,
     ContactusDashComponent,
+    StoreLocationDashComponent,
   ],
   imports: [
     CommonModule,

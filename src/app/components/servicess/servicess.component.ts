@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { homePhoto } from '../interfaces/home.interface';
-import { DataService } from '../services/data.service';
-import { diningData } from '../interfaces/dining.interface';
+import { homePhoto } from '../../interfaces/home.interface';
+import { diningData } from '../../interfaces/dining.interface';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-servicess',

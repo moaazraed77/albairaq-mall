@@ -1,7 +1,13 @@
 
 @media screen and (max-width:990px) {
+    [class*="col-"]{
+        width: 100%;
+    }
     .contacts{
         display: block !important;
+    }
+    .contacts .texts{
+        justify-content: center;
     }
     .form .form-group{
         margin:0px;

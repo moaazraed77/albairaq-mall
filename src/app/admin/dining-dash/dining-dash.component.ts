@@ -95,6 +95,12 @@ export class DiningDashComponent implements OnInit {
       this.showdata(type);
     }
   }
+  EmptyFormInputs(){
+    this.dining.patchValue({
+      title:"",
+      paragraph:""
+    })
+  }
   // add data in array
   showdata(type:string){
     this.datalist=[]
@@ -120,6 +126,10 @@ export class DiningDashComponent implements OnInit {
         this.sectionViewController=sectionViewController
       } else if(this.edit_control=='texts' && sectionViewController=='edit')
       {
+        this.dining.patchValue({
+          title:item.title,
+          paragraph:item.paragraph,
+        })
         this.sectionViewController=sectionViewController
       }
   }

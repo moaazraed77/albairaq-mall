@@ -7,6 +7,7 @@ import { EntertainmentDashComponent } from './entertainment-dash/entertainment-d
 import { ServicesDashComponent } from './services-dash/services-dash.component';
 import { AboutDashComponent } from './about-dash/about-dash.component';
 import { ContactusDashComponent } from './contactus-dash/contactus-dash.component';
+import { StoreLocationDashComponent } from './store-location-dash/store-location-dash.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       {path:"services-dash",component:ServicesDashComponent},
       {path:"about-dash",component:AboutDashComponent},
       {path:"contactus-dash",component:ContactusDashComponent},
+      {path:"store-location-dash",component:StoreLocationDashComponent},
     ]
   }
 ];

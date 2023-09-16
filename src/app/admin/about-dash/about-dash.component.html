@@ -4,14 +4,14 @@
       <h1 class="part-title">About part </h1>
     </div>
     <div class="col-12 d-flex justify-content-end">
-        <div class="btn btn-info text-light" (click)="openPart('form','','add')">add data</div>
+        <div class="btn btn-info text-light" (click)="openPart('form','','add');EmptyFormInputs()">add data</div>
         <div class="btn btn-info text-light" (click)="openPart('table data','content','')">show data</div>
         <div class="btn btn-info text-light" (click)="openPart('table data','carsouel','')">show carsouel</div>
       </div>
     <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='carsouel')">
       <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulAbout()" >
           <label for="logo">About Carasoul Image : </label>
-          <input type="file" class="form-control" id="logo"  (change)=" uploadAboutCarasoul($event)">
+          <input type="file" accept=".jpg , .png , .jpeg , .webp " class="form-control" id="logo"  (change)=" uploadAboutCarasoul($event)">
           <span class="text-warning" *ngIf="uploading == 'uploadingAboutCarasoul' "> uploading ... </span> <span><img [src]="CarasoulAboutURL" alt="" class="logo-photo"  *ngIf="uploading == 'uploadedAboutCarasoul'"></span>
           <div class="text-center">
               <button type="submit" class="btn btn-secondary "  *ngIf="uploading == 'uploadedAboutCarasoul'">save</button>
@@ -51,5 +51,8 @@
               </tr>
             </tbody>
           </table>
-      </div>
+    </div>
   </div>
+
+
+  

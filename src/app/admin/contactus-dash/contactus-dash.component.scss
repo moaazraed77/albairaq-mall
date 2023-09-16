@@ -1,7 +1,15 @@
 *{
     margin: 5px 0px;
 }
-
+.card{
+    height: 300px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+p{
+    font-size: 12px;
+}
 span{
     color: cadetblue;
     font-weight: 600;
@@ -12,5 +20,5 @@ textarea{
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 7px;
-    font-size: 14px;
+    font-size: 12px;
 }

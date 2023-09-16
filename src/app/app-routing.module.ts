@@ -1,16 +1,16 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { EntertainmentComponent } from './entertainment/entertainment.component';
-import { DiningComponent } from './dining/dining.component';
-import { DashLoginComponent } from './admin/dash-login/dash-login.component';
-import { ServicessComponent } from './servicess/servicess.component';
-import { OpeningHoursComponent } from './opening-hours/opening-hours.component';
-import { GettingHereComponent } from './getting-here/getting-here.component';
-import { MallLocationComponent } from './mall-location/mall-location.component';
-import { StoreLocationComponent } from './store-location/store-location.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { EntertainmentComponent } from './components/entertainment/entertainment.component';
+import { DiningComponent } from './components/dining/dining.component';
+import { OpeningHoursComponent } from './components/opening-hours/opening-hours.component';
+import { GettingHereComponent } from './components/getting-here/getting-here.component';
+import { MallLocationComponent } from './components/mall-location/mall-location.component';
+import { StoreLocationComponent } from './components/store-location/store-location.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { ServicessComponent } from './components/servicess/servicess.component';
+import { DashLoginComponent } from './components/dash-login/dash-login.component';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
@@ -24,7 +24,7 @@ const routes: Routes = [
   {path:"store-location" , component:StoreLocationComponent},
   {path:"contact-us" , component:ContactUsComponent},
   {path:"services" , component: ServicessComponent},
-  {path:"dash-login" , component: DashLoginComponent},
+  {path:"admin" , component: DashLoginComponent},
 
 ];
 

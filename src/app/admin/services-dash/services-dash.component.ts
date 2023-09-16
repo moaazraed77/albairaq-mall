@@ -90,6 +90,12 @@ export class ServicesDashComponent implements OnInit {
       this.showdata(type);
     }
   }
+  EmptyFormInputs(){
+    this.Services.patchValue({
+      title:"",
+      paragraph:""
+    })
+  }
   // ------------- show data list on view -------------
   showdata(type: string) {
     this.datalist = []
@@ -113,6 +119,10 @@ export class ServicesDashComponent implements OnInit {
     if (this.edit_control == 'carsouel' && sectionViewController == 'edit') {
       this.sectionViewController = sectionViewController
     } else if (this.edit_control == 'content' && sectionViewController == 'edit') {
+      this.Services.patchValue({
+        title:item.title,
+        paragraph:item.paragraph,
+      })
       this.sectionViewController = sectionViewController
     }
   }

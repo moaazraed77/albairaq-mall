@@ -94,6 +94,12 @@ export class EntertainmentDashComponent implements OnInit {
       this.showdata(type);
     }
   }
+  EmptyFormInputs(){
+    this.Entertainment.patchValue({
+      title:"",
+      paragraph:""
+    })
+  }
   // ------------- show data list on view -------------
   showdata(type: string) {
     this.datalist = []
@@ -117,6 +123,10 @@ export class EntertainmentDashComponent implements OnInit {
     if (this.edit_control == 'carsouel' && sectionViewController == 'edit') {
       this.sectionViewController = sectionViewController
     } else if (this.edit_control == 'content' && sectionViewController == 'edit') {
+      this.Entertainment.patchValue({
+        title:item.title,
+        paragraph:item.paragraph,
+      })
       this.sectionViewController = sectionViewController
     }
   }
@@ -146,7 +156,6 @@ export class EntertainmentDashComponent implements OnInit {
     }
     setTimeout(() => { this.showdata(this.edit_control) }, 500);
   }
-
 
   // funcion to upload img file and get image url ---- for Entertainment Carasoul-------
   async uploadEntertainmentCarasoul(event: any) {

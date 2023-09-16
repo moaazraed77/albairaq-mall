@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { About } from '../interfaces/About.interface';
-import { homePhoto } from '../interfaces/home.interface';
-import { DataService } from '../services/data.service';
+import { About } from 'src/app/interfaces/About.interface';
+import { homePhoto } from 'src/app/interfaces/home.interface';
+import { DataService } from 'src/app/services/data.service';
+
 
 @Component({
   selector: 'app-about',

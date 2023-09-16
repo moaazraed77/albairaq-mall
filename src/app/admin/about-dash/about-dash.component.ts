@@ -20,11 +20,14 @@ export class AboutDashComponent implements OnInit {
   edit_control: string = "";
   CarasoulAboutURL: string = "";
   uploading: string = "";
+  // for update
   updateObject: any;
-  
+  // for check delete
+  deletedObject: any;
 
   constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
   }
+
   homeImg=this.fb.group({
     img:[""],
     id:[new Date().getTime()]
@@ -38,7 +41,21 @@ export class AboutDashComponent implements OnInit {
   ngOnInit(): void {
     this.openPart('table data','carsouel','');
   }
- 
+ // open the view for data special control 
+ openPart(part:string,type:string,action:string){
+    this.partViewController=part;
+    this.sectionViewController=action;
+    this.carsouelFormControl=action;
+    this.edit_control=type;
+    if(part=="table data"){
+      this.showdata(type);
+    }
+  }
+  EmptyFormInputs(){
+    this.About.patchValue({
+      paragraph:""
+    })
+  }
   // -- Carasoul function for About --
   sendCarasoulAbout(){
     this.homeImg.patchValue({
@@ -85,30 +102,6 @@ export class AboutDashComponent implements OnInit {
       setTimeout(() => { location.reload() }, 500);
     }
   }
-
-  // funcion to upload img file and get image url ---- for About Product-------
-  async uploadAboutCarasoul(event:any){
-    this.uploading="uploadingAboutCarasoul";
-    let date=new Date()
-    const file=event.target.files[0];
-    if(file){
-      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
-      const uploadTask = await this.firestorage.upload(path,file)
-      const url =await uploadTask.ref.getDownloadURL()
-      this.CarasoulAboutURL=url;
-    }
-    this.uploading="uploadedAboutCarasoul";
-  }
-  // open the view for data special control 
-  openPart(part:string,type:string,action:string){
-    this.partViewController=part;
-    this.sectionViewController=action;
-    this.carsouelFormControl=action;
-    this.edit_control=type;
-    if(part=="table data"){
-      this.showdata(type);
-    }
-  }
   // for view the data in table
   showdata(type:string){
     this.datalist=[]
@@ -134,36 +127,59 @@ update(item:any,sectionViewController:string){
       this.sectionViewController=sectionViewController
     } else if(this.edit_control=='content' && sectionViewController=='edit')
     {
+      this.About.patchValue({
+        paragraph:item.paragraph
+      })
       this.sectionViewController=sectionViewController
     }
  }
 // ------------- delete part -------------
+// modalSure(item:any){
+//   this.deletedObject=item;
+// }
+// deleteDone(){
+//   this.deleteItem(this.deletedObject,"delete");
+// }
  deleteItem(item:any,sectionViewController:string){
-    if(this.edit_control=='carsouel' && sectionViewController=='delete')
-    {
-      this.sectionViewController=sectionViewController;
-      this.dataServ.getAboutCarsoul().subscribe(data=>{
-        for (const key in data) {
-          if(item.id==data[key].id){
-            this.dataServ.delete("AboutCarasoul",key);
-            break;
-          }
+  this.deletedObject=item;
+  if(this.edit_control=='carsouel' && sectionViewController=='delete')
+  {
+    this.sectionViewController=sectionViewController;
+    this.dataServ.getAboutCarsoul().subscribe(data=>{
+      for (const key in data) {
+        if(item.id==data[key].id){
+          this.dataServ.delete("AboutCarasoul",key);
+          break;
         }
-      })
-    } else if(this.edit_control=='content' && sectionViewController=='delete')
-    {
-      this.sectionViewController=sectionViewController;
-      this.dataServ.getAboutContent().subscribe(data=>{
-        for (const key in data) {
-          if(item.id==data[key].id){
-            console.log(item.id)
-            this.dataServ.delete("AboutContent",key);
-            break;
-          }
+      }
+    })
+  } else if(this.edit_control=='content' && sectionViewController=='delete')
+  {
+    this.sectionViewController=sectionViewController;
+    this.dataServ.getAboutContent().subscribe(data=>{
+      for (const key in data) {
+        if(item.id==data[key].id){
+          console.log(item.id)
+          this.dataServ.delete("AboutContent",key);
+          break;
         }
-      })
-    }
-    setTimeout(() => { this.showdata(this.edit_control) }, 500);
+      }
+    })
+  }
+  setTimeout(() => { this.showdata(this.edit_control) }, 500);
  }
-
+  // funcion to upload img file and get image url ---- for About Product-------
+  async uploadAboutCarasoul(event:any){
+    this.uploading="uploadingAboutCarasoul";
+    let date=new Date()
+    const file=event.target.files[0];
+    if(file){
+      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
+      const uploadTask = await this.firestorage.upload(path,file)
+      const url =await uploadTask.ref.getDownloadURL()
+      this.CarasoulAboutURL=url;
+    }
+    this.uploading="uploadedAboutCarasoul";
+  }
+  
 }

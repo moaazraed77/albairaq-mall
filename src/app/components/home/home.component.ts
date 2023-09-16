@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
-import { homePhoto } from '../interfaces/home.interface';
+import { homePhoto } from '../../interfaces/home.interface';
 import * as $ from 'jquery';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-home',

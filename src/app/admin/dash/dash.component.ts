@@ -78,50 +78,49 @@ export class DashComponent implements OnInit {
 // ------------------------------------- send data to add to database -----------------------------------
   // ---- Carasoul function for home ----
   sendCarasoul(edit_control:string,sectionViewController:string){
-    if(edit_control=="home-carsouel"){
-      this.homeImg.patchValue({
-        img:this.CarasoulURL,
-      })
-      if(edit_control=="home-carsouel" && sectionViewController =="add")
-      {
-        this.dataServ.create(this.homeImg.value,"carasoul","add");
-      }
-      else if(edit_control=="home-carsouel" && sectionViewController =="edit"){
-            this.dataServ.getCarsoul().subscribe(data=>{
-              for (const key in data) {
-                if(this.updateObject.id==data[key].id){
-                  this.homeImg.patchValue({
-                    id:Number(this.updateObject.id)
-                  })
-                  this.dataServ.create(this.homeImg.value,"carasoul",key);
-                  break;
-                }
-              }
-            })
-          }
+    this.homeImg.patchValue({
+      img:this.CarasoulURL,
+    })
+    if(edit_control=="home-carsouel" && sectionViewController =="add")
+    {
+      this.dataServ.create(this.homeImg.value,"carasoul","add");
     }
-    if(edit_control=="home-products"){
-      this.homeImg.patchValue({
-        img:this.productURL
-      })
-      if(edit_control=="home-products" && sectionViewController =="add"){
-        this.dataServ.create(this.homeImg.value,"products","add");
-      }
-      else if(edit_control=="home-products" && sectionViewController =="edit"){
-              this.dataServ.gethomeImages().subscribe(data=>{
-                this.homeImg.patchValue({
-                  id:Number(this.updateObject.id)
-                })
-                for (const key in data) {
-                  if(this.updateObject.id==data[key].id){
-                    this.dataServ.create(this.homeImg.value,"products",key);
-                    break;
-                  }
-                }
-              })
-            }
+    else if(edit_control=="home-carsouel" && sectionViewController =="edit"){
+      this.dataServ.getCarsoul().subscribe(data=>{
+        for (const key in data) {
+          if(this.updateObject.id==data[key].id){
+            this.homeImg.patchValue({
+              id:Number(this.updateObject.id)
+            })
+            this.dataServ.create(this.homeImg.value,"carasoul",key);
+            break;
+          }
         }
+      })
+    }
     this.uploadingCarasoul="null";
+    setTimeout(()=> location.reload(),500)
+  }
+  sendProducts(edit_control:string,sectionViewController:string){
+    this.homeImg.patchValue({
+      img:this.productURL
+    })
+    if(edit_control=="home-products" && sectionViewController =="add"){
+      this.dataServ.create(this.homeImg.value,"products","add");
+    }
+    else if(edit_control=="home-products" && sectionViewController =="edit"){
+      this.dataServ.gethomeImages().subscribe(data=>{
+        this.homeImg.patchValue({
+          id:Number(this.updateObject.id)
+        })
+        for (const key in data) {
+          if(this.updateObject.id==data[key].id){
+            this.dataServ.create(this.homeImg.value,"products",key);
+            break;
+          }
+        }
+      })
+    }
     this.uploadingImg="null";
     setTimeout(()=> location.reload(),500)
   }

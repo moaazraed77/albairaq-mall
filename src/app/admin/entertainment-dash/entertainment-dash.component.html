@@ -5,7 +5,7 @@
       <h1 class="part-title">Entertainment part </h1>
     </div>
     <div class="col-12 d-flex justify-content-end">
-        <div class="btn btn-info text-light" (click)="openPart('form','','add')">add data</div>
+        <div class="btn btn-info text-light" (click)="openPart('form','','add');EmptyFormInputs()">add data</div>
         <div class="btn btn-info text-light" (click)="openPart('table data','content','')">show data</div>
         <div class="btn btn-info text-light" (click)="openPart('table data','carsouel','')">show carsouel</div>
       </div>
@@ -14,7 +14,7 @@
         <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='carsouel')">
             <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulEntertainment()" >
                 <label for="logo">Entertainment Carasoul Image : </label>
-                <input type="file" class="form-control" id="logo"  (change)=" uploadEntertainmentCarasoul($event)">
+                <input type="file" accept=".jpg , .png , .jpeg , .webp "  class="form-control" id="logo"  (change)=" uploadEntertainmentCarasoul($event)">
                 <span class="text-warning" *ngIf="uploading == 'uploadingEntertainmentCarasoul' "> uploading ... </span> <span><img [src]="CarasoulEntertainmentURL" alt="" class="logo-photo"  *ngIf="uploading == 'uploadedEntertainmentCarasoul'"></span>
                 <div class="text-center">
                     <button type="submit" class="btn btn-secondary "  *ngIf="uploading == 'uploadedEntertainmentCarasoul'">save</button>
@@ -25,7 +25,7 @@
           <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='content')">
             <form [formGroup]="Entertainment" class="card p-2" (ngSubmit)="sendEntertainmentData()" >
                 <label for="logo">Entertainment Product Image : </label>
-                <input type="file" class="form-control" id="logo"  (change)=" uploadEntertainmentProduct($event)">
+                <input type="file" accept=".jpg , .png , .jpeg , .webp "  class="form-control" id="logo"  (change)=" uploadEntertainmentProduct($event)">
                 <span class="text-warning" *ngIf="uploading == 'uploadingEntertainmentProduct' "> uploading ... </span> <span><img [src]="productEntertainmentURL" alt="" class="logo-photo"  *ngIf="uploading == 'uploadedEntertainmentProduct'"></span>
                 <div class="form-group">
                   <label for="Title">Entertainment Title : </label>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                   <label for="paragraph">Entertainment Pragraph : </label>
-                  <input type="text" class="form-control" id="paragraph" formControlName="paragraph">
+                  <textarea name="paragraph" id="paragraph" cols="30" rows="5" class="form-control" id="paragraph" formControlName="paragraph"></textarea>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-secondary " >save</button>

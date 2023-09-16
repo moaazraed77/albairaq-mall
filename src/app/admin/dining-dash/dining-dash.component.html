@@ -5,7 +5,7 @@
     <h1 class="part-title">dining part </h1>
   </div>
   <div class="col-12 d-flex justify-content-end">
-    <div class="btn btn-info text-light" (click)="openPart('form','carsouel','add')">add data</div>
+    <div class="btn btn-info text-light" (click)="openPart('form','carsouel','add');EmptyFormInputs()">add data</div>
     <div class="btn btn-info text-light" (click)="openPart('table data','texts','')">show data</div>
     <div class="btn btn-info text-light" (click)="openPart('table data','carsouel','')">show carsouel</div>
   </div>
@@ -13,9 +13,9 @@
   <div *ngIf="partViewController=='form'">
     <div class="col-12 dash-content p-2">
       <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='carsouel')">
-        <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulDining()" >
+        <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulDining();" >
           <label for="logo">Dining Carasoul Image : </label>
-          <input type="file" class="form-control" id="logo"  (change)=" uploadDiningCarasoul($event)">
+          <input type="file" accept=".jpg , .png , .jpeg , .webp "  class="form-control" id="logo"  (change)=" uploadDiningCarasoul($event)">
           <span class="text-warning" *ngIf="uploading == 'uploadingDiningCarasoul' "> uploading ... </span> <span><img [src]="CarasoulDiningURL" alt="" class="logo-photo"  *ngIf="uploading == 'uploadedDiningCarasoul'"></span>
           <div class="text-center">
               <button type="submit" class="btn btn-secondary "  *ngIf="uploading == 'uploadedDiningCarasoul'">save</button>
@@ -30,7 +30,7 @@
           </div>
           <div class="form-group">
             <label for="paragraph">Dining Pragraph : </label>
-            <input type="text" class="form-control" id="paragraph" formControlName="paragraph">
+            <textarea name="paragraph" class="form-control" id="paragraph" formControlName="paragraph" cols="30" rows="5"></textarea>
           </div>
           <div class="text-center">
               <button type="submit" class="btn btn-secondary " >save</button>

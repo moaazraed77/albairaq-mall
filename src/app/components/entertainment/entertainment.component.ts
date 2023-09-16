@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { homePhoto } from '../interfaces/home.interface';
-import { DataService } from '../services/data.service';
-import { EntertainmentData } from '../interfaces/Entertainment.interface';
+import { homePhoto } from '../../interfaces/home.interface';
+import { EntertainmentData } from '../../interfaces/Entertainment.interface';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-entertainment',

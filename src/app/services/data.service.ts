@@ -1,27 +1,18 @@
 import { Injectable } from '@angular/core';
-import { homePhoto } from '../interfaces/home.interface';
 import { HttpClient } from '@angular/common/http';
 import { Database } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { diningData } from '../interfaces/dining.interface';
-import { EntertainmentData } from '../interfaces/Entertainment.interface';
 import { About } from '../interfaces/About.interface';
+import { EntertainmentData } from '../interfaces/Entertainment.interface';
+import { diningData } from '../interfaces/dining.interface';
 import { sendFeedback } from '../interfaces/feedback.interface';
+import { homePhoto } from '../interfaces/home.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  carasoulImages:homePhoto[]=[
-    {img:"assets/slider3.png",id:""},
-    {img:"assets/slider1.png",id:""},
-    {img:"assets/slider2.png",id:""},
-    {img:"assets/slider3.png",id:""},
-    {img:"assets/slider1.png",id:""},
-    {img:"assets/slider2.png",id:""},
-    {img:"assets/slider3.png",id:""},
-  ]
 
   databaseURL:any=""
   constructor( private database:Database , private http:HttpClient) { 
@@ -67,6 +58,10 @@ export class DataService {
   getFeedback():Observable<sendFeedback[]>{
     return this.http.get<sendFeedback[]>(`${this.databaseURL}/feedback.json`)
   }
+ // get  storeLocation
+ getstoreLocation():Observable<homePhoto[]>{
+  return this.http.get<homePhoto[]>(`${this.databaseURL}/storeLocation.json`)
+}
 
   
   // create the data
