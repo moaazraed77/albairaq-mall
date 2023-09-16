@@ -1,18 +1,13 @@
 
 @media screen and (max-width: 600px){
-    div.footer{
-        padding-bottom: 30px;
-    }
     .footer .row{
         display: block;
     }
     .row .col{
         width: 100%;
         margin-bottom: 10px;
+        padding-bottom: 30px;
     }
-}
-.footer{
-    // padding-top: 10px;
 }
 .row{
     margin: 0px;
