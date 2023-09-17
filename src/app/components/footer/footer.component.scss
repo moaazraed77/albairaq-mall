@@ -6,16 +6,25 @@
     .row .col{
         width: 100%;
         margin-bottom: 10px;
-        padding-bottom: 30px;
+        padding-bottom: 20px;
     }
+    .footer .row .text1,
+    .footer .row .text2{
+        font-size: 11px;
+    }
+}
+.footer{
+    margin: 0px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    background-color: beige;
+    background-color: rgb(255 243 247);
+    width: 100%;
+    height: 100%;
 }
 .row{
     margin: 0px;
-    // margin-top: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: beige;
-    background-color: rgb(255 243 247);
+    padding: 0px;
 }
 .col{
     margin: 0px;
@@ -36,10 +45,23 @@
     height: 100px;
 }
 
-.text{
-    font-size: 15px;
+.text1,.text2{
+    font-size: 13px;
     font-weight: 600;
-    padding-top: 8px;
-    color: #b90064;
+    /* color: #b90064; */
     text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 4px;
+    word-spacing: 3px;
+}
+.text1 span{
+    margin-right: 3px;
+}
+.text1 span .bi-c-circle{
+    font-size: 16px;
+}
+.text2 span{
+    color: #e14964;
+    font-weight: 700;
+    letter-spacing: 1px;
 }

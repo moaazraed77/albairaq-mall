@@ -17,7 +17,7 @@
       <ul>  <li>Al Ahmadi Governorate </li>    <li>Kuwait </li>  </ul>
     </div>
   </div>
-  <div class="container bg-light products" [ngStyle]="{'height':seeMoreImgs ? 'auto' : '1600px'}">
+  <div class="container bg-light products Content" [ngStyle]="{'height':seeMoreImgs ? 'auto' : '1600px'}">
     <div class="row align-items-start bg-light">
       <div class="col-sm-4 productImg"  *ngFor="let item of images ; let i=index">
         <img [src]="item.img" alt="..." (click)="showProduct(item.img)">

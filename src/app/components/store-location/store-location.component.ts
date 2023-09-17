@@ -12,6 +12,10 @@ export class StoreLocationComponent implements OnInit {
   list:homePhoto[]=[]
 
   constructor(private dataServ:DataService) {
+    if(sessionStorage.getItem("runCarsouel")!="storeReloaded"){
+      sessionStorage.setItem("runCarsouel","storeReloaded")
+      location.reload();
+    }
     // -------   get the data -------
     this.dataServ.getstoreLocation().subscribe(data =>{
       for (const key in data) {
