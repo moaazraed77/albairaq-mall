@@ -32,7 +32,9 @@ export class HomeComponent implements OnInit {
       for (const key in data) {
         this.images.push(data[key])
       }
+      this.images.reverse()
     })
+    
     $(function () {
       hide() 
       function hide() {
@@ -42,9 +44,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  seeMore(){
-    this.seeMoreImgs=true;
-  }
+  // seeMore(){
+  //   this.seeMoreImgs=true;
+  // }
   showProduct(src:string){
     $(function () {
       $(".showImg").show();
