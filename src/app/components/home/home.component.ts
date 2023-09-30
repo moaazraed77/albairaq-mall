@@ -17,10 +17,11 @@ export class HomeComponent implements OnInit {
     }
    }
 
-  imgSource:string="";
+  imgSource:any;
   carasoulImages:homePhoto[]=[]
   images:homePhoto[]=[];
   seeMoreImgs:boolean=false;
+  imageShow:homePhoto[]=[];
 
   ngOnInit(): void {
     this.dataServ.getCarsoul().subscribe(data =>{
@@ -38,25 +39,26 @@ export class HomeComponent implements OnInit {
     $(function () {
       hide() 
       function hide() {
-          $(".showImg").hide();
+        $(".showImg").hide();
       }
       $("#close").on("click", hide);
     });
   }
 
-  // seeMore(){
-  //   this.seeMoreImgs=true;
-  // }
-  showProduct(src:string){
+  showProduct(src:homePhoto){
+    this.imageShow=[]
     $(function () {
       $(".showImg").show();
     })
-    this.imgSource=src;
+    setTimeout(()=> this.imageShow=this.images,50)
+    this.imgSource=this.images.indexOf(src);
   }
     
 }
 
-
+  // seeMore(){
+  //   this.seeMoreImgs=true;
+  // }
 
 
 // jquery example how to work

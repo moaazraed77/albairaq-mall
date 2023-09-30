@@ -59,15 +59,16 @@
 }
 .navbar-toggler{
     margin-right: 5px;
+    background-color: #cd0bff;
 }
 .header{
     position: fixed;
     z-index: 2;
     box-shadow: 0px 0px 10px;
 }
-.navbar-light{
-    background-color: #f3dce4de;
-}
+// .navbar-light{
+//     background-color: #f3dce4de;
+// }
 .logo{
     height: 135px;
     padding: 10px;
@@ -84,10 +85,10 @@
     border-right: 1.5px solid deeppink;
 }
 .nav-item:hover{
-    background-color: rgb(207 203 203);
+    background-color: rgb(73 73 73 / 82%);
 }
 .active{
-    background-color: rgb(207 203 203);
+    background-color: rgb(73 73 73 / 82%);
     border-radius: 5px;
     border: none;
 }
