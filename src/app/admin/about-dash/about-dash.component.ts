@@ -61,7 +61,8 @@ export class AboutDashComponent implements OnInit {
       paragraph:""
     })
   }
-  // -- Carasoul function for About --
+
+  // ----------------------------- Carasoul function for About -----------------------------
   sendCarasoulAbout(){
     this.homeImg.patchValue({
       img:this.CarasoulAboutURL
@@ -85,6 +86,8 @@ export class AboutDashComponent implements OnInit {
     this.uploading="null";
     setTimeout(() => { location.reload() }, 500);
   }
+
+  // ----------------------------- Data function for About -----------------------------
   sendAboutData(){
     if(this.About.valid){
       if(this.sectionViewController =="add")
@@ -107,7 +110,8 @@ export class AboutDashComponent implements OnInit {
       setTimeout(() => { location.reload() }, 500);
     }
   }
-  // for view the data in table
+
+  //----------------------------- for view the data in table -----------------------------
   showdata(type:string){
     this.datalist=[]
     if(type=="carsouel"){
@@ -124,61 +128,63 @@ export class AboutDashComponent implements OnInit {
       })
     }
   }
-// ------------- update part -------------
-update(item:any,sectionViewController:string){
-  this.updateObject=item;
-  if(this.edit_control=='carsouel' && sectionViewController=='edit')
-    {
-      this.sectionViewController=sectionViewController
-    } else if(this.edit_control=='content' && sectionViewController=='edit')
-    {
-      this.About.patchValue({
-        paragraph:item.paragraph
-      })
-      this.sectionViewController=sectionViewController
-    }
- }
-// ------------- delete part -------------
-DeleteSure(item:any){
-  this.deletedObject=item;
-  this.showDeleteDiv=true;
-}
-deleteDone(){
-  this.deleteItem(this.deletedObject,"delete");
-  this.showDeleteDiv=false;
-}
-cancel_delete(){
-  this.showDeleteDiv=false;
-}
- deleteItem(item:any,sectionViewController:string){
-  this.deletedObject=item;
-  if(this.edit_control=='carsouel' && sectionViewController=='delete')
-  {
-    this.sectionViewController=sectionViewController;
-    this.dataServ.getAboutCarsoul().subscribe(data=>{
-      for (const key in data) {
-        if(item.id==data[key].id){
-          this.dataServ.delete("AboutCarasoul",key);
-          break;
-        }
+
+  // ----------------------------- update part -----------------------------
+  update(item:any,sectionViewController:string){
+    this.updateObject=item;
+    if(this.edit_control=='carsouel' && sectionViewController=='edit')
+      {
+        this.sectionViewController=sectionViewController
+      } else if(this.edit_control=='content' && sectionViewController=='edit')
+      {
+        this.About.patchValue({
+          paragraph:item.paragraph
+        })
+        this.sectionViewController=sectionViewController
       }
-    })
-  } else if(this.edit_control=='content' && sectionViewController=='delete')
-  {
-    this.sectionViewController=sectionViewController;
-    this.dataServ.getAboutContent().subscribe(data=>{
-      for (const key in data) {
-        if(item.id==data[key].id){
-          console.log(item.id)
-          this.dataServ.delete("AboutContent",key);
-          break;
-        }
-      }
-    })
   }
-  setTimeout(() => { this.showdata(this.edit_control) }, 500);
- }
-  // funcion to upload img file and get image url ---- for About Product-------
+  // ----------------------------- delete part -----------------------------
+  DeleteSure(item:any){
+    this.deletedObject=item;
+    this.showDeleteDiv=true;
+  }
+  deleteDone(){
+    this.deleteItem(this.deletedObject,"delete");
+    this.showDeleteDiv=false;
+  }
+  cancel_delete(){
+    this.showDeleteDiv=false;
+  }
+  deleteItem(item:any,sectionViewController:string){
+    this.deletedObject=item;
+    // ----------- delete carasoul -----------
+    if(this.edit_control=='carsouel' && sectionViewController=='delete') {
+      this.sectionViewController=sectionViewController;
+      this.dataServ.getAboutCarsoul().subscribe(data=>{
+        for (const key in data) {
+          if(item.id==data[key].id){
+            this.dataServ.delete("AboutCarasoul",key);
+            break;
+          }
+        }
+      })
+    // ----------- delete content -----------
+    } else if(this.edit_control=='content' && sectionViewController=='delete'){
+      this.sectionViewController=sectionViewController;
+      this.dataServ.getAboutContent().subscribe(data=>{
+        for (const key in data) {
+          if(item.id==data[key].id){
+            console.log(item.id)
+            this.dataServ.delete("AboutContent",key);
+            break;
+          }
+        }
+      })
+    }
+    setTimeout(() => { this.showdata(this.edit_control) }, 500);
+  }
+
+  // -------------- funcion to upload img file and get image url ---- for About Product --------------
   async uploadAboutCarasoul(event:any){
     this.uploading="uploadingAboutCarasoul";
     let date=new Date()

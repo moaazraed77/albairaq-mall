@@ -53,6 +53,148 @@ export class DashComponent implements OnInit {
   deletedObject: any;
   // for popup deleted item show
   showDeleteDiv:boolean=false;
+
+// ------------------------------------- send data to add to database -----------------------------------
+  // ---- Carasoul function for home ----
+  sendCarasoul(edit_control:string,sectionViewController:string){
+    this.homeImg.patchValue({
+      img:this.CarasoulURL,
+    })
+    // add carasoul
+    if(edit_control=="home-carsouel" && sectionViewController =="add")
+    {
+      this.dataServ.create(this.homeImg.value,"carasoul","add");
+    }
+    // edit carasoul
+    else if(edit_control=="home-carsouel" && sectionViewController =="edit"){
+      this.dataServ.getCarsoul().subscribe(data=>{
+        for (const key in data) {
+          if(this.updateObject.id==data[key].id){
+            this.homeImg.patchValue({
+              id:Number(this.updateObject.id)
+            })
+            this.dataServ.create(this.homeImg.value,"carasoul",key);
+            break;
+          }
+        }
+      })
+    }
+    this.uploadingCarasoul="null";
+    setTimeout(()=> location.reload(),700)
+  }
+  // ---- product function for home ----
+  sendProducts(edit_control:string,sectionViewController:string){
+    this.homeImg.patchValue({
+      img:this.productURL
+    })
+    if(edit_control=="home-products" && sectionViewController =="add"){
+      this.dataServ.create(this.homeImg.value,"products","add");
+    }
+    else if(edit_control=="home-products" && sectionViewController =="edit"){
+      this.dataServ.gethomeImages().subscribe(data=>{
+        this.homeImg.patchValue({
+          id:Number(this.updateObject.id)
+        })
+        for (const key in data) {
+          if(this.updateObject.id==data[key].id){
+            this.dataServ.create(this.homeImg.value,"products",key);
+            break;
+          }
+        }
+      })
+    }
+    this.uploadingImg="null";
+    setTimeout(()=> location.reload(),700)
+  }
+
+  // ------------------------------------- open part ------------------------------------------
+  openPart(part:string,type:string,action:string){
+    this.parttext=`the show of ${type}`
+    this.partViewController=part;
+    this.sectionViewController=action;
+    this.carsouelFormControl=action;
+    this.edit_control=type;
+    // delete texts and old data
+    this.uploadingCarasoul=""
+    this.uploadingImg=""
+    this.showDeleteDiv=false
+    if(part=="table data"){
+      this.showdata(type);
+    }
+  }
+
+  // ------------------------------------ show data table -------------------------------------
+  showdata(type:string){
+    this.datalist=[]
+    if(type=="home-carsouel"){
+      this.dataServ.getCarsoul().subscribe(data=>{
+        for (const key in data) {
+          this.datalist.push(data[key])
+        }
+      })
+    }else  if(type=="home-products"){
+      this.dataServ.gethomeImages().subscribe(data=>{
+        for (const key in data) {
+          this.datalist.push(data[key])
+        }
+      })
+    }
+  }
+
+  // --------------------------------------- update part ---------------------------------------
+  update(item:any,sectionViewController:string){
+    this.updateObject=item;
+    if(this.edit_control=='home-carsouel' && sectionViewController=='edit')
+      {
+        this.sectionViewController=sectionViewController
+      } else if(this.edit_control=='home-products' && sectionViewController=='edit')
+      {
+        this.sectionViewController=sectionViewController
+      }
+  }
+
+  // --------------------------------------- delete part ---------------------------------------
+  DeleteSure(item:any){
+    this.deletedObject=item;
+    this.showDeleteDiv=true;
+  }
+  deleteDone(){
+    this.deleteItem(this.deletedObject,"delete");
+    this.showDeleteDiv=false;
+  }
+  cancel_delete(){
+    this.showDeleteDiv=false;
+  }
+  deleteItem(item:any,sectionViewController:string){
+  //----------- delete carasoul -----------
+    if(this.edit_control=='home-carsouel' && sectionViewController=='delete')
+    {
+      this.sectionViewController=sectionViewController;
+      this.dataServ.getCarsoul().subscribe(data=>{
+        for (const key in data) {
+          if(item.id==data[key].id){
+            this.dataServ.delete("carasoul",key);
+            break;
+          }
+        }
+      })
+      // ----------- delete content -----------
+    } else if(this.edit_control=='home-products' && sectionViewController=='delete')
+    {
+      this.sectionViewController=sectionViewController;
+      this.dataServ.gethomeImages().subscribe(data=>{
+        for (const key in data) {
+          if(item.id==data[key].id){
+            console.log(item.id)
+            this.dataServ.delete("products",key);
+            break;
+          }
+        }
+      })
+    }
+    setTimeout(() => { this.showdata(this.edit_control) }, 700);
+ }
+
   // --------------------------------------------  upload photos -----------------------------------------
 
   // funcion to upload img file and get image url   ---- for home carasoul -------
@@ -81,140 +223,6 @@ export class DashComponent implements OnInit {
     }
     this.uploadingImg="imgUploaded";
   }
-
-// ------------------------------------- send data to add to database -----------------------------------
-  // ---- Carasoul function for home ----
-  sendCarasoul(edit_control:string,sectionViewController:string){
-    this.homeImg.patchValue({
-      img:this.CarasoulURL,
-    })
-    if(edit_control=="home-carsouel" && sectionViewController =="add")
-    {
-      this.dataServ.create(this.homeImg.value,"carasoul","add");
-    }
-    else if(edit_control=="home-carsouel" && sectionViewController =="edit"){
-      this.dataServ.getCarsoul().subscribe(data=>{
-        for (const key in data) {
-          if(this.updateObject.id==data[key].id){
-            this.homeImg.patchValue({
-              id:Number(this.updateObject.id)
-            })
-            this.dataServ.create(this.homeImg.value,"carasoul",key);
-            break;
-          }
-        }
-      })
-    }
-    this.uploadingCarasoul="null";
-    setTimeout(()=> location.reload(),700)
-  }
-  sendProducts(edit_control:string,sectionViewController:string){
-    this.homeImg.patchValue({
-      img:this.productURL
-    })
-    if(edit_control=="home-products" && sectionViewController =="add"){
-      this.dataServ.create(this.homeImg.value,"products","add");
-    }
-    else if(edit_control=="home-products" && sectionViewController =="edit"){
-      this.dataServ.gethomeImages().subscribe(data=>{
-        this.homeImg.patchValue({
-          id:Number(this.updateObject.id)
-        })
-        for (const key in data) {
-          if(this.updateObject.id==data[key].id){
-            this.dataServ.create(this.homeImg.value,"products",key);
-            break;
-          }
-        }
-      })
-    }
-    this.uploadingImg="null";
-    setTimeout(()=> location.reload(),700)
-  }
-  //-----------------------------------------------------------------------------------------------------
-
-  openPart(part:string,type:string,action:string){
-    this.parttext=`the show of ${type}`
-    this.partViewController=part;
-    this.sectionViewController=action;
-    this.carsouelFormControl=action;
-    this.edit_control=type;
-    // delete texts and old data
-    this.uploadingCarasoul=""
-    this.uploadingImg=""
-    this.showDeleteDiv=false
-    if(part=="table data"){
-      this.showdata(type);
-    }
-  }
-  // show data table
-  showdata(type:string){
-    this.datalist=[]
-    if(type=="home-carsouel"){
-      this.dataServ.getCarsoul().subscribe(data=>{
-        for (const key in data) {
-          this.datalist.push(data[key])
-        }
-      })
-    }else  if(type=="home-products"){
-      this.dataServ.gethomeImages().subscribe(data=>{
-        for (const key in data) {
-          this.datalist.push(data[key])
-        }
-      })
-    }
-  }
-// ------------- update part -------------
-update(item:any,sectionViewController:string){
-  this.updateObject=item;
-  if(this.edit_control=='home-carsouel' && sectionViewController=='edit')
-    {
-      this.sectionViewController=sectionViewController
-    } else if(this.edit_control=='home-products' && sectionViewController=='edit')
-    {
-      this.sectionViewController=sectionViewController
-    }
- }
-  // ------------- delete part -------------
-  DeleteSure(item:any){
-    this.deletedObject=item;
-    this.showDeleteDiv=true;
-  }
-  deleteDone(){
-    this.deleteItem(this.deletedObject,"delete");
-    this.showDeleteDiv=false;
-  }
-  cancel_delete(){
-    this.showDeleteDiv=false;
-  }
- deleteItem(item:any,sectionViewController:string){
-    if(this.edit_control=='home-carsouel' && sectionViewController=='delete')
-    {
-      this.sectionViewController=sectionViewController;
-      this.dataServ.getCarsoul().subscribe(data=>{
-        for (const key in data) {
-          if(item.id==data[key].id){
-            this.dataServ.delete("carasoul",key);
-            break;
-          }
-        }
-      })
-    } else if(this.edit_control=='home-products' && sectionViewController=='delete')
-    {
-      this.sectionViewController=sectionViewController;
-      this.dataServ.gethomeImages().subscribe(data=>{
-        for (const key in data) {
-          if(item.id==data[key].id){
-            console.log(item.id)
-            this.dataServ.delete("products",key);
-            break;
-          }
-        }
-      })
-    }
-    setTimeout(() => { this.showdata(this.edit_control) }, 700);
- }
-
 
 }
 

@@ -43,7 +43,7 @@ export class EntertainmentDashComponent implements OnInit {
     this.openPart('table data', 'carsouel', '')
   }
 
-  // ------------- form function for Entertainment Carasoul -------------
+  // --------------------------------------- form function for Entertainment Carasoul ---------------------------------------
   sendCarasoulEntertainment() {
     this.homeImg.patchValue({
       img: this.CarasoulEntertainmentURL
@@ -66,21 +66,31 @@ export class EntertainmentDashComponent implements OnInit {
     this.uploading = "null";
     setTimeout(() => { location.reload() }, 700);
   }
-  // ------------- form function for Entertainment Data -------------
+
+  // --------------------------------------- form function for Entertainment Data ---------------------------------------
   sendEntertainmentData() {
     if (this.Entertainment.valid) {
       this.Entertainment.patchValue({
         img: this.productEntertainmentURL
       })
+      // add data
       if (this.sectionViewController == 'add') {
         this.dataServ.create(this.Entertainment.value, "EntertainmentContent", "add")
       } else {
+      // edit data
         this.dataServ.getEntertainmentContent().subscribe(data => {
           for (const key in data) {
             if (this.updateObject.id == data[key].id) {
               this.Entertainment.patchValue({
                 id: Number(this.updateObject.id)
               })
+              //put the same img if not uploaded
+              if(this.Entertainment.get("img")?.value==""){
+                this.Entertainment.patchValue({
+                  img:this.updateObject.img
+                })
+              }
+              // submit updated data the data
               this.dataServ.create(this.Entertainment.value, "EntertainmentContent", key);
               break;
             }
@@ -90,7 +100,8 @@ export class EntertainmentDashComponent implements OnInit {
     }
     setTimeout(() => { location.reload() }, 700);
   }
-  // ------------- open view control -------------
+
+  // --------------------------------------- open view control ---------------------------------------
   openPart(part: string, type: string, action: string) {
     this.partViewController = part;
     this.sectionViewController = action;
@@ -109,15 +120,18 @@ export class EntertainmentDashComponent implements OnInit {
       paragraph:""
     })
   }
-  // ------------- show data list on view -------------
+
+  // --------------------------------------- show data list on view ---------------------------------------
   showdata(type: string) {
     this.datalist = []
+    // show the carsouel data
     if (type == "carsouel") {
       this.dataServ.getEntertainmentCarsoul().subscribe(data => {
         for (const key in data) {
           this.datalist.push(data[key])
         }
       })
+    // show the content data
     } else if (type == "content") {
       this.dataServ.getEntertainmentContent().subscribe(data => {
         for (const key in data) {
@@ -126,7 +140,8 @@ export class EntertainmentDashComponent implements OnInit {
       })
     }
   }
-  // ------------- update part -------------
+
+  // --------------------------------------- update part ---------------------------------------
   update(item: any, sectionViewController: string) {
     this.updateObject = item;
     if (this.edit_control == 'carsouel' && sectionViewController == 'edit') {
@@ -135,11 +150,13 @@ export class EntertainmentDashComponent implements OnInit {
       this.Entertainment.patchValue({
         title:item.title,
         paragraph:item.paragraph,
+        img:item.img
       })
       this.sectionViewController = sectionViewController
     }
   }
-  // ------------- delete part -------------
+
+  // --------------------------------------- delete part ---------------------------------------
   DeleteSure(item:any){
     this.deletedObject=item;
     this.showDeleteDiv=true;
@@ -151,7 +168,8 @@ export class EntertainmentDashComponent implements OnInit {
   cancel_delete(){
     this.showDeleteDiv=false;
   }
-  deleteItem(item: any, sectionViewController: string) {
+    // get item carsouel for delete 
+    deleteItem(item: any, sectionViewController: string) {
     if (this.edit_control == 'carsouel' && sectionViewController == 'delete') {
       this.sectionViewController = sectionViewController;
       this.dataServ.getEntertainmentCarsoul().subscribe(data => {
@@ -162,6 +180,7 @@ export class EntertainmentDashComponent implements OnInit {
           }
         }
       })
+    // get item content for delete 
     } else if (this.edit_control == 'content' && sectionViewController == 'delete') {
       this.sectionViewController = sectionViewController;
       this.dataServ.getEntertainmentContent().subscribe(data => {
@@ -177,7 +196,7 @@ export class EntertainmentDashComponent implements OnInit {
     setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
 
-  // funcion to upload img file and get image url ---- for Entertainment Carasoul-------
+  // -------------------------- funcion to upload img file and get image url ---- for Entertainment Carasoul-----------------
   async uploadEntertainmentCarasoul(event: any) {
     this.uploading = "uploadingEntertainmentCarasoul";
     let date = new Date()
@@ -190,7 +209,7 @@ export class EntertainmentDashComponent implements OnInit {
     }
     this.uploading = "uploadedEntertainmentCarasoul";
   }
-  // funcion to upload img file and get image url ---- for Entertainment Product-------
+  // -------------------------- funcion to upload img file and get image url ---- for Entertainment Product------------------
   async uploadEntertainmentProduct(event: any) {
     this.uploading = "uploadingEntertainmentProduct";
     let date = new Date()

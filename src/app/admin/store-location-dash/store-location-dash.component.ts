@@ -33,7 +33,7 @@ export class StoreLocationDashComponent implements OnInit {
   ngOnInit(): void {
     this.openPart('table data','carsouel','');
   }
- // open the view for data special control 
+ //--------------------------------------- open the view for data special control ---------------------------------------
  openPart(part:string,type:string,action:string){
     this.partViewController=part;
     this.sectionViewController=action;
@@ -43,7 +43,7 @@ export class StoreLocationDashComponent implements OnInit {
       this.showdata(type);
     }
   }
-  // for view the data in table
+  //--------------------------------------- for view the data in table---------------------------------------
   showdata(type:string){
     this.datalist=[]
     if(type=="carsouel"){
@@ -54,7 +54,7 @@ export class StoreLocationDashComponent implements OnInit {
       })
     }
   }
-  // -- Carasoul function for storeLocation --
+  // --------------------------------------- Carasoul function for storeLocation ---------------------------------------
   sendCarasoulstoreLocation(){
     this.homeImg.patchValue({
       img:this.CarasoulstoreLocationURL
@@ -78,12 +78,12 @@ export class StoreLocationDashComponent implements OnInit {
     this.uploading="null";
     setTimeout(() => { location.reload() }, 500);
   }
-  // ------------- update part -------------
+  // --------------------------------------- update part ----------------------------------------------------
   update(item:any,sectionViewController:string){
     this.updateObject=item;
     this.sectionViewController=sectionViewController
   }
-  // ------------- delete part -------------
+  // --------------------------------------- delete part ----------------------------------------------------
   deleteItem(item:any,sectionViewController:string){
       if(this.edit_control=='carsouel' && sectionViewController=='delete')
       {
@@ -99,7 +99,8 @@ export class StoreLocationDashComponent implements OnInit {
       } 
       setTimeout(() => { this.showdata(this.edit_control) }, 500);
   }
-  // funcion to upload img file and get image url ---- for storeLocation Product-------
+
+  // ------------------- funcion to upload img file and get image url ---- for storeLocation Product -------------
   async uploadstoreLocationCarasoul(event:any){
     this.uploading="uploadingstoreLocationCarasoul";
     let date=new Date()

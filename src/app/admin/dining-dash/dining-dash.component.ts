@@ -44,7 +44,7 @@ export class DiningDashComponent implements OnInit {
   ngOnInit(): void {
   }
 
-// -------- Carasoul function for Dining --------
+// --------------------------------------- Carasoul function for Dining ---------------------------------------
   sendCarasoulDining(){
     this.homeImg.patchValue({
       img:this.CarasoulDiningURL
@@ -67,7 +67,8 @@ export class DiningDashComponent implements OnInit {
     this.uploading="null";
     setTimeout(() => { location.reload() }, 500);
   }
-// -------- data function for Dining --------
+
+// --------------------------------------- data function for Dining ---------------------------------------
   sendDiningData(){
     if(this.dining.valid){
       if(this.sectionViewController=='add'){
@@ -88,7 +89,8 @@ export class DiningDashComponent implements OnInit {
     }
     setTimeout(() => { location.reload() }, 500);
   }
-  // view control function
+
+  // --------------------------------------- view control function ---------------------------------------
   openPart(part:string,type:string,action:string){
     this.partViewController=part;
     this.sectionViewController=action;
@@ -107,7 +109,8 @@ export class DiningDashComponent implements OnInit {
       paragraph:""
     })
   }
-  // add data in array
+
+  // --------------------------------------- add data in array ---------------------------------------
   showdata(type:string){
     this.datalist=[]
     if(type=="carsouel"){
@@ -124,7 +127,8 @@ export class DiningDashComponent implements OnInit {
       })
     }
   }
-  // ------------- update part -------------
+
+  // --------------------------------------- update part ---------------------------------------
   update(item:any,sectionViewController:string){
     this.updateObject=item;
     if(this.edit_control=='carsouel' && sectionViewController=='edit')
@@ -139,7 +143,8 @@ export class DiningDashComponent implements OnInit {
         this.sectionViewController=sectionViewController
       }
   }
-  // ------------- delete part -------------
+
+  // --------------------------------------- delete part ---------------------------------------
   DeleteSure(item:any){
     this.deletedObject=item;
     this.showDeleteDiv=true;
@@ -152,6 +157,7 @@ export class DiningDashComponent implements OnInit {
     this.showDeleteDiv=false;
   }
   deleteItem(item:any,sectionViewController:string){
+    // delete carasoul
     if(this.edit_control=='carsouel' && sectionViewController=='delete')
     {
       this.sectionViewController=sectionViewController;
@@ -163,6 +169,7 @@ export class DiningDashComponent implements OnInit {
           }
         }
       })
+    // delete texts
     } else if(this.edit_control=='texts' && sectionViewController=='delete')
     {
       this.sectionViewController=sectionViewController;
@@ -179,7 +186,7 @@ export class DiningDashComponent implements OnInit {
     setTimeout(() => { this.showdata(this.edit_control) }, 500);
   }
   
-// funcion to upload img file and get image url
+//--------------------------------------- funcion to upload img file and get image url ---------------------------------------
   async uploadDiningCarasoul(event:any){
     this.uploading="uploadingDiningCarasoul";
     let date=new Date()

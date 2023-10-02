@@ -64,6 +64,7 @@ export class ServicesDashComponent implements OnInit {
     this.uploading="null";
     setTimeout(() => { location.reload() }, 700);
   }
+
   // ------------- data function for Services -------------
   sendServicesData(){
     if(this.Services.valid){
@@ -85,7 +86,8 @@ export class ServicesDashComponent implements OnInit {
     }
     setTimeout(() => { location.reload() }, 700);
   }
-  // ------------- open view control -------------
+
+  // --------------------------------------- open view control ---------------------------------------
   openPart(part: string, type: string, action: string) {
     this.partViewController = part;
     this.sectionViewController = action;
@@ -104,7 +106,8 @@ export class ServicesDashComponent implements OnInit {
       paragraph:""
     })
   }
-  // ------------- show data list on view -------------
+
+  // --------------------------------------- show data list on view ---------------------------------------
   showdata(type: string) {
     this.datalist = []
     if (type == "carsouel") {
@@ -121,7 +124,8 @@ export class ServicesDashComponent implements OnInit {
       })
     }
   }
-  // ------------- update part -------------
+
+  // ------------------------------------------- update part ---------------------------------------
   update(item: any, sectionViewController: string) {
     this.updateObject = item;
     if (this.edit_control == 'carsouel' && sectionViewController == 'edit') {
@@ -134,7 +138,8 @@ export class ServicesDashComponent implements OnInit {
       this.sectionViewController = sectionViewController
     }
   }
-  // ------------- delete part -------------
+
+  // ------------------------------------------ delete part ---------------------------------------
   DeleteSure(item:any){
     this.deletedObject=item;
     this.showDeleteDiv=true;
@@ -147,6 +152,7 @@ export class ServicesDashComponent implements OnInit {
     this.showDeleteDiv=false;
   }
   deleteItem(item: any, sectionViewController: string) {
+    // delete carasouel
     if (this.edit_control == 'carsouel' && sectionViewController == 'delete') {
       this.sectionViewController = sectionViewController;
       this.dataServ.getServicesCarsoul().subscribe(data => {
@@ -157,6 +163,7 @@ export class ServicesDashComponent implements OnInit {
           }
         }
       })
+      // delete content
     } else if (this.edit_control == 'content' && sectionViewController == 'delete') {
       this.sectionViewController = sectionViewController;
       this.dataServ.getServicesContent().subscribe(data => {
