@@ -22,7 +22,6 @@ import { StoreLocationComponent } from './components/store-location/store-locati
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
-import { DashLoginComponent } from './admin/dash-login/dash-login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DiningComponent } from './components/dining/dining.component';
 import { EntertainmentComponent } from './components/entertainment/entertainment.component';
@@ -31,6 +30,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ServicessComponent } from './components/servicess/servicess.component';
 import { HomeComponent } from './components/home/home.component';
+import { DashLoginComponent } from './components/dash-login/dash-login.component';
 
 @NgModule({
   declarations: [

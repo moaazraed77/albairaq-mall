@@ -10,7 +10,7 @@ import { MallLocationComponent } from './components/mall-location/mall-location.
 import { StoreLocationComponent } from './components/store-location/store-location.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ServicessComponent } from './components/servicess/servicess.component';
-import { DashLoginComponent } from './admin/dash-login/dash-login.component';
+import { DashLoginComponent } from './components/dash-login/dash-login.component';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
