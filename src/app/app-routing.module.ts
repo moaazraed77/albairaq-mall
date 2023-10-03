@@ -10,10 +10,16 @@ import { StoreLocationComponent } from './components/store-location/store-locati
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ServicessComponent } from './components/servicess/servicess.component';
 import { DashLoginComponent } from './components/dash-login/dash-login.component';
+import { AccessoriesComponent } from './components/accessories/accessories.component';
+import { PerfumesComponent } from './components/perfumes/perfumes.component';
+import { ClothingComponent } from './components/clothing/clothing.component';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
   {path:"home" , component: HomeComponent},
+  {path:"clothing" , component: ClothingComponent},
+  {path:"accessories" , component: AccessoriesComponent},
+  {path:"perfumes" , component: PerfumesComponent},
   {path:"dining" , component: DiningComponent},
   {path:"entertainment" , component: EntertainmentComponent},
   {path:"about" , component:AboutComponent},

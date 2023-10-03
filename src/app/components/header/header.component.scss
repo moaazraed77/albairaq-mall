@@ -4,6 +4,13 @@
     box-sizing: border-box;
     transition: all .5s;
 }
+@media (min-width: 992px){
+    .navbar-expand-lg {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 8px 10px;
+    }
+}
 @media screen and (max-width:991px) {
     .navbar-brand img{
         height: 106px;
@@ -79,10 +86,12 @@
     border-radius: 14px;
 }
 .nav-item{
-    padding: 3px;
+    padding: 2px;
     color: white;
     font-weight: 400;
     border-right: 1.5px solid deeppink;
+    display: flex;
+    align-items: center;
 }
 .nav-item:hover{
     background-color: rgb(73 73 73 / 82%);
@@ -106,9 +115,9 @@
 .nav-link{
     color: white;
     font-weight: 400;
-    margin: 0px 16px;
+    margin: 0px 8px;
     text-transform: uppercase;
-    font-size:13px;
+    font-size:10.5px;
     text-align: center;
 }
 .dropdown-menu{

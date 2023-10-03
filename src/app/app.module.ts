@@ -30,6 +30,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ServicessComponent } from './components/servicess/servicess.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashLoginComponent } from './components/dash-login/dash-login.component';
+import { ClothingComponent } from './components/clothing/clothing.component';
+import { AccessoriesComponent } from './components/accessories/accessories.component';
+import { PerfumesComponent } from './components/perfumes/perfumes.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { DashLoginComponent } from './components/dash-login/dash-login.component
     StoreLocationComponent,
     ContactUsComponent,
     AdminComponent,
-    DashLoginComponent
+    DashLoginComponent,
+    ClothingComponent,
+    AccessoriesComponent,
+    PerfumesComponent
   ],
   imports: [ 
     BrowserModule,
