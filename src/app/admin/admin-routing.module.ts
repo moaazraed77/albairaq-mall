@@ -8,17 +8,24 @@ import { ServicesDashComponent } from './services-dash/services-dash.component';
 import { AboutDashComponent } from './about-dash/about-dash.component';
 import { ContactusDashComponent } from './contactus-dash/contactus-dash.component';
 import { StoreLocationDashComponent } from './store-location-dash/store-location-dash.component';
+import { AccessoriesDashComponent } from './accessories-dash/accessories-dash.component';
+import { PerfumesDashComponent } from './perfumes-dash/perfumes-dash.component';
+import { ClothingDashComponent } from './clothing-dash/clothing-dash.component';
 
 const routes: Routes = [
   {
     path:"admin",component:AdminComponent,children:[
+      // {path:"",component:DashComponent},
       {path:"dash",component:DashComponent},
-      {path:"dining-dash",component:DiningDashComponent},
-      {path:"entertainment-dash",component:EntertainmentDashComponent},
-      {path:"services-dash",component:ServicesDashComponent},
-      {path:"about-dash",component:AboutDashComponent},
-      {path:"contactus-dash",component:ContactusDashComponent},
-      {path:"store-location-dash",component:StoreLocationDashComponent},
+      {path:"dining",component:DiningDashComponent},
+      {path:"entertainment",component:EntertainmentDashComponent},
+      {path:"services",component:ServicesDashComponent},
+      {path:"about",component:AboutDashComponent},
+      {path:"contactus",component:ContactusDashComponent},
+      {path:"store-location",component:StoreLocationDashComponent},
+      {path:"clothing",component:ClothingDashComponent},
+      {path:"accessories",component:AccessoriesDashComponent},
+      {path:"perfumes",component:PerfumesDashComponent},
     ]
   }
 ];

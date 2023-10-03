@@ -61,7 +61,25 @@ export class DataService {
  // get  storeLocation
  getstoreLocation():Observable<homePhoto[]>{
   return this.http.get<homePhoto[]>(`${this.databaseURL}/storeLocation.json`)
-}
+  }
+  // get clothing carasoul
+  getclothingCarasoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/clothingCarasoul.json`)
+  }
+  // get  clothing
+  getclothingImages():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/clothingImages.json`)
+  }
+
+  
+  // get  accessories
+  getaccessoriesImages():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/accessories.json`)
+  }
+  // get  perfumes
+  getperfumesImages():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/perfumes.json`)
+  }
 
   
   // create the data

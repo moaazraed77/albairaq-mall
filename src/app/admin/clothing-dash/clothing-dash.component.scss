@@ -7,9 +7,8 @@
     top: 0px;
     left: 0px;
     height: 100vh;
-    width: 280px;
 }
-a{
+.nav-link{
     text-transform: capitalize;    
 }
 .nav-link:hover{
@@ -72,6 +71,7 @@ label{
     font-weight: 600;
 }
 
-
-
-
+.delete-show {
+    top: -24px;
+    right: 8px;
+}
