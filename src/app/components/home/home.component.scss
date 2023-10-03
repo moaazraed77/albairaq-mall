@@ -5,6 +5,9 @@
         max-width: 100%;
     }
 }
+@media screen and (max-width: 860px){
+
+}
 @media screen and (max-width: 600px){
     div #carouselExampleIndicators .carousel-control-next .carousel-control-prev-icon,
     div #carouselExampleIndicators .carousel-control-next .carousel-control-next-icon
@@ -30,11 +33,14 @@
     .showImg .carousel{
         margin-top: 55px;
     }
+    .showImg .carousel .carousel-inner .carousel-item{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
     .showImg .carousel .carousel-inner .carousel-item img{
-        height: 300px !important;
-        width: 88% !important;
-        margin-left: 6.5%;
-        margin-top: 60px;
+        height: 291px !important;
+        width: 100% !important;
+        margin-top: 87px;
     }
     .showImg .btn-close{
         font-size: 15px;
@@ -46,6 +52,12 @@
     .carousel .product-details{
         width: 21px;
         margin-top: 20px;
+    }
+    .carousel-control-prev .carousel-control-prev-icon{
+        left: 5px;
+    }
+    .carousel-control-next .carousel-control-next-icon{
+        right: 5px;
     }
 }
 .Content{
@@ -124,16 +136,17 @@
 }
 .showImg .carousel{
     position: relative;
-    height:400px;
-    width: 500px ;
+    height:470px;
+    width: 800px ;
     z-index: 1;
 }
+.showImg .carousel .carousel-item{
+    padding-left: 15%;
+}
 .showImg img{
-    height: 365px;
-    width: 390px !important;
-    margin-left: 56px;
+    height: 470px;
+    width: 82% !important;
     border-radius: 10px;
-    margin-top: 17px;
 }
 .btn-close{
     position: absolute;
@@ -150,7 +163,6 @@
     width: 26px;
     border-radius: 8px;
 }
-
 
 
 
