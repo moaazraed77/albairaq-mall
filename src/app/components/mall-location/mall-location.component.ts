@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class MallLocationComponent implements OnInit {
 
   constructor() {
-    if(sessionStorage.getItem("runCarsouel")!="MallLocationReloaded"){
-      sessionStorage.setItem("runCarsouel","MallLocationReloaded")
+    if(sessionStorage.getItem("runCarsouel")!="hereReloaded"){
+      sessionStorage.setItem("runCarsouel","hereReloaded")
       location.reload();
     }
    }

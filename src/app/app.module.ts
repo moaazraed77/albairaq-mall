@@ -16,7 +16,6 @@ import { provideStorage,getStorage } from '@angular/fire/storage'
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AboutComponent } from './components/about/about.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { GettingHereComponent } from './components/getting-here/getting-here.component';
 import { MallLocationComponent } from './components/mall-location/mall-location.component';
 import { StoreLocationComponent } from './components/store-location/store-location.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
@@ -43,7 +42,6 @@ import { DashLoginComponent } from './components/dash-login/dash-login.component
     AboutComponent,
     ServicessComponent,
     OpeningHoursComponent,
-    GettingHereComponent,
     MallLocationComponent,
     StoreLocationComponent,
     ContactUsComponent,
