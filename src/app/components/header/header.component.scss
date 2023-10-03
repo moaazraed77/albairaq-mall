@@ -30,6 +30,7 @@
     }
     .navbar-nav .nav-item{
         border: none;
+        padding: 0px;
     }
     .nav-item .nav-link{
         text-align: left;
@@ -52,8 +53,17 @@
     .nav-item.dropdown{
         padding: 0px;
     }
-    .dropdown-menu .dropdown-item{
+    .nav-item.dropdown .nav-link{
+        width: 100%;
+    }
+    .nav-item.dropdown .dropdown-menu {
+        position: absolute;
+        min-width: 100%;
+        margin-top: 9px;
+    }
+    .dropdown-menu li .dropdown-item{
         font-size: 11px;
+        padding: 8px;
     }
 }
 @media screen and (max-width: 576px){
@@ -66,11 +76,14 @@
 }
 .navbar-toggler{
     margin-right: 5px;
-    background-color: #cd0bff;
+    border: none;
 }
-.navbar-toggler-icon{
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba( 255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+.navbar-toggler:focus{
+    box-shadow: none;
 }
+// .navbar-toggler-icon{
+//     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba( 255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+// }
 .header{
     position: fixed;
     z-index: 2;
@@ -115,23 +128,25 @@
 .nav-link{
     color: white;
     font-weight: 400;
-    margin: 0px 8px;
-    text-transform: uppercase;
-    font-size:10.5px;
+    margin: 0px 6px;
+    font-size:11.5px;
     text-align: center;
+}
+a{
+    text-transform: uppercase;
 }
 .dropdown-menu{
     padding: 0px;
     margin-top: 4px;
+    width: fit-content;
+    min-width: fit-content;
 }
 .dropdown-menu .dropdown-item{
     color: white;
-    // background-color: #e691ff;
-    // text-align: center;
     padding: 10px;
-    // margin-bottom: 2px;
     border-radius: 5px;
     border-bottom: 1px solid;
+    font-size: 12px;
 }
 .dropdown-menu .dropdown-item:hover{
     background-color: rgb(221 221 221);

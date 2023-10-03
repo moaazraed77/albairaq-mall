@@ -6,8 +6,10 @@
     }
 }
 @media screen and (max-width: 600px){
-    .carousel-inner .carousel-item img{
-        height: 270px;
+    div #carouselExampleIndicators .carousel-control-next .carousel-control-prev-icon,
+    div #carouselExampleIndicators .carousel-control-next .carousel-control-next-icon
+    {
+        width: 1rem;
     }
     .products .btnSeeDiv{
         margin-left: -3%;
@@ -16,8 +18,14 @@
         padding-top: 30px;
         align-items: flex-start;
     }
+    .carousel-item img{
+        height: 164px !important;
+    }
     .row .productImg{
         padding: 5px;
+    }
+    .row .productImg img{
+        height: 190px ;
     }
     .showImg .carousel{
         margin-top: 55px;
@@ -56,17 +64,11 @@
     margin: 10px;
     margin-top: 20px;
 }
-.AlBairaq-Mall-text p{
-    font-size: 15px;
-    padding: 5px;
-    font-weight: 700;
+.promo-text {
+    font-size: 21px;
+    text-transform: capitalize;
+    font-weight: bold;
     margin-bottom: 0px;
-}
-.AlBairaq-Mall-text ul{
-    padding-left: 12px;
-}
-.AlBairaq-Mall-text ul li {
-    font-size: 10px;
 }
 .container {
     overflow: hidden;
