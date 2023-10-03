@@ -35,8 +35,7 @@
         padding: 4px;
         margin-top: 4px;
     }
-    .carousel .carousel-control-prev-icon,
-    .carousel .carousel-control-next-icon{
+    .carousel .product-details{
         width: 21px;
         margin-top: 20px;
     }
@@ -74,7 +73,7 @@
     position: relative;
 }
 .carousel-item img{
-    height: 390px;
+    height: 410px;
 }
 .productImg img{
     width: 90%;
@@ -142,14 +141,13 @@
     font-size: 20px;
     z-index: 2;
 }
-.carousel-control-prev-icon,
-.carousel-control-next-icon{
+
+.product-details{
     position: absolute;
     background-color: #fa1a93ba;
     width: 26px;
     border-radius: 8px;
 }
-
 
 
 

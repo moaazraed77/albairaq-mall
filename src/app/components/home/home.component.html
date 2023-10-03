@@ -1,33 +1,28 @@
 <div class="col-12 global-content-padding bg-pink">
-  <div class="container">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item" [ngClass]="{'active' : i === 0}" *ngFor="let item of carasoulImages ; let i=index" >
           <img [src]="item.img" class="d-block w-100" alt="...">
         </div>
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-  </div>
 </div>
 
 <div class="col-12 bg-pink">
-  <!-- <div class="container bg-light">
-    <div class="col-lg-4 AlBairaq-Mall-text">
-      <p>AlBairaq Mall </p>
-      <ul>  <li>Al Ahmadi Governorate </li>    <li>Kuwait </li>  </ul>
-    </div>
-  </div> -->
-  <!-- <div class="container bg-light products Content" [ngStyle]="{'height':seeMoreImgs ? 'auto' : '1600px'}"> -->
-    <div class="container bg-light products Content">
+    <div class="container-fluid bg-light products Content">
     <div class="row align-items-start bg-light">
-      <div class="col-sm-4 productImg"  *ngFor="let item of images ; let i=index">
+      <div class="col-sm-3 productImg"  *ngFor="let item of images ; let i=index">
         <img [src]="item.img" alt="..." (click)="showProduct(item)">
       </div>
     </div>
-    <!-- See More -->
-    <!-- <div class="col-12 text-center bg-light btnSeeDiv" *ngIf="!seeMoreImgs">
-      <button class="btnSee" (click)="seeMore()">See More</button>
-    </div> -->
   </div>
 </div>
 
@@ -40,11 +35,11 @@
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="carousel-control-prev-icon product-details" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="carousel-control-next-icon product-details" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
