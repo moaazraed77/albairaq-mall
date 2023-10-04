@@ -13,6 +13,7 @@ import { StoreLocationDashComponent } from './store-location-dash/store-location
 import { PerfumesDashComponent } from './perfumes-dash/perfumes-dash.component';
 import { AccessoriesDashComponent } from './accessories-dash/accessories-dash.component';
 import { ClothingDashComponent } from './clothing-dash/clothing-dash.component';
+import { AdminGuard } from './services/admin.guard';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ClothingDashComponent } from './clothing-dash/clothing-dash.component';
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule
-  ]
+  ],
+  providers:[AdminGuard]
 })
 export class AdminModule { }

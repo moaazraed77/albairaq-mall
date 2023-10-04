@@ -48,7 +48,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">carasoul</th>
-              <!-- <th scope="col">url </th> -->
+              <th scope="col" *ngIf="edit_control=='clothing-products'">url </th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -56,7 +56,7 @@
             <tr *ngFor="let item of datalist;let i=index">
               <th scope="row" class="item">{{i+1}}</th>
               <td><img [src]="item.img" class="imgView" alt=""></td>
-              <!-- <p *ngIf="item.url !='' && item.url != undefined && item.url != null">{{item.url}}</p> -->
+              <p  *ngIf="edit_control=='clothing-products'"></p>
               <td class="item">
                 <button class="btn btn-warning m-1" (click)="openPart('form',edit_control,'edit');update(item,'edit')">edit</button>  
                 <button class="btn btn-danger m-1" (click)="DeleteSure(item)">delete</button>  

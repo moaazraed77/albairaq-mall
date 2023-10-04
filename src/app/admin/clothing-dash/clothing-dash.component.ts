@@ -125,6 +125,7 @@ export class ClothingDashComponent implements OnInit  {
   // ------------------------------------ show data table -------------------------------------
   showdata(type:string){
     this.datalist=[]
+    this.edit_control=type;
     if(type=="clothing-carsouel"){
       this.dataServ.getclothingCarasoul().subscribe(data=>{
         for (const key in data) {

@@ -11,21 +11,23 @@ import { StoreLocationDashComponent } from './store-location-dash/store-location
 import { AccessoriesDashComponent } from './accessories-dash/accessories-dash.component';
 import { PerfumesDashComponent } from './perfumes-dash/perfumes-dash.component';
 import { ClothingDashComponent } from './clothing-dash/clothing-dash.component';
+import { AdminGuard } from './services/admin.guard';
+import { DashLoginComponent } from '../components/dash-login/dash-login.component';
 
 const routes: Routes = [
   {
     path:"admin",component:AdminComponent,children:[
       // {path:"",component:DashComponent},
-      {path:"dash",component:DashComponent},
-      {path:"dining",component:DiningDashComponent},
-      {path:"entertainment",component:EntertainmentDashComponent},
-      {path:"services",component:ServicesDashComponent},
-      {path:"about",component:AboutDashComponent},
-      {path:"contactus",component:ContactusDashComponent},
-      {path:"store-location",component:StoreLocationDashComponent},
-      {path:"clothing",component:ClothingDashComponent},
-      {path:"accessories",component:AccessoriesDashComponent},
-      {path:"perfumes",component:PerfumesDashComponent},
+      {path:"dash",component:DashComponent,canActivate:[AdminGuard]},
+      {path:"dining",component:DiningDashComponent ,canActivate:[AdminGuard]},
+      {path:"entertainment",component:EntertainmentDashComponent ,canActivate:[AdminGuard]},
+      {path:"services",component:ServicesDashComponent ,canActivate:[AdminGuard]},
+      {path:"about",component:AboutDashComponent ,canActivate:[AdminGuard]},
+      {path:"contactus",component:ContactusDashComponent ,canActivate:[AdminGuard]},
+      {path:"store-location",component:StoreLocationDashComponent ,canActivate:[AdminGuard]},
+      {path:"clothing",component:ClothingDashComponent ,canActivate:[AdminGuard]},
+      {path:"accessories",component:AccessoriesDashComponent ,canActivate:[AdminGuard]},
+      {path:"perfumes",component:PerfumesDashComponent ,canActivate:[AdminGuard]},
     ]
   }
 ];
