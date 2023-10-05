@@ -10,8 +10,8 @@ import { DataService } from 'src/app/services/data.service';
 export class ClothingComponent implements OnInit {
 
   constructor(private dataServ:DataService) {
-    if(sessionStorage.getItem("runCarsouel")!="homeReloaded"){
-      sessionStorage.setItem("runCarsouel","homeReloaded")
+    if(sessionStorage.getItem("runCarsouel")!="clothingReloaded"){
+      sessionStorage.setItem("runCarsouel","clothingReloaded")
       location.reload();
     }
    }

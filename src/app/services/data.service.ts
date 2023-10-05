@@ -70,17 +70,23 @@ export class DataService {
   getclothingImages():Observable<any[]>{
     return this.http.get<any[]>(`${this.databaseURL}/clothingImages.json`)
   }
-
-  
-  // get  accessories
-  getaccessoriesImages():Observable<homePhoto[]>{
-    return this.http.get<homePhoto[]>(`${this.databaseURL}/accessories.json`)
+  // get  perfumes Carasoul
+  getperfumesCarasoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/perfumesCarasoul.json`)
   }
   // get  perfumes
   getperfumesImages():Observable<homePhoto[]>{
-    return this.http.get<homePhoto[]>(`${this.databaseURL}/perfumes.json`)
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/perfumesImages.json`)
   }
-
+  // / get  accessories carasoul
+  getaccessoriesCarasoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/accessoriesCarasoul.json`)
+  }
+  // get  accessories
+  getaccessoriesImages():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/accessoriesImages.json`)
+  }
+  
   
   // create the data
   create(data:any , position:string,key:string){

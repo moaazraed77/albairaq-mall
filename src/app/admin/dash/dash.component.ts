@@ -15,36 +15,20 @@ import { homePhoto } from 'src/app/interfaces/home.interface';
 })
 export class DashComponent implements OnInit {
   
-  viewController:string="home";
-  uploadingImg:string="null";
-  uploadingCarasoul:string="null";
+  parttext:string="";
   databaseURL:any="";
-  showActiveLink:string="home";
-
-  constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
-    if(sessionStorage.getItem("Admin")!="AdminisTrue"){
-      route.navigate(["/admin/dash-login"])
-    }
-    this.databaseURL=this.database.app.options.databaseURL;
-  }
-
-  homeImg=this.fb.group({
-    img:[""],
-    id:[new Date().getTime()]
-  })
-  
-  ngOnInit(): void {
-    this.openPart('table data','home-carsouel','')
-  }
-
   productURL:string="";
   CarasoulURL:string="";
   datalist:any[]=[];
+  // variables for controll the view
+  uploadingImg:string="null";
+  uploadingCarasoul:string="null";
+  viewController:string="home";
   carsouelFormControl:string="";
   partViewController:string="";
   sectionViewController:string="";
   edit_control:string="";
-  parttext:string="";
+  // for update
   updateObject:homePhoto={
     img:"",
     id:""
@@ -53,6 +37,24 @@ export class DashComponent implements OnInit {
   deletedObject: any;
   // for popup deleted item show
   showDeleteDiv:boolean=false;
+  // for adding
+  homeImg=this.fb.group({
+    img:[""],
+    id:[new Date().getTime()]
+  })
+
+
+  constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
+    if(sessionStorage.getItem("Admin")!="AdminisTrue"){
+      route.navigate(["/admin/dash-login"])
+    }
+    this.databaseURL=this.database.app.options.databaseURL;
+  }
+
+  ngOnInit(): void {
+    this.openPart('table data','home-carsouel','')
+  }
+
 
 // ------------------------------------- send data to add to database -----------------------------------
   // ---- Carasoul function for home ----
@@ -60,12 +62,12 @@ export class DashComponent implements OnInit {
     this.homeImg.patchValue({
       img:this.CarasoulURL,
     })
-    // add carasoul
+  // ---- add carasoul ----
     if(edit_control=="home-carsouel" && sectionViewController =="add")
     {
       this.dataServ.create(this.homeImg.value,"carasoul","add");
     }
-    // edit carasoul
+  // ---- edit carasoul ----
     else if(edit_control=="home-carsouel" && sectionViewController =="edit"){
       this.dataServ.getCarsoul().subscribe(data=>{
         for (const key in data) {
@@ -82,6 +84,8 @@ export class DashComponent implements OnInit {
     this.uploadingCarasoul="null";
     setTimeout(()=> location.reload(),700)
   }
+
+
   // ---- product function for home ----
   sendProducts(edit_control:string,sectionViewController:string){
     this.homeImg.patchValue({
@@ -178,7 +182,7 @@ export class DashComponent implements OnInit {
           }
         }
       })
-      // ----------- delete content -----------
+  //------------- delete content -------------
     } else if(this.edit_control=='home-products' && sectionViewController=='delete')
     {
       this.sectionViewController=sectionViewController;

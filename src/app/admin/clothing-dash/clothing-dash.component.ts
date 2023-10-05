@@ -13,11 +13,32 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ClothingDashComponent implements OnInit  {
   
+  parttext:string="";
+  productURL:string="";
+  CarasoulURL:string="";
+  datalist:any[]=[];
+  databaseURL:any="";
+  // variables for controll the view
+  carsouelFormControl:string="";
+  partViewController:string="";
+  sectionViewController:string="";
+  edit_control:string="";
   viewController:string="clothing";
   uploadingImg:string="null";
   uploadingCarasoul:string="null";
-  databaseURL:any="";
-  showActiveLink:string="clothing";
+  // for check update
+  updateObject:any;
+  // for check delete
+  deletedObject: any;
+  // for popup deleted item show
+  showDeleteDiv:boolean=false;
+  // for adding 
+  clothingImg=this.fb.group({
+    img:[""],
+    url:[""],
+    id:[new Date().getTime()]
+  })
+
 
   constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
     if(sessionStorage.getItem("Admin")!="AdminisTrue"){
@@ -26,32 +47,14 @@ export class ClothingDashComponent implements OnInit  {
     this.databaseURL=this.database.app.options.databaseURL;
   }
 
-  clothingImg=this.fb.group({
-    img:[""],
-    url:[""],
-    id:[new Date().getTime()]
-  })
-  
   ngOnInit(): void {
     this.openPart('table data','clothing-carsouel','')
   }
 
-  productURL:string="";
-  CarasoulURL:string="";
-  datalist:any[]=[];
-  carsouelFormControl:string="";
-  partViewController:string="";
-  sectionViewController:string="";
-  edit_control:string="";
-  parttext:string="";
-  updateObject:any;
-  // for check delete
-  deletedObject: any;
-  // for popup deleted item show
-  showDeleteDiv:boolean=false;
 
 // ------------------------------------- send data to add to database -----------------------------------
-  // ---- Carasoul function for clothing ----
+  
+  // ------------- Carasoul function for clothing -----------------
   sendCarasoul(edit_control:string,sectionViewController:string){
     this.clothingImg.patchValue({
       img:this.CarasoulURL,
@@ -78,7 +81,7 @@ export class ClothingDashComponent implements OnInit  {
     this.uploadingCarasoul="null";
     setTimeout(()=> location.reload(),700)
   }
-  // ---- product function for clothing ----
+  // ------------- product function for clothing -----------------
   sendProducts(edit_control:string,sectionViewController:string){
     this.clothingImg.patchValue({
       img:this.productURL
@@ -101,7 +104,6 @@ export class ClothingDashComponent implements OnInit  {
             url:this.updateObject.url
           })
         }
-        
         for (const key in data) {
           if(this.updateObject.id==data[key].id){
             this.dataServ.create(this.clothingImg.value,"clothingImages",key);
@@ -180,7 +182,7 @@ export class ClothingDashComponent implements OnInit  {
     this.showDeleteDiv=false;
   }
   deleteItem(item:any,sectionViewController:string){
-  //----------- delete carasoul -----------
+    //----------- delete carasoul -----------
     if(this.edit_control=='clothing-carsouel' && sectionViewController=='delete')
     {
       this.sectionViewController=sectionViewController;
@@ -207,7 +209,8 @@ export class ClothingDashComponent implements OnInit  {
       })
     }
     setTimeout(() => { this.showdata(this.edit_control) }, 700);
- }
+  }
+
 
   // --------------------------------------------  upload photos -----------------------------------------
 

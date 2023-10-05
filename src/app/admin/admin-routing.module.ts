@@ -12,7 +12,6 @@ import { AccessoriesDashComponent } from './accessories-dash/accessories-dash.co
 import { PerfumesDashComponent } from './perfumes-dash/perfumes-dash.component';
 import { ClothingDashComponent } from './clothing-dash/clothing-dash.component';
 import { AdminGuard } from './services/admin.guard';
-import { DashLoginComponent } from '../components/dash-login/dash-login.component';
 
 const routes: Routes = [
   {
