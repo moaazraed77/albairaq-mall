@@ -67,8 +67,8 @@ export class DataService {
     return this.http.get<homePhoto[]>(`${this.databaseURL}/clothingCarasoul.json`)
   }
   // get  clothing
-  getclothingImages():Observable<homePhoto[]>{
-    return this.http.get<homePhoto[]>(`${this.databaseURL}/clothingImages.json`)
+  getclothingImages():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/clothingImages.json`)
   }
 
   

@@ -28,13 +28,13 @@
           <form [formGroup]="clothingImg" class="card p-2" (ngSubmit)="sendProducts(edit_control,sectionViewController)" >
               <label for="logo2">clothing Product Image : </label>
               <input type="file" accept=".jpg , .png , .jpeg , .webp "  class="form-control" id="logo2"  (change)=" uploadImg($event,'clothing-products')">
-                <div class="form-group">
-                    <label for="url">url : </label>
-                    <input type="url" class="form-control" formControlName="url" id="url">
-                </div>
+              <div class="form-group">
+                <label for="url">url : </label>
+                <input type="url" class="form-control" formControlName="url" id="url">
+            </div>
               <span class="text-warning" *ngIf="uploadingImg == 'uploadingImg'"> uploading ... </span> <span><img [src]="productURL" alt="" class="logo-photo"  *ngIf="uploadingImg == 'imgUploaded'"></span>
               <div class="text-center">
-                  <button type="submit" class="btn btn-secondary " *ngIf="uploadingImg == 'imgUploaded'" >save</button>
+                  <button type="submit" class="btn btn-secondary " *ngIf="(uploadingImg == 'imgUploaded' &&  sectionViewController == 'add') || sectionViewController == 'edit'" >save</button>
               </div>
             </form>
         </div>
@@ -56,7 +56,7 @@
             <tr *ngFor="let item of datalist;let i=index">
               <th scope="row" class="item">{{i+1}}</th>
               <td><img [src]="item.img" class="imgView" alt=""></td>
-              <p  *ngIf="edit_control=='clothing-products'"></p>
+              <td *ngIf="edit_control=='clothing-products'">{{item.url}}</td>
               <td class="item">
                 <button class="btn btn-warning m-1" (click)="openPart('form',edit_control,'edit');update(item,'edit')">edit</button>  
                 <button class="btn btn-danger m-1" (click)="DeleteSure(item)">delete</button>  

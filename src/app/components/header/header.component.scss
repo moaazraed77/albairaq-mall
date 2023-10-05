@@ -8,10 +8,7 @@
     .navbar-expand-lg {
         flex-wrap: nowrap;
         justify-content: space-between;
-        padding: 8px 10px;
-    }
-    .navbar-expand-lg .navbar-nav .dropdown-menu{
-        left: -33%;
+        padding: 3px 10px;
     }
 }
 @media screen and (max-width:991px) {
@@ -42,37 +39,41 @@
         text-align: left;
         font-size: 11px;
     }
-    .navbar-nav .nav-item:first-of-type:hover{
-        border-top-left-radius: 14px;
-        border-bottom-left-radius: 0px;
-    }
-    .navbar-nav .nav-item:last-of-type:hover{
-        border-top-right-radius: 0px;
-        border-bottom-left-radius: 14px;
-    }
     .navbar-nav .nav-item{
         border-bottom: 1px solid #efefefa3;
+        display: block;
+    }
+    .navbar-nav .nav-item:first-of-type.active{
+        padding-top: 3px;
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
     }
     .navbar-nav .nav-item:last-of-type{
         border: none;
     }
     .nav-item.dropdown{
-        padding: 0px;
+        padding: 0px 5px !important;
+        padding-bottom: 5px !important;
     }
     .nav-item.dropdown .nav-link{
         width: 100%;
+        padding-left: 0px;
+        padding-right: 5px;
     }
     .nav-item.dropdown .dropdown-menu {
-        position: absolute;
+        position: relative;
         min-width: 100%;
-        margin-top: 9px;
+        border-radius: 5px;
     }
     .dropdown-menu li .dropdown-item{
         font-size: 11px;
         padding: 8px;
     }
+    .dropdown-menu li .dropdown-item:last-of-type{
+        border: none;
+    }
 }
-@media screen and (max-width: 576px){
+@media screen and (max-width: 700px){
     .col-12.header{
         position: relative;
     }
@@ -84,27 +85,30 @@
 .header{
     position: fixed;
     z-index: 2;
-    box-shadow: 0px 0px 10px;
+    // box-shadow: 0px 0px 10px;
+    background-color: white  !important;
 }
 .navbar{
     display: flex;
     justify-content: space-evenly;
 }
 .logo{
-    height: 105px;
+    height: 106px;
     padding: 10px;
+    padding-top: 0px;
 }
 .navbar-toggler{
     margin-right: 5px;
     border: none;
+    margin-top: 26px;
 }
 .navbar-toggler:focus{
     box-shadow: none;
 }
 .navbar-collapse {
     flex-grow: 0;
-    box-shadow: inset 2px 5px 9px #d9d9d9, inset -2px -2px 7px #8f8585, 0px 0px 5px #898989;
     border-radius: 14px;
+    margin-top: 11px;
 }
 .nav-item{
     padding: 2px;
@@ -115,10 +119,10 @@
     align-items: center;
 }
 .nav-item:hover{
-    background-color: rgb(73 73 73 / 82%);
+    background-color: black;
 }
 .active{
-    background-color: rgb(73 73 73 / 82%);
+    background-color: black;
     border-radius: 5px;
     border: none;
 }
@@ -128,10 +132,6 @@
 .nav-item:first-of-type:hover{
     border-top-left-radius: 14px;
     border-bottom-left-radius: 14px;
-}
-.nav-item:last-of-type:hover{
-    border-top-right-radius: 14px;
-    border-bottom-right-radius: 14px;
 }
 .nav-link{
     color: white;
@@ -143,9 +143,19 @@
 a{
     text-transform: uppercase;
 }
+.dropdown{
+    border-radius: 14px;
+}
+.dropdown:hover{
+    background-color: rgb(221 221 221);
+    background-color: #cd0bff;
+}
+.dropdown .nav-link{
+    padding-left: 30px;
+    padding-right: 30px;
+}
 .dropdown-menu{
     padding: 0px;
-    margin-top: 4px;
     width: fit-content;
     min-width: fit-content;
 }
@@ -155,9 +165,11 @@ a{
     border-radius: 5px;
     border-bottom: 1px solid;
     font-size: 12px;
+
 }
-.dropdown-menu .dropdown-item:hover{
-    background-color: rgb(221 221 221);
+
+.dropdown-menu .dropdown-item:focus{
+    background-color: #cd0bff;
 }
 .drop-item-edit{
     border-radius: 0% !important;
@@ -165,6 +177,6 @@ a{
 
 
 // code for changing the the color of the bars in the toggler button
-// .navbar-toggler-icon{
-//     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba( 255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-// }
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba( 0, 0, 0)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}

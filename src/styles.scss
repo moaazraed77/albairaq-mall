@@ -6,15 +6,27 @@
 }
 @media screen and (max-width: 991px) and (min-width: 600px){
     div.global-content-padding{
-        padding-top: 103px;
+        padding-top: 0px;
+    }
+    div.global-content-padding{
+        padding-top: 131px;
+    }
+    .carousel-inner .carousel-item img{
+        height: 215px;
+    }
+    .row .productImg img{
+        height: 170px;
     }
 }
-@media screen and (max-width: 600px){
+@media screen and (max-width: 700px){
     div.global-content-padding{
         padding-top: 0px;
     }
     .carousel-inner .carousel-item img{
-        height: 164px;
+        height: 196px !important;
+    }
+    .row .productImg{
+        padding: 5px;
     }
 }
 .bg-pink{
@@ -22,13 +34,13 @@
 }
 .Content{
     padding-bottom: 50px !important;
-    padding-top: 10px !important;
+    padding-top: 5px !important;
 }
 .global-content-padding{
-    padding-top: 132px;
+    padding-top: 123px;
 }
 .carousel-item img{
-    height: 400px;
+    height: 270px;
 }
 .container {
     position: relative;
@@ -41,8 +53,6 @@
     margin: 7px;
     border-radius: 10px;
 }
-
-
 
 // for dashboard delete view
 .delete-show{

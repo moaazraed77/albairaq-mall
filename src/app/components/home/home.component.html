@@ -18,7 +18,7 @@
 
 <div class="col-12 bg-pink">
     <div class="container-fluid bg-light products Content">
-      <p class="text-center text-dark promo-text">what's news</p>
+      <p class="text-center text-dark promo-text">what's new</p>
     <div class="row align-items-start bg-light">
       <div class="col-sm-3 productImg"  *ngFor="let item of images ; let i=index">
         <img [src]="item.img" alt="..." (click)="showProduct(item)">
@@ -36,11 +36,11 @@
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon product-details" aria-hidden="true"></span>
+      <span class="carousel-control-prev-icon product-arrows" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon product-details" aria-hidden="true"></span>
+      <span class="carousel-control-next-icon product-arrows" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>

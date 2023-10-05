@@ -44,10 +44,7 @@ export class ClothingDashComponent implements OnInit  {
   sectionViewController:string="";
   edit_control:string="";
   parttext:string="";
-  updateObject:any={
-    img:"",
-    id:""
-  }
+  updateObject:any;
   // for check delete
   deletedObject: any;
   // for popup deleted item show
@@ -94,6 +91,17 @@ export class ClothingDashComponent implements OnInit  {
         this.clothingImg.patchValue({
           id:Number(this.updateObject.id)
         })
+        // code for if there is no change for one of product elements
+        if(this.clothingImg.get("img")?.value==""){
+          this.clothingImg.patchValue({
+            img:this.updateObject.img
+          })
+        }else if(this.clothingImg.get("url")?.value==""){
+          this.clothingImg.patchValue({
+            url:this.updateObject.url
+          })
+        }
+        
         for (const key in data) {
           if(this.updateObject.id==data[key].id){
             this.dataServ.create(this.clothingImg.value,"clothingImages",key);
@@ -120,6 +128,9 @@ export class ClothingDashComponent implements OnInit  {
     if(part=="table data"){
       this.showdata(type);
     }
+    this.clothingImg.patchValue({
+      url:""
+    })
   }
 
   // ------------------------------------ show data table -------------------------------------
@@ -149,6 +160,9 @@ export class ClothingDashComponent implements OnInit  {
         this.sectionViewController=sectionViewController
       } else if(this.edit_control=='clothing-products' && sectionViewController=='edit')
       {
+        this.clothingImg.patchValue({
+          url:this.updateObject.url
+        })
         this.sectionViewController=sectionViewController
       }
   }
