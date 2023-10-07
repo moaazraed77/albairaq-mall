@@ -27,18 +27,18 @@ export class DataService {
     return this.http.get<homePhoto[]>(`${this.databaseURL}/products.json`)
   }
   // get Dining data
-  getDiningCarsoul():Observable<homePhoto[]>{
-    return this.http.get<homePhoto[]>(`${this.databaseURL}/diningCarasoul.json`)
+  getDiningCarsoul():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/diningCarasoul.json`)
   }
-  getDiningContent():Observable<diningData[]>{
-    return this.http.get<diningData[]>(`${this.databaseURL}/diningContent.json`)
+  getDiningImages():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/diningImages.json`)
   }
   // get Entertainment data
-  getEntertainmentCarsoul():Observable<homePhoto[]>{
-    return this.http.get<homePhoto[]>(`${this.databaseURL}/EntertainmentCarasoul.json`)
+  getEntertainmentCarsoul():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/entertainmentCarasoul.json`)
   }
-  getEntertainmentContent():Observable<EntertainmentData[]>{
-    return this.http.get<EntertainmentData[]>(`${this.databaseURL}/EntertainmentContent.json`)
+  getEntertainmentImages():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/entertainmentImages.json`)
   }
   // get Services data
   getServicesCarsoul():Observable<homePhoto[]>{
@@ -75,16 +75,16 @@ export class DataService {
     return this.http.get<homePhoto[]>(`${this.databaseURL}/perfumesCarasoul.json`)
   }
   // get  perfumes
-  getperfumesImages():Observable<homePhoto[]>{
-    return this.http.get<homePhoto[]>(`${this.databaseURL}/perfumesImages.json`)
+  getperfumesImages():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/perfumesImages.json`)
   }
   // / get  accessories carasoul
   getaccessoriesCarasoul():Observable<homePhoto[]>{
     return this.http.get<homePhoto[]>(`${this.databaseURL}/accessoriesCarasoul.json`)
   }
   // get  accessories
-  getaccessoriesImages():Observable<homePhoto[]>{
-    return this.http.get<homePhoto[]>(`${this.databaseURL}/accessoriesImages.json`)
+  getaccessoriesImages():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/accessoriesImages.json`)
   }
   
   

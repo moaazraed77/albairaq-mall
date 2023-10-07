@@ -15,12 +15,13 @@ import { homePhoto } from 'src/app/interfaces/home.interface';
 })
 export class DashComponent implements OnInit {
   
+  // data variables
   parttext:string="";
   databaseURL:any="";
   productURL:string="";
   CarasoulURL:string="";
   datalist:any[]=[];
-  // variables for controll the view
+  // variables for control the view
   uploadingImg:string="null";
   uploadingCarasoul:string="null";
   viewController:string="home";
@@ -37,7 +38,7 @@ export class DashComponent implements OnInit {
   deletedObject: any;
   // for popup deleted item show
   showDeleteDiv:boolean=false;
-  // for adding
+  // for adding data 
   homeImg=this.fb.group({
     img:[""],
     id:[new Date().getTime()]

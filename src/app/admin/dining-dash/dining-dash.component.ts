@@ -1,9 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Database } from '@angular/fire/database';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { homePhoto } from 'src/app/interfaces/home.interface';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,116 +11,143 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './dining-dash.component.html',
   styleUrls: ['./dining-dash.component.scss']
 })
-export class DiningDashComponent implements OnInit {
-
+export class DiningDashComponent implements OnInit  {
+  
+  // data variables
+  parttext:string="";
+  productURL:string="";
+  CarasoulURL:string="";
   datalist:any[]=[];
+  databaseURL:any="";
+  // variables for controll the view
   carsouelFormControl:string="";
   partViewController:string="";
   sectionViewController:string="";
   edit_control:string="";
-  CarasoulDiningURL:string="";
-  uploading:string="";
+  viewController:string="dining";
+  uploadingImg:string="null";
+  uploadingCarasoul:string="null";
+  // for check update
   updateObject:any;
   // for check delete
   deletedObject: any;
   // for popup deleted item show
   showDeleteDiv:boolean=false;
-
-  constructor( private route:Router,private fb:FormBuilder , private dataServ:DataService, private firestorage:AngularFireStorage) { 
-    this.partViewController="table data";
-    this.openPart('table data','carsouel','imgs')
-  }
-
-  homeImg=this.fb.group({
+  // for adding 
+  diningImg=this.fb.group({
     img:[""],
+    url:[""],
     id:[new Date().getTime()]
   })
-  dining=this.fb.group({
-    title:["",Validators.required],
-    paragraph:["",Validators.required],
-    id:[new Date().getTime()]
-  })
+
+  constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
+    if(sessionStorage.getItem("Admin")!="AdminisTrue"){
+      route.navigate(["/admin/dash-login"])
+    }
+    this.databaseURL=this.database.app.options.databaseURL;
+  }
 
   ngOnInit(): void {
+    this.openPart('table data','dining-carsouel','')
   }
 
-// --------------------------------------- Carasoul function for Dining ---------------------------------------
-  sendCarasoulDining(){
-    this.homeImg.patchValue({
-      img:this.CarasoulDiningURL
+
+// ------------------------------------- send data to add to database -----------------------------------
+  
+  // ------------- Carasoul function for dining -----------------
+  sendCarasoul(edit_control:string,sectionViewController:string){
+    this.diningImg.patchValue({
+      img:this.CarasoulURL,
     })
-    if(this.edit_control=='carsouel' && this.sectionViewController=='add'){
-      this.dataServ.create(this.homeImg.value,"diningCarasoul","add");
-    }else{
+    // add carasoul
+    if(edit_control=="dining-carsouel" && sectionViewController =="add")
+    {
+      this.dataServ.create(this.diningImg.value,"diningCarasoul","add");
+    }
+    // edit carasoul
+    else if(edit_control=="dining-carsouel" && sectionViewController =="edit"){
       this.dataServ.getDiningCarsoul().subscribe(data=>{
         for (const key in data) {
-          if(this.updateObject.id== data[key].id){
-            this.homeImg.patchValue({
+          if(this.updateObject.id==data[key].id){
+            this.diningImg.patchValue({
               id:Number(this.updateObject.id)
             })
-            this.dataServ.create(this.homeImg.value,"diningCarasoul",key);
+            this.dataServ.create(this.diningImg.value,"diningCarasoul",key);
             break;
           }
         }
       })
     }
-    this.uploading="null";
-    setTimeout(() => { location.reload() }, 500);
+    this.uploadingCarasoul="null";
+    console.log(this.diningImg.value)
+    setTimeout(()=> location.reload(),700)
   }
-
-// --------------------------------------- data function for Dining ---------------------------------------
-  sendDiningData(){
-    if(this.dining.valid){
-      if(this.sectionViewController=='add'){
-        this.dataServ.create(this.dining.value,"diningContent","add")
-      }else{
-        this.dataServ.getDiningContent().subscribe(data=>{
-          for (const key in data) {
-            if(this.updateObject.id== data[key].id){
-              this.dining.patchValue({
-                id:Number(this.updateObject.id)
-              })
-              this.dataServ.create(this.dining.value,"diningContent",key);
-              break;
-            }
-          }
-        })
-      }
+  // ------------- product function for dining -----------------
+  sendProducts(edit_control:string,sectionViewController:string){
+    this.diningImg.patchValue({
+      img:this.productURL
+    })
+    if(edit_control=="dining-products" && sectionViewController =="add"){
+      this.dataServ.create(this.diningImg.value,"diningImages","add");
     }
-    setTimeout(() => { location.reload() }, 500);
+    else if(edit_control=="dining-products" && sectionViewController =="edit"){
+      this.dataServ.getDiningImages().subscribe(data=>{
+        this.diningImg.patchValue({
+          id:Number(this.updateObject.id)
+        })
+        // code for if there is no change for one of product elements
+        if(this.diningImg.get("img")?.value==""){
+          this.diningImg.patchValue({
+            img:this.updateObject.img
+          })
+        }else if(this.diningImg.get("url")?.value==""){
+          this.diningImg.patchValue({
+            url:this.updateObject.url
+          })
+        }
+        for (const key in data) {
+          if(this.updateObject.id==data[key].id){
+            this.dataServ.create(this.diningImg.value,"diningImages",key);
+            break;
+          }
+        }
+      })
+    }
+    this.uploadingImg="null";
+    setTimeout(()=> location.reload(),700)
   }
 
-  // --------------------------------------- view control function ---------------------------------------
+  // ------------------------------------- open part ------------------------------------------
   openPart(part:string,type:string,action:string){
+    this.parttext=`the show of ${type}`
     this.partViewController=part;
     this.sectionViewController=action;
     this.carsouelFormControl=action;
     this.edit_control=type;
     // delete texts and old data
-    this.uploading=""
+    this.uploadingCarasoul=""
+    this.uploadingImg=""
     this.showDeleteDiv=false
     if(part=="table data"){
       this.showdata(type);
     }
-  }
-  EmptyFormInputs(){
-    this.dining.patchValue({
-      title:"",
-      paragraph:""
+    this.diningImg.patchValue({
+      url:""
     })
   }
 
-  // --------------------------------------- add data in array ---------------------------------------
+  // ------------------------------------ show data table -------------------------------------
   showdata(type:string){
     this.datalist=[]
-    if(type=="carsouel"){
+    this.edit_control=type;
+    if(type=="dining-carsouel"){
       this.dataServ.getDiningCarsoul().subscribe(data=>{
         for (const key in data) {
           this.datalist.push(data[key])
         }
       })
-    }else  if(type=="texts"){
-      this.dataServ.getDiningContent().subscribe(data=>{
+    }else  if(type=="dining-products"){
+      this.dataServ.getDiningImages().subscribe(data=>{
         for (const key in data) {
           this.datalist.push(data[key])
         }
@@ -131,14 +158,13 @@ export class DiningDashComponent implements OnInit {
   // --------------------------------------- update part ---------------------------------------
   update(item:any,sectionViewController:string){
     this.updateObject=item;
-    if(this.edit_control=='carsouel' && sectionViewController=='edit')
+    if(this.edit_control=='dining-carsouel' && sectionViewController=='edit')
       {
         this.sectionViewController=sectionViewController
-      } else if(this.edit_control=='texts' && sectionViewController=='edit')
+      } else if(this.edit_control=='dining-products' && sectionViewController=='edit')
       {
-        this.dining.patchValue({
-          title:item.title,
-          paragraph:item.paragraph,
+        this.diningImg.patchValue({
+          url:this.updateObject.url
         })
         this.sectionViewController=sectionViewController
       }
@@ -157,8 +183,8 @@ export class DiningDashComponent implements OnInit {
     this.showDeleteDiv=false;
   }
   deleteItem(item:any,sectionViewController:string){
-    // delete carasoul
-    if(this.edit_control=='carsouel' && sectionViewController=='delete')
+    //----------- delete carasoul -----------
+    if(this.edit_control=='dining-carsouel' && sectionViewController=='delete')
     {
       this.sectionViewController=sectionViewController;
       this.dataServ.getDiningCarsoul().subscribe(data=>{
@@ -169,35 +195,52 @@ export class DiningDashComponent implements OnInit {
           }
         }
       })
-    // delete texts
-    } else if(this.edit_control=='texts' && sectionViewController=='delete')
+      // ----------- delete content -----------
+    } else if(this.edit_control=='dining-products' && sectionViewController=='delete')
     {
       this.sectionViewController=sectionViewController;
-      this.dataServ.getDiningContent().subscribe(data=>{
+      this.dataServ.getDiningImages().subscribe(data=>{
         for (const key in data) {
           if(item.id==data[key].id){
             console.log(item.id)
-            this.dataServ.delete("diningContent",key);
+            this.dataServ.delete("diningImages",key);
             break;
           }
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 500);
+    setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
-  
-//--------------------------------------- funcion to upload img file and get image url ---------------------------------------
-  async uploadDiningCarasoul(event:any){
-    this.uploading="uploadingDiningCarasoul";
-    let date=new Date()
+
+
+  // --------------------------------------------  upload photos -----------------------------------------
+
+  // funcion to upload img file and get image url   ---- for dining carasoul -------
+  async uploadCarasoul(event:any,edit_control:string){
+    this.edit_control=edit_control
+    this.uploadingCarasoul="uploadingCarasoul";
     const file=event.target.files[0];
     if(file){
       const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
       const uploadTask = await this.firestorage.upload(path,file)
       const url =await uploadTask.ref.getDownloadURL()
-      this.CarasoulDiningURL=url;
+      this.CarasoulURL=url;
     }
-    this.uploading="uploadedDiningCarasoul";
+    this.uploadingCarasoul="CarasoulUploaded";
+  }
+  // funcion to upload img file and get image url ---- for product -------
+  async uploadImg(event:any,edit_control:string){
+    this.edit_control=edit_control
+    this.uploadingImg="uploadingImg";
+    const file=event.target.files[0];
+    if(file){
+      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
+      const uploadTask = await this.firestorage.upload(path,file)
+      const url =await uploadTask.ref.getDownloadURL()
+      this.productURL=url;
+    }
+    this.uploadingImg="imgUploaded";
   }
 
 }
+

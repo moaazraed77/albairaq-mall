@@ -13,23 +13,27 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class StoreLocationDashComponent implements OnInit {
  
+  // data variables
   datalist: any[] = [];
+  CarasoulstoreLocationURL: string = "";
+  // for controlling the view and data
   carsouelFormControl: string = "";
   partViewController: string = "";
   sectionViewController: string = "";
   edit_control: string = "";
-  CarasoulstoreLocationURL: string = "";
   uploading: string = "";
+  // for updating data
   updateObject: any;
-
-  constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
-  }
-
+  // for adding data
   homeImg=this.fb.group({
     img:[""],
     id:[new Date().getTime()]
   })
   
+
+  constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
+  }
+
   ngOnInit(): void {
     this.openPart('table data','carsouel','');
   }

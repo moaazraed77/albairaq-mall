@@ -14,11 +14,12 @@ import { DataService } from 'src/app/services/data.service';
 export class AboutDashComponent implements OnInit {
  
   datalist: any[] = [];
+  CarasoulAboutURL: string = "";
+  // for controlling view and adata
   carsouelFormControl: string = "";
   partViewController: string = "";
   sectionViewController: string = "";
   edit_control: string = "";
-  CarasoulAboutURL: string = "";
   uploading: string = "";
   // for update
   updateObject: any;
@@ -26,19 +27,19 @@ export class AboutDashComponent implements OnInit {
   deletedObject: any;
   // for popup deleted item show
   showDeleteDiv:boolean=false;
-
-  constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
-  }
-
+  // for adding data
   homeImg=this.fb.group({
     img:[""],
     id:[new Date().getTime()]
   })
-  
   About=this.fb.group({
     paragraph:["",Validators.required],
     id:[new Date().getTime()]
   })
+
+
+  constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
+  }
 
   ngOnInit(): void {
     this.openPart('table data','carsouel','');
@@ -143,6 +144,7 @@ export class AboutDashComponent implements OnInit {
         this.sectionViewController=sectionViewController
       }
   }
+
   // ----------------------------- delete part -----------------------------
   DeleteSure(item:any){
     this.deletedObject=item;

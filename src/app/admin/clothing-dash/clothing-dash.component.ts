@@ -13,6 +13,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ClothingDashComponent implements OnInit  {
   
+  // data variables
   parttext:string="";
   productURL:string="";
   CarasoulURL:string="";
@@ -38,7 +39,6 @@ export class ClothingDashComponent implements OnInit  {
     url:[""],
     id:[new Date().getTime()]
   })
-
 
   constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
     if(sessionStorage.getItem("Admin")!="AdminisTrue"){

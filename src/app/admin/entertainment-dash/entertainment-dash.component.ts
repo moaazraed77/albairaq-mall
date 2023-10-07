@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Database } from '@angular/fire/database';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
@@ -10,130 +12,142 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./entertainment-dash.component.scss']
 })
 export class EntertainmentDashComponent implements OnInit {
-
-  datalist: any[] = [];
-  carsouelFormControl: string = "";
-  partViewController: string = "";
-  sectionViewController: string = "";
-  edit_control: string = "";
-  CarasoulEntertainmentURL: string = "";
-  productEntertainmentURL: string = "";
-  uploading: string = "";
-  updateObject: any;
+  
+  // data variables
+  parttext:string="";
+  productURL:string="";
+  CarasoulURL:string="";
+  datalist:any[]=[];
+  databaseURL:any="";
+  // variables for controll the view
+  carsouelFormControl:string="";
+  partViewController:string="";
+  sectionViewController:string="";
+  edit_control:string="";
+  viewController:string="entertainment";
+  uploadingImg:string="null";
+  uploadingCarasoul:string="null";
+  // for check update
+  updateObject:any;
   // for check delete
   deletedObject: any;
   // for popup deleted item show
   showDeleteDiv:boolean=false;
-
-
-  homeImg = this.fb.group({
-    img: [""],
-    id: [new Date().getTime()]
-  })
-  Entertainment = this.fb.group({
-    img: [""],
-    title: ["", Validators.required],
-    paragraph: ["", Validators.required],
-    id: [new Date().getTime()]
+  // for adding 
+  entertainmentImg=this.fb.group({
+    img:[""],
+    url:[""],
+    id:[new Date().getTime()]
   })
 
-  constructor(private route: Router, private fb: FormBuilder, private dataServ: DataService, private firestorage: AngularFireStorage) { }
-
-  ngOnInit(): void {
-    this.openPart('table data', 'carsouel', '')
+  constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
+    if(sessionStorage.getItem("Admin")!="AdminisTrue"){
+      route.navigate(["/admin/dash-login"])
+    }
+    this.databaseURL=this.database.app.options.databaseURL;
   }
 
-  // --------------------------------------- form function for Entertainment Carasoul ---------------------------------------
-  sendCarasoulEntertainment() {
-    this.homeImg.patchValue({
-      img: this.CarasoulEntertainmentURL
+  ngOnInit(): void {
+    this.openPart('table data','entertainment-carsouel','')
+  }
+
+
+// ------------------------------------- send data to add to database -----------------------------------
+  
+  // ------------- Carasoul function for entertainment -----------------
+  sendCarasoul(edit_control:string,sectionViewController:string){
+    this.entertainmentImg.patchValue({
+      img:this.CarasoulURL,
     })
-    if (this.sectionViewController == 'add') {
-      this.dataServ.create(this.homeImg.value, "EntertainmentCarasoul", "add");
-    } else {
-      this.dataServ.getEntertainmentCarsoul().subscribe(data => {
+    // add carasoul
+    if(edit_control=="entertainment-carsouel" && sectionViewController =="add")
+    {
+      this.dataServ.create(this.entertainmentImg.value,"entertainmentCarasoul","add");
+    }
+    // edit carasoul
+    else if(edit_control=="entertainment-carsouel" && sectionViewController =="edit"){
+      this.dataServ.getEntertainmentCarsoul().subscribe(data=>{
         for (const key in data) {
-          if (this.updateObject.id == data[key].id) {
-            this.homeImg.patchValue({
-              id: Number(this.updateObject.id)
+          if(this.updateObject.id==data[key].id){
+            this.entertainmentImg.patchValue({
+              id:Number(this.updateObject.id)
             })
-            this.dataServ.create(this.homeImg.value, "EntertainmentCarasoul", key);
+            this.dataServ.create(this.entertainmentImg.value,"entertainmentCarasoul",key);
             break;
           }
         }
       })
     }
-    this.uploading = "null";
-    setTimeout(() => { location.reload() }, 700);
+    this.uploadingCarasoul="null";
+    console.log(this.entertainmentImg.value)
+    setTimeout(()=> location.reload(),700)
   }
-
-  // --------------------------------------- form function for Entertainment Data ---------------------------------------
-  sendEntertainmentData() {
-    if (this.Entertainment.valid) {
-      this.Entertainment.patchValue({
-        img: this.productEntertainmentURL
-      })
-      // add data
-      if (this.sectionViewController == 'add') {
-        this.dataServ.create(this.Entertainment.value, "EntertainmentContent", "add")
-      } else {
-      // edit data
-        this.dataServ.getEntertainmentContent().subscribe(data => {
-          for (const key in data) {
-            if (this.updateObject.id == data[key].id) {
-              this.Entertainment.patchValue({
-                id: Number(this.updateObject.id)
-              })
-              //put the same img if not uploaded
-              if(this.Entertainment.get("img")?.value==""){
-                this.Entertainment.patchValue({
-                  img:this.updateObject.img
-                })
-              }
-              // submit updated data the data
-              this.dataServ.create(this.Entertainment.value, "EntertainmentContent", key);
-              break;
-            }
-          }
-        })
-      }
+  // ------------- product function for entertainment -----------------
+  sendProducts(edit_control:string,sectionViewController:string){
+    this.entertainmentImg.patchValue({
+      img:this.productURL
+    })
+    if(edit_control=="entertainment-products" && sectionViewController =="add"){
+      this.dataServ.create(this.entertainmentImg.value,"entertainmentImages","add");
     }
-    setTimeout(() => { location.reload() }, 700);
+    else if(edit_control=="entertainment-products" && sectionViewController =="edit"){
+      this.dataServ.getEntertainmentImages().subscribe(data=>{
+        this.entertainmentImg.patchValue({
+          id:Number(this.updateObject.id)
+        })
+        // code for if there is no change for one of product elements
+        if(this.entertainmentImg.get("img")?.value==""){
+          this.entertainmentImg.patchValue({
+            img:this.updateObject.img
+          })
+        }else if(this.entertainmentImg.get("url")?.value==""){
+          this.entertainmentImg.patchValue({
+            url:this.updateObject.url
+          })
+        }
+        for (const key in data) {
+          if(this.updateObject.id==data[key].id){
+            this.dataServ.create(this.entertainmentImg.value,"entertainmentImages",key);
+            break;
+          }
+        }
+      })
+    }
+    this.uploadingImg="null";
+    setTimeout(()=> location.reload(),700)
   }
 
-  // --------------------------------------- open view control ---------------------------------------
-  openPart(part: string, type: string, action: string) {
-    this.partViewController = part;
-    this.sectionViewController = action;
-    this.carsouelFormControl = action;
-    this.edit_control = type;
+  // ------------------------------------- open part ------------------------------------------
+  openPart(part:string,type:string,action:string){
+    this.parttext=`the show of ${type}`
+    this.partViewController=part;
+    this.sectionViewController=action;
+    this.carsouelFormControl=action;
+    this.edit_control=type;
     // delete texts and old data
-    this.uploading=""
+    this.uploadingCarasoul=""
+    this.uploadingImg=""
     this.showDeleteDiv=false
-    if (part == "table data") {
+    if(part=="table data"){
       this.showdata(type);
     }
-  }
-  EmptyFormInputs(){
-    this.Entertainment.patchValue({
-      title:"",
-      paragraph:""
+    this.entertainmentImg.patchValue({
+      url:""
     })
   }
 
-  // --------------------------------------- show data list on view ---------------------------------------
-  showdata(type: string) {
-    this.datalist = []
-    // show the carsouel data
-    if (type == "carsouel") {
-      this.dataServ.getEntertainmentCarsoul().subscribe(data => {
+  // ------------------------------------ show data table -------------------------------------
+  showdata(type:string){
+    this.datalist=[]
+    this.edit_control=type;
+    if(type=="entertainment-carsouel"){
+      this.dataServ.getEntertainmentCarsoul().subscribe(data=>{
         for (const key in data) {
           this.datalist.push(data[key])
         }
       })
-    // show the content data
-    } else if (type == "content") {
-      this.dataServ.getEntertainmentContent().subscribe(data => {
+    }else  if(type=="entertainment-products"){
+      this.dataServ.getEntertainmentImages().subscribe(data=>{
         for (const key in data) {
           this.datalist.push(data[key])
         }
@@ -142,18 +156,18 @@ export class EntertainmentDashComponent implements OnInit {
   }
 
   // --------------------------------------- update part ---------------------------------------
-  update(item: any, sectionViewController: string) {
-    this.updateObject = item;
-    if (this.edit_control == 'carsouel' && sectionViewController == 'edit') {
-      this.sectionViewController = sectionViewController
-    } else if (this.edit_control == 'content' && sectionViewController == 'edit') {
-      this.Entertainment.patchValue({
-        title:item.title,
-        paragraph:item.paragraph,
-        img:item.img
-      })
-      this.sectionViewController = sectionViewController
-    }
+  update(item:any,sectionViewController:string){
+    this.updateObject=item;
+    if(this.edit_control=='entertainment-carsouel' && sectionViewController=='edit')
+      {
+        this.sectionViewController=sectionViewController
+      } else if(this.edit_control=='entertainment-products' && sectionViewController=='edit')
+      {
+        this.entertainmentImg.patchValue({
+          url:this.updateObject.url
+        })
+        this.sectionViewController=sectionViewController
+      }
   }
 
   // --------------------------------------- delete part ---------------------------------------
@@ -168,26 +182,28 @@ export class EntertainmentDashComponent implements OnInit {
   cancel_delete(){
     this.showDeleteDiv=false;
   }
-    // get item carsouel for delete 
-    deleteItem(item: any, sectionViewController: string) {
-    if (this.edit_control == 'carsouel' && sectionViewController == 'delete') {
-      this.sectionViewController = sectionViewController;
-      this.dataServ.getEntertainmentCarsoul().subscribe(data => {
+  deleteItem(item:any,sectionViewController:string){
+    //----------- delete carasoul -----------
+    if(this.edit_control=='entertainment-carsouel' && sectionViewController=='delete')
+    {
+      this.sectionViewController=sectionViewController;
+      this.dataServ.getEntertainmentCarsoul().subscribe(data=>{
         for (const key in data) {
-          if (item.id == data[key].id) {
-            this.dataServ.delete("EntertainmentCarasoul", key);
+          if(item.id==data[key].id){
+            this.dataServ.delete("entertainmentCarasoul",key);
             break;
           }
         }
       })
-    // get item content for delete 
-    } else if (this.edit_control == 'content' && sectionViewController == 'delete') {
-      this.sectionViewController = sectionViewController;
-      this.dataServ.getEntertainmentContent().subscribe(data => {
+      // ----------- delete content -----------
+    } else if(this.edit_control=='entertainment-products' && sectionViewController=='delete')
+    {
+      this.sectionViewController=sectionViewController;
+      this.dataServ.getEntertainmentImages().subscribe(data=>{
         for (const key in data) {
-          if (item.id == data[key].id) {
+          if(item.id==data[key].id){
             console.log(item.id)
-            this.dataServ.delete("EntertainmentContent", key);
+            this.dataServ.delete("entertainmentImages",key);
             break;
           }
         }
@@ -196,30 +212,35 @@ export class EntertainmentDashComponent implements OnInit {
     setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
 
-  // -------------------------- funcion to upload img file and get image url ---- for Entertainment Carasoul-----------------
-  async uploadEntertainmentCarasoul(event: any) {
-    this.uploading = "uploadingEntertainmentCarasoul";
-    let date = new Date()
-    const file = event.target.files[0];
-    if (file) {
-      const path = `alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
-      const uploadTask = await this.firestorage.upload(path, file)
-      const url = await uploadTask.ref.getDownloadURL()
-      this.CarasoulEntertainmentURL = url;
+
+  // --------------------------------------------  upload photos -----------------------------------------
+
+  // funcion to upload img file and get image url   ---- for entertainment carasoul -------
+  async uploadCarasoul(event:any,edit_control:string){
+    this.edit_control=edit_control
+    this.uploadingCarasoul="uploadingCarasoul";
+    const file=event.target.files[0];
+    if(file){
+      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
+      const uploadTask = await this.firestorage.upload(path,file)
+      const url =await uploadTask.ref.getDownloadURL()
+      this.CarasoulURL=url;
     }
-    this.uploading = "uploadedEntertainmentCarasoul";
+    this.uploadingCarasoul="CarasoulUploaded";
   }
-  // -------------------------- funcion to upload img file and get image url ---- for Entertainment Product------------------
-  async uploadEntertainmentProduct(event: any) {
-    this.uploading = "uploadingEntertainmentProduct";
-    let date = new Date()
-    const file = event.target.files[0];
-    if (file) {
-      const path = `alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
-      const uploadTask = await this.firestorage.upload(path, file)
-      const url = await uploadTask.ref.getDownloadURL()
-      this.productEntertainmentURL = url;
+  // funcion to upload img file and get image url ---- for product -------
+  async uploadImg(event:any,edit_control:string){
+    this.edit_control=edit_control
+    this.uploadingImg="uploadingImg";
+    const file=event.target.files[0];
+    if(file){
+      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
+      const uploadTask = await this.firestorage.upload(path,file)
+      const url =await uploadTask.ref.getDownloadURL()
+      this.productURL=url;
     }
-    this.uploading = "uploadedEntertainmentProduct";
+    this.uploadingImg="imgUploaded";
   }
+
 }
+

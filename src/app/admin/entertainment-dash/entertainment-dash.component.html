@@ -1,69 +1,64 @@
 
 <!-- ----- Entertainment ------- -->
-<div class="col-12">
+
+<div class="col-12 content">
+  <!-- ----- entertainment ------- -->
+  <div class="col-12">
     <div class="d-flex justify-content-center">
-      <h1 class="part-title">Entertainment part </h1>
+      <h1 class="part-title">entertainment part </h1>
     </div>
-    <!-- ----- Entertainment control part ------- -->
     <div class="col-12 d-flex justify-content-end">
-        <div class="btn btn-info text-light" (click)="openPart('form','','add');EmptyFormInputs()">add data</div>
-        <div class="btn btn-info text-light" (click)="openPart('table data','content','')">show data</div>
-        <div class="btn btn-info text-light" (click)="openPart('table data','carsouel','')">show carsouel</div>
-      </div>
-    <!-- ----- Entertainment forms ------- -->
-    <div class="col-12" *ngIf="partViewController=='form'">
-      <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='carsouel')">
-        <!-- -----  form Carasoul ------- -->
-        <form [formGroup]="homeImg" class="card p-2" (ngSubmit)="sendCarasoulEntertainment()" >
-            <label for="logo">Entertainment Carasoul Image : </label>
-            <input type="file" accept=".jpg , .png , .jpeg , .webp "  class="form-control" id="logo"  (change)=" uploadEntertainmentCarasoul($event)">
-            <span class="text-warning" *ngIf="uploading == 'uploadingEntertainmentCarasoul' "> uploading ... </span> <span><img [src]="CarasoulEntertainmentURL" alt="" class="logo-photo"  *ngIf="uploading == 'uploadedEntertainmentCarasoul'"></span>
+      <div class="btn btn-info text-light" (click)="openPart('form','carasoul-form','add')">add data</div>
+      <div class="btn btn-info text-light" (click)="openPart('table data','entertainment-products','')">show products</div>
+      <div class="btn btn-info text-light" (click)="openPart('table data','entertainment-carsouel','')">show carsouel</div>
+    </div>
+    <!-- entertainment forms -->
+    <div *ngIf="partViewController=='form'">
+      <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='entertainment-carsouel')">
+        <!-- carsouel form -->
+        <form [formGroup]="entertainmentImg" class="card p-2" (ngSubmit)="sendCarasoul(edit_control,sectionViewController)" >
+            <label for="logo">entertainment Carasoul Image : </label>
+            <input type="file" accept=".jpg , .png , .jpeg , .webp "  class="form-control" id="logo"  (change)=" uploadCarasoul($event,'entertainment-carsouel')">
+            <span class="text-warning" *ngIf="uploadingCarasoul == 'uploadingCarasoul' "> uploading ... </span> <span><img [src]="CarasoulURL" alt="" class="logo-photo"  *ngIf="uploadingCarasoul == 'CarasoulUploaded'"></span>
             <div class="text-center">
-                <button type="submit" class="btn btn-secondary "  *ngIf="uploading == 'uploadedEntertainmentCarasoul'">save</button>
+                <button type="submit" class="btn btn-secondary "  *ngIf="uploadingCarasoul == 'CarasoulUploaded'">save</button>
             </div>
-          </form>
+        </form>
       </div>
-        <!-- -----  form content ------- -->
-      <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='content')">
-        <form [formGroup]="Entertainment" class="card p-2" (ngSubmit)="sendEntertainmentData()" >
-            <label for="logo">Entertainment Product Image : </label>
-            <input type="file" accept=".jpg , .png , .jpeg , .webp "  class="form-control" id="logo"  (change)=" uploadEntertainmentProduct($event)">
-            <span class="text-warning" *ngIf="uploading == 'uploadingEntertainmentProduct' "> uploading ... </span> <span><img [src]="productEntertainmentURL" alt="" class="logo-photo"  *ngIf="uploading == 'uploadedEntertainmentProduct'"></span>
+      <!-- product form -->
+      <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='entertainment-products')">
+        <form [formGroup]="entertainmentImg" class="card p-2" (ngSubmit)="sendProducts(edit_control,sectionViewController)" >
+            <label for="logo2">entertainment Product Image : </label>
+            <input type="file" accept=".jpg , .png , .jpeg , .webp "  class="form-control" id="logo2"  (change)=" uploadImg($event,'entertainment-products')">
             <div class="form-group">
-              <label for="Title">Entertainment Title : </label>
-              <input type="text" class="form-control" id="Title" formControlName="title">
-            </div>
-            <div class="form-group">
-              <label for="paragraph">Entertainment Pragraph : </label>
-              <textarea name="paragraph" id="paragraph" cols="30" rows="5" class="form-control" id="paragraph" formControlName="paragraph"></textarea>
-            </div>
+              <label for="url">url : </label>
+              <input type="url" class="form-control" formControlName="url" id="url">
+          </div>
+            <span class="text-warning" *ngIf="uploadingImg == 'uploadingImg'"> uploading ... </span> <span><img [src]="productURL" alt="" class="logo-photo"  *ngIf="uploadingImg == 'imgUploaded'"></span>
             <div class="text-center">
-                <button type="submit" class="btn btn-secondary " >save</button>
+                <button type="submit" class="btn btn-secondary " *ngIf="(uploadingImg == 'imgUploaded' &&  sectionViewController == 'add') || sectionViewController == 'edit'" >save</button>
             </div>
           </form>
       </div>
     </div>
 
-  <!-- data table -->
+    <!-- data table -->
     <div class="col-12 table-div" *ngIf="partViewController=='table data'">
+      <p class="part-view">{{parttext}}</p>
       <table class="table table-striped text-center">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col" *ngIf="edit_control=='carsouel'">carasoul</th>
-            <th scope="col" *ngIf="edit_control=='content'">img</th>
-            <th scope="col" *ngIf="edit_control=='content'">title</th>
-            <th scope="col" *ngIf="edit_control=='content'">paragraph</th>
+            <th scope="col">carasoul</th>
+            <th scope="col" *ngIf="edit_control=='entertainment-products'">url </th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of datalist;let i=index">
             <th scope="row" class="item">{{i+1}}</th>
-            <td *ngIf="edit_control=='carsouel'"><img [src]="item.img" class="imgView" alt=""></td>
-            <td *ngIf="edit_control=='content'"><img [src]="item.img" class="imgView" alt=""></td>
-            <td *ngIf="edit_control=='content'" class="titleContent"><p>{{item.title}}</p></td>
-            <td *ngIf="edit_control=='content'" class="paragraphContent"><p>{{item.paragraph}}</p></td>
+            <td><img [src]="item.img" class="imgView" alt=""></td>
+            <td *ngIf="edit_control=='entertainment-products'">{{item.url}}</td>
             <td class="item">
               <button class="btn btn-warning m-1" (click)="openPart('form',edit_control,'edit');update(item,'edit')">edit</button>  
               <button class="btn btn-danger m-1" (click)="DeleteSure(item)">delete</button>  
@@ -72,19 +67,24 @@
         </tbody>
       </table>
     </div>
-  <!-- deleted item div -->
-  <div class="col-12 delete-show" *ngIf="showDeleteDiv">
-    <div class="row check-data">
-      <div class=" card">
-        <p *ngIf="edit_control=='carsouel'"><img [src]="deletedObject.img" class="imgView" alt=""></p>
-        <td *ngIf="edit_control=='content'"><img [src]="deletedObject.img" class="imgView" alt=""></td>
-        <p *ngIf="edit_control=='content'" class="titleContent">{{deletedObject.title}}</p>
-        <p *ngIf="edit_control=='content'">{{deletedObject.paragraph}}</p>
-        <div class="text-center">
-          <div class="btn btn-danger" (click)="deleteDone()">delete</div>
-          <div class="btn btn-secondary" (click)="cancel_delete()">cancel</div>
-        </div>  
+  </div>
+
+    <!-- deleted item div -->
+    <div class="col-12 delete-show" *ngIf="showDeleteDiv">
+      <div class="row check-data">
+        <div class=" card">
+          <p><img [src]="deletedObject.img" class="imgView" alt=""></p>
+          <p *ngIf="edit_control=='entertainment-products'" >product view</p>
+          <p *ngIf="edit_control=='entertainment-carsouel'" >carsouel view</p>
+          <div class="text-center">
+            <div class="btn btn-danger" (click)="deleteDone()">delete</div>
+            <div class="btn btn-secondary" (click)="cancel_delete()">cancel</div>
+          </div>  
+        </div>
       </div>
     </div>
-  </div>
 </div>
+
+
+
+

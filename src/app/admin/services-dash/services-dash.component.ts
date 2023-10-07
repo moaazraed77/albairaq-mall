@@ -11,19 +11,22 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ServicesDashComponent implements OnInit {
 
+  // data variables
   datalist: any[] = [];
+  CarasoulServicesURL:string="";
+  // for controlling the view and data
   carsouelFormControl: string = "";
   partViewController: string = "";
   sectionViewController: string = "";
   edit_control: string = "";
-  CarasoulServicesURL:string="";
   uploading: string = "";
+  // for updating
   updateObject: any;
   // for check delete
   deletedObject: any;
   // for popup deleted item show
   showDeleteDiv:boolean=false;
-
+  // for adding data
   homeImg = this.fb.group({
     img: [""],
     id: [new Date().getTime()]

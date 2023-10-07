@@ -13,6 +13,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class PerfumesDashComponent implements OnInit {
   
+
+  // data variables
   parttext:string="";
   productURL:string="";
   CarasoulURL:string="";
