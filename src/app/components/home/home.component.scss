@@ -11,3 +11,15 @@
           ],
 
 */
+
+@media screen and (max-width: 700px){
+  div.global-content-padding{
+      padding-top: 0px;
+  }
+  .carousel-inner .carousel-item img{
+      height: calc(100vh - 377px) !important;
+  }
+  .row .productImg{
+      padding: 5px;
+  }
+}
