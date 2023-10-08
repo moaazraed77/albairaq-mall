@@ -33,7 +33,7 @@
     and (max-device-width: 480px)
     and (-webkit-min-device-pixel-ratio: 2) {
       .carousel-inner .carousel-item img{
-        height: calc(100vh - 500px) !important;
+        height: calc(100vh - 480px) !important;
     }
   }
 }
