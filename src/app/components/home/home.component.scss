@@ -29,11 +29,11 @@
 }
 
   @media only screen 
-    and (min-device-width: 322px) 
+    and (min-device-width: 365px) 
     and (max-device-width: 480px)
     and (-webkit-min-device-pixel-ratio: 2) {
       .carousel-inner .carousel-item img{
-        height: calc(100vh - 480px) !important;
+        height: calc(100vh - 475px) !important;
     }
   }
 }

@@ -32,11 +32,11 @@
 }
 
 @media only screen 
-and (min-device-width: 322px) 
+and (min-device-width: 370px) 
 and (max-device-width: 480px)
 and (-webkit-min-device-pixel-ratio: 2) {
     .carousel-inner .carousel-item img{
-        height: calc(100vh - 460px) !important;
+        height: calc(100vh - 450px) !important;
     }
 }
 
