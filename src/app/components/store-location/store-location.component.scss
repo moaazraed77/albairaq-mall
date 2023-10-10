@@ -2,10 +2,14 @@
     .carousel-item img{
         height: 400px !important;
     }
+    p.promo-text{
+        border-top: 1.5px solid lightgray;
+    }
 }
 @media screen and (max-width: 600px){
     .carousel-item img{
         height: 250px !important;
+        margin: 31px 0px;
     }
 }
 .container{
