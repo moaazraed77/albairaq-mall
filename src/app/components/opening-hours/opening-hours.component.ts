@@ -12,7 +12,7 @@ import { DataService } from 'src/app/services/data.service';
 export class OpeningHoursComponent implements OnInit {
 
   carasoulImages:homePhoto[]=[]
-  Content:About[]=[]
+  Content:homePhoto[]=[]
 
   constructor(private dataServ:DataService) { 
     if(sessionStorage.getItem("runCarsouel")!="openingOursReloaded"){
@@ -20,12 +20,12 @@ export class OpeningHoursComponent implements OnInit {
       location.reload();
     }
     // -------   get the data -------
-    this.dataServ.getAboutCarsoul().subscribe(data =>{
+    this.dataServ.getOpenningCarsoul().subscribe(data =>{
       for (const key in data) {
         this.carasoulImages.push(data[key])
       }
     })
-    this.dataServ.getAboutContent().subscribe(data =>{
+    this.dataServ.getOpenningImages().subscribe(data =>{
       for (const key in data) {
         this.Content.push(data[key])
       }

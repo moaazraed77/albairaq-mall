@@ -14,6 +14,7 @@ import { PerfumesDashComponent } from './perfumes-dash/perfumes-dash.component';
 import { AccessoriesDashComponent } from './accessories-dash/accessories-dash.component';
 import { ClothingDashComponent } from './clothing-dash/clothing-dash.component';
 import { AdminGuard } from './services/admin.guard';
+import { OpenningHoursComponent } from './openning-hours/openning-hours.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AdminGuard } from './services/admin.guard';
     PerfumesDashComponent,
     AccessoriesDashComponent,
     ClothingDashComponent,
+    OpenningHoursComponent,
   ],
   imports: [
     CommonModule,

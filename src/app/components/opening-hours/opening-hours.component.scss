@@ -3,13 +3,20 @@
     .bg-light .table{
         height:220px;
     }
+    .carousel-inner .carousel-item img {
+        height: calc(100vh - 460px) !important;
+    }
+    .table{
+        height: 280px;
+    }
 }
+
 .container{
     padding: 0px;
     background-color: white;
 }
 
-.table{
+div.col-12 .table{
     height:300px;
 }
 

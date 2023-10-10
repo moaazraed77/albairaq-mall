@@ -12,6 +12,7 @@ import { AccessoriesDashComponent } from './accessories-dash/accessories-dash.co
 import { PerfumesDashComponent } from './perfumes-dash/perfumes-dash.component';
 import { ClothingDashComponent } from './clothing-dash/clothing-dash.component';
 import { AdminGuard } from './services/admin.guard';
+import { OpenningHoursComponent } from '../admin/openning-hours/openning-hours.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
       {path:"clothing",component:ClothingDashComponent ,canActivate:[AdminGuard]},
       {path:"accessories",component:AccessoriesDashComponent ,canActivate:[AdminGuard]},
       {path:"perfumes",component:PerfumesDashComponent ,canActivate:[AdminGuard]},
+      {path:"openning-hours",component:OpenningHoursComponent ,canActivate:[AdminGuard]},
     ]
   }
 ];

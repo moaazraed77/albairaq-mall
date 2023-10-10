@@ -16,8 +16,8 @@
         </div>
     
     <div class="container Content">
-        <div class="col-12">
-            <img src="assets/1.png" alt="" width="100%" class="table">
+        <div class="col-12" *ngFor="let item of Content ; let i=index" >
+            <img [src]="item.img" alt="" width="100%" class="table">
         </div>
     </div>
 </div>
