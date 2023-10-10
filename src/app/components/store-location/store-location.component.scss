@@ -2,9 +2,6 @@
     .carousel-item img{
         height: 400px !important;
     }
-    p.promo-text{
-        border-top: 1.5px solid lightgray;
-    }
 }
 @media screen and (max-width: 600px){
     .carousel-item img{
@@ -29,6 +26,7 @@
     font-weight: bold;
     margin-bottom: 0px;
     margin-top: 14px;
+    border-top: 1.5px solid lightgray;
 }
 .shopsText{
     width: 70%;
