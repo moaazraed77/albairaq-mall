@@ -18,7 +18,8 @@
 
 <div class="col-12 bg-pink">
   <div class="container-fluid bg-light products Content">
-  <div class="row align-items-start bg-light">
+      <p class="text-center text-dark promo-text" style="color: white !important;">.</p>
+      <div class="row align-items-start bg-light">
     <div class="col-sm-3 productImg"  *ngFor="let item of images ; let i=index">
       <img [src]="item.img" alt="..." (click)="showProduct(item)">
     </div>
