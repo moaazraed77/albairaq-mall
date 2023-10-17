@@ -5,7 +5,7 @@
 }
 @media screen and (max-width: 600px){
     .carousel-item img{
-        height: 250px !important;
+        height: calc(100vh - 340px) !important;
         margin: 31px 0px;
     }
 }
@@ -18,7 +18,7 @@
 .carousel-item img{
     width: 100%;
     padding: 10px 0px;
-    height: 470px;
+    height: calc(100vh - 175px);
 }
 .promo-text{
     font-size: 21px;

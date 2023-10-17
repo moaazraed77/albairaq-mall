@@ -60,6 +60,8 @@
     width: 96%;
     margin-left: 2%;
     border-radius: 7px;
+    height: calc(100vh - 204px);
+    display: flex;
 }
 .form{
     display: flex;
