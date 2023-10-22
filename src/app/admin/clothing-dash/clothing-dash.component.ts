@@ -201,7 +201,6 @@ export class ClothingDashComponent implements OnInit  {
       this.dataServ.getclothingImages().subscribe(data=>{
         for (const key in data) {
           if(item.id==data[key].id){
-            console.log(item.id)
             this.dataServ.delete("clothingImages",key);
             break;
           }

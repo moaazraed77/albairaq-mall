@@ -43,6 +43,45 @@ export class ServicesDashComponent implements OnInit {
     this.openPart('table data', 'carsouel', '')
   }
 
+    // --------------------------------------- open view control ---------------------------------------
+    openPart(part: string, type: string, action: string) {
+      this.partViewController = part;
+      this.sectionViewController = action;
+      this.carsouelFormControl = action;
+      this.edit_control = type;
+      // delete texts and old data
+      this.uploading=""
+      this.showDeleteDiv=false
+      if (part == "table data") {
+        this.showdata(type);
+      }
+    }
+    EmptyFormInputs(){
+      this.Services.patchValue({
+        title:"",
+        paragraph:""
+      })
+    }
+  
+    // --------------------------------------- show data list on view ---------------------------------------
+    showdata(type: string) {
+      this.datalist = []
+      if (type == "carsouel") {
+        this.dataServ.getServicesCarsoul().subscribe(data => {
+          for (const key in data) {
+            this.datalist.push(data[key])
+          }
+        })
+      } else if (type == "content") {
+        this.dataServ.getServicesContent().subscribe(data => {
+          for (const key in data) {
+            this.datalist.push(data[key])
+          }
+        })
+      }
+    }
+  
+
   // ------------- Carasoul function for Services -------------
   sendCarasoulServices(){
     this.homeImg.patchValue({
@@ -90,43 +129,6 @@ export class ServicesDashComponent implements OnInit {
     setTimeout(() => { location.reload() }, 700);
   }
 
-  // --------------------------------------- open view control ---------------------------------------
-  openPart(part: string, type: string, action: string) {
-    this.partViewController = part;
-    this.sectionViewController = action;
-    this.carsouelFormControl = action;
-    this.edit_control = type;
-    // delete texts and old data
-    this.uploading=""
-    this.showDeleteDiv=false
-    if (part == "table data") {
-      this.showdata(type);
-    }
-  }
-  EmptyFormInputs(){
-    this.Services.patchValue({
-      title:"",
-      paragraph:""
-    })
-  }
-
-  // --------------------------------------- show data list on view ---------------------------------------
-  showdata(type: string) {
-    this.datalist = []
-    if (type == "carsouel") {
-      this.dataServ.getServicesCarsoul().subscribe(data => {
-        for (const key in data) {
-          this.datalist.push(data[key])
-        }
-      })
-    } else if (type == "content") {
-      this.dataServ.getServicesContent().subscribe(data => {
-        for (const key in data) {
-          this.datalist.push(data[key])
-        }
-      })
-    }
-  }
 
   // ------------------------------------------- update part ---------------------------------------
   update(item: any, sectionViewController: string) {

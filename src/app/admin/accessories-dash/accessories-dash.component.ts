@@ -201,7 +201,6 @@ export class AccessoriesDashComponent implements OnInit {
       this.dataServ.getaccessoriesImages().subscribe(data=>{
         for (const key in data) {
           if(item.id==data[key].id){
-            console.log(item.id)
             this.dataServ.delete("accessoriesImages",key);
             break;
           }

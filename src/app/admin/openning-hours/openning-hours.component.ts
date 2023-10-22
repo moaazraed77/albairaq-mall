@@ -50,6 +50,41 @@ export class OpenningHoursComponent implements OnInit {
     this.openPart('table data','openning-carsouel','')
   }
 
+    // ------------------------------------- open part ------------------------------------------
+    openPart(part:string,type:string,action:string){
+      this.parttext=`the show of ${type}`
+      this.partViewController=part;
+      this.sectionViewController=action;
+      this.carsouelFormControl=action;
+      this.edit_control=type;
+      // delete texts and old data
+      this.uploadingCarasoul=""
+      this.uploadingImg=""
+      this.showDeleteDiv=false
+      if(part=="table data"){
+        this.showdata(type);
+      }
+    }
+  
+    // ------------------------------------ show data table -------------------------------------
+    showdata(type:string){
+      this.datalist=[]
+      this.edit_control=type;
+      if(type=="openning-carsouel"){
+        this.dataServ.getOpenningCarsoul().subscribe(data=>{
+          for (const key in data) {
+            this.datalist.push(data[key])
+          }
+        })
+      }else  if(type=="openning-products"){
+        this.dataServ.getOpenningImages().subscribe(data=>{
+          for (const key in data) {
+            this.datalist.push(data[key])
+          }
+        })
+      }
+    }
+  
 
 // ------------------------------------- send data to add to database -----------------------------------
   
@@ -112,40 +147,6 @@ export class OpenningHoursComponent implements OnInit {
     setTimeout(()=> location.reload(),700)
   }
 
-  // ------------------------------------- open part ------------------------------------------
-  openPart(part:string,type:string,action:string){
-    this.parttext=`the show of ${type}`
-    this.partViewController=part;
-    this.sectionViewController=action;
-    this.carsouelFormControl=action;
-    this.edit_control=type;
-    // delete texts and old data
-    this.uploadingCarasoul=""
-    this.uploadingImg=""
-    this.showDeleteDiv=false
-    if(part=="table data"){
-      this.showdata(type);
-    }
-  }
-
-  // ------------------------------------ show data table -------------------------------------
-  showdata(type:string){
-    this.datalist=[]
-    this.edit_control=type;
-    if(type=="openning-carsouel"){
-      this.dataServ.getOpenningCarsoul().subscribe(data=>{
-        for (const key in data) {
-          this.datalist.push(data[key])
-        }
-      })
-    }else  if(type=="openning-products"){
-      this.dataServ.getOpenningImages().subscribe(data=>{
-        for (const key in data) {
-          this.datalist.push(data[key])
-        }
-      })
-    }
-  }
 
   // --------------------------------------- update part ---------------------------------------
   update(item:any,sectionViewController:string){
@@ -191,7 +192,6 @@ export class OpenningHoursComponent implements OnInit {
       this.dataServ.getOpenningImages().subscribe(data=>{
         for (const key in data) {
           if(item.id==data[key].id){
-            console.log(item.id)
             this.dataServ.delete("openningImages",key);
             break;
           }
@@ -217,6 +217,7 @@ export class OpenningHoursComponent implements OnInit {
     }
     this.uploadingCarasoul="CarasoulUploaded";
   }
+
   // funcion to upload img file and get image url ---- for product -------
   async uploadImg(event:any,edit_control:string){
     this.edit_control=edit_control

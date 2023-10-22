@@ -203,7 +203,6 @@ export class PerfumesDashComponent implements OnInit {
       this.dataServ.getperfumesImages().subscribe(data=>{
         for (const key in data) {
           if(item.id==data[key].id){
-            console.log(item.id)
             this.dataServ.delete("perfumesImages",key);
             break;
           }

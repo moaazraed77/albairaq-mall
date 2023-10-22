@@ -51,6 +51,44 @@ export class DiningDashComponent implements OnInit  {
     this.openPart('table data','dining-carsouel','')
   }
 
+    // ------------------------------------- open part ------------------------------------------
+    openPart(part:string,type:string,action:string){
+      this.parttext=`the show of ${type}`
+      this.partViewController=part;
+      this.sectionViewController=action;
+      this.carsouelFormControl=action;
+      this.edit_control=type;
+      // delete texts and old data
+      this.uploadingCarasoul=""
+      this.uploadingImg=""
+      this.showDeleteDiv=false
+      if(part=="table data"){
+        this.showdata(type);
+      }
+      this.diningImg.patchValue({
+        url:""
+      })
+    }
+  
+    // ------------------------------------ show data table -------------------------------------
+    showdata(type:string){
+      this.datalist=[]
+      this.edit_control=type;
+      if(type=="dining-carsouel"){
+        this.dataServ.getDiningCarsoul().subscribe(data=>{
+          for (const key in data) {
+            this.datalist.push(data[key])
+          }
+        })
+      }else  if(type=="dining-products"){
+        this.dataServ.getDiningImages().subscribe(data=>{
+          for (const key in data) {
+            this.datalist.push(data[key])
+          }
+        })
+      }
+    }
+  
 
 // ------------------------------------- send data to add to database -----------------------------------
   
@@ -79,7 +117,6 @@ export class DiningDashComponent implements OnInit  {
       })
     }
     this.uploadingCarasoul="null";
-    console.log(this.diningImg.value)
     setTimeout(()=> location.reload(),700)
   }
   // ------------- product function for dining -----------------
@@ -115,44 +152,6 @@ export class DiningDashComponent implements OnInit  {
     }
     this.uploadingImg="null";
     setTimeout(()=> location.reload(),700)
-  }
-
-  // ------------------------------------- open part ------------------------------------------
-  openPart(part:string,type:string,action:string){
-    this.parttext=`the show of ${type}`
-    this.partViewController=part;
-    this.sectionViewController=action;
-    this.carsouelFormControl=action;
-    this.edit_control=type;
-    // delete texts and old data
-    this.uploadingCarasoul=""
-    this.uploadingImg=""
-    this.showDeleteDiv=false
-    if(part=="table data"){
-      this.showdata(type);
-    }
-    this.diningImg.patchValue({
-      url:""
-    })
-  }
-
-  // ------------------------------------ show data table -------------------------------------
-  showdata(type:string){
-    this.datalist=[]
-    this.edit_control=type;
-    if(type=="dining-carsouel"){
-      this.dataServ.getDiningCarsoul().subscribe(data=>{
-        for (const key in data) {
-          this.datalist.push(data[key])
-        }
-      })
-    }else  if(type=="dining-products"){
-      this.dataServ.getDiningImages().subscribe(data=>{
-        for (const key in data) {
-          this.datalist.push(data[key])
-        }
-      })
-    }
   }
 
   // --------------------------------------- update part ---------------------------------------
@@ -202,7 +201,6 @@ export class DiningDashComponent implements OnInit  {
       this.dataServ.getDiningImages().subscribe(data=>{
         for (const key in data) {
           if(item.id==data[key].id){
-            console.log(item.id)
             this.dataServ.delete("diningImages",key);
             break;
           }

@@ -176,7 +176,6 @@ export class AboutDashComponent implements OnInit {
       this.dataServ.getAboutContent().subscribe(data=>{
         for (const key in data) {
           if(item.id==data[key].id){
-            console.log(item.id)
             this.dataServ.delete("AboutContent",key);
             break;
           }
