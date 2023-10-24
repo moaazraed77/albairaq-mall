@@ -51,7 +51,16 @@ label{
     font-weight: 600;
 }
 
-.delete-show {
-    top: -24px;
-    right: 8px;
+
+
+.check-data .card{
+    border: none;
+}
+.check-data .card .imgView{
+    padding: 0px;
+    padding-top: 5px;
+}
+.check-data .card p{
+    padding: 0%;
+    margin-bottom: 3px;
 }

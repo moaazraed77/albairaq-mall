@@ -9,6 +9,17 @@
         <div class="btn btn-info text-light" (click)="openPart('table data','perfumes-products','')">show products</div>
         <div class="btn btn-info text-light" (click)="openPart('table data','perfumes-carsouel','')">show carsouel</div>
       </div>
+      <!-- promo show on edit any data  -->
+      <div class="col-12 update-View" *ngIf="sectionViewController=='edit'">
+        <div class="row check-data text-center">
+          <div class="card">
+            <p><img src="{{updateObject.img}}"  class="imgView" alt="" *ngIf="updateObject.img !='' && updateObject.img !=null && updateObject !=undefined"></p>
+            <p [ngStyle]="{'display' :( edit_control =='perfumes-carsouel') ? 'block' : 'none'}" >carsouel view</p>
+            <p class="text-primary" *ngIf="edit_control =='perfumes-products'" [ngStyle]="{'display' :( updateObject.url == '') ? 'none' : 'block'} ">{{updateObject.url}}</p>
+            <p [ngStyle]="{'display' :( edit_control =='perfumes-products' && updateObject.url == '' ) ? 'block' : 'none'} ">product view</p>
+          </div>
+        </div>
+      </div>
       <!-- perfumes forms -->
       <div *ngIf="partViewController=='form'">
         <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='perfumes-carsouel')">
@@ -40,9 +51,9 @@
       </div>
 
       <!-- data table -->
-      <div class="col-12 table-div" *ngIf="partViewController=='table data'">
-        <p class="part-view">{{parttext}}</p>
-        <table class="table table-striped text-center">
+      <div class="col-12 table-div" *ngIf="partViewController=='table data' || showDeleteDiv">
+        <p class="part-view" *ngIf="!showDeleteDiv">{{parttext}}</p>
+        <table class="table table-striped text-center" *ngIf="!showDeleteDiv">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -63,23 +74,25 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- deleted item div -->
+        <div class="col-12 delete-show" *ngIf="showDeleteDiv">
+          <div class="row check-data">
+            <div class=" card">
+              <p><img [src]="deletedObject.img" class="imgView" alt=""></p>
+              <p *ngIf="edit_control=='perfumes-products'" >product view</p>
+              <p *ngIf="edit_control=='perfumes-carsouel'" >carsouel view</p>
+              <div class="text-center">
+                <div class="btn btn-danger" (click)="deleteDone()">delete</div>
+                <div class="btn btn-secondary" (click)="cancel_delete()">cancel</div>
+              </div>  
+            </div>
+          </div>
+      </div>
       </div>
     </div>
   
-      <!-- deleted item div -->
-      <div class="col-12 delete-show" *ngIf="showDeleteDiv">
-        <div class="row check-data">
-          <div class=" card">
-            <p><img [src]="deletedObject.img" class="imgView" alt=""></p>
-            <p *ngIf="edit_control=='perfumes-products'" >product view</p>
-            <p *ngIf="edit_control=='perfumes-carsouel'" >carsouel view</p>
-            <div class="text-center">
-              <div class="btn btn-danger" (click)="deleteDone()">delete</div>
-              <div class="btn btn-secondary" (click)="cancel_delete()">cancel</div>
-            </div>  
-          </div>
-        </div>
-      </div>
+      
   </div>
   
   

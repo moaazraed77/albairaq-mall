@@ -17,6 +17,8 @@ export class DashLoginComponent implements OnInit {
     pass:["",Validators.required],
   })
 
+  error:boolean=false;
+
   ngOnInit(): void {
   }
 
@@ -26,6 +28,7 @@ export class DashLoginComponent implements OnInit {
       this.route.navigate(["/admin/dash"])
     }else{
       sessionStorage.setItem("Admin","isFalse")
+      this.error=true;
     }
   }
 }

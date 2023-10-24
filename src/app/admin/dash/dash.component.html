@@ -10,6 +10,16 @@
       <div class="btn btn-info text-light" (click)="openPart('table data','home-products','')">show products</div>
       <div class="btn btn-info text-light" (click)="openPart('table data','home-carsouel','')">show carsouel</div>
     </div>
+      <!-- promo show on edit any data  -->
+    <div class="col-12 update-View" *ngIf="sectionViewController=='edit'">
+      <div class="row check-data text-center">
+        <div class=" card">
+          <p><img src="{{updateObject.img}}"  class="imgView" alt="" *ngIf="updateObject.img !='' && updateObject.img !=null && updateObject !=undefined"></p>
+          <p *ngIf="edit_control =='home-carsouel'">carsouel view</p>
+          <p *ngIf="edit_control =='home-products'">product view</p>
+        </div>
+      </div>
+    </div>
     <!-- home forms -->
     <div *ngIf="partViewController=='form'">
       <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='home-carsouel')">
@@ -36,9 +46,9 @@
       </div>
     </div>
     <!-- data table -->
-    <div class="col-12 table-div" *ngIf="partViewController=='table data'">
-      <p class="part-view">{{parttext}}</p>
-      <table class="table table-striped text-center">
+    <div class="col-12 table-div" *ngIf="partViewController=='table data' || showDeleteDiv">
+      <p class="part-view" *ngIf="!showDeleteDiv">{{parttext}}</p>
+      <table class="table table-striped text-center" *ngIf="!showDeleteDiv">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -57,23 +67,24 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
 
-    <!-- deleted item div -->
-    <div class="col-12 delete-show" *ngIf="showDeleteDiv">
-      <div class="row check-data">
-        <div class=" card">
-          <p><img [src]="deletedObject.img" class="imgView" alt=""></p>
-          <p *ngIf="edit_control=='home-products'" >product view</p>
-          <p *ngIf="edit_control=='home-carsouel'" >carsouel view</p>
-          <div class="text-center">
-            <div class="btn btn-danger" (click)="deleteDone()">delete</div>
-            <div class="btn btn-secondary" (click)="cancel_delete()">cancel</div>
-          </div>  
+      <!-- deleted item div -->
+      <div class="col-12 delete-show" *ngIf="showDeleteDiv">
+        <div class="row check-data">
+          <div class=" card">
+            <p><img [src]="deletedObject.img" class="imgView" alt=""></p>
+            <p *ngIf="edit_control=='home-products'" >product view</p>
+            <p *ngIf="edit_control=='home-carsouel'" >carsouel view</p>
+            <div class="text-center">
+              <div class="btn btn-danger" (click)="deleteDone()">delete</div>
+              <div class="btn btn-secondary" (click)="cancel_delete()">cancel</div>
+            </div>  
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
 </div>
 
 

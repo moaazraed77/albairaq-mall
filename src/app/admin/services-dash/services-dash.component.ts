@@ -188,7 +188,6 @@ export class ServicesDashComponent implements OnInit {
   // funcion to upload img file and get image url ---- for Services Product-------
   async uploadServicesCarasoul(event:any){
     this.uploading="uploadingServicesCarasoul";
-    let date=new Date()
     const file=event.target.files[0];
     if(file){
       const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 

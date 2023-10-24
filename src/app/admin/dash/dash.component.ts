@@ -22,13 +22,12 @@ export class DashComponent implements OnInit {
   CarasoulURL:string="";
   datalist:any[]=[];
   // variables for control the view
-  uploadingImg:string="null";
-  uploadingCarasoul:string="null";
-  viewController:string="home";
-  carsouelFormControl:string="";
-  partViewController:string="";
-  sectionViewController:string="";
-  edit_control:string="";
+  uploadingImg:string="null"; // to make an alert for uploading image
+  uploadingCarasoul:string="null"; // to make an alert for uploading image
+  partViewController:string=""; // to view part vill be viewed   form   or   table
+  edit_control:string="";  // to view which section in the part sellected will be shown
+  sectionViewController:string=""; // to control which part will be edited by  adding  ,  deleting   , updating
+
   // for update
   updateObject:homePhoto={
     img:"",
@@ -60,10 +59,9 @@ export class DashComponent implements OnInit {
   // ------------------------------------- open part ------------------------------------------
   openPart(part:string,type:string,action:string){
     this.parttext=`the show of ${type}`
-    this.partViewController=part;
-    this.sectionViewController=action;
-    this.carsouelFormControl=action;
-    this.edit_control=type;
+    this.partViewController=part; // to view part vill be viewed   form   or   table
+    this.edit_control=type; // to view which section in the part sellected will be shown
+    this.sectionViewController=action;  // to control which part will be edited by  adding  ,  deleting   , updating
     // delete texts and old data
     this.uploadingCarasoul=""
     this.uploadingImg=""

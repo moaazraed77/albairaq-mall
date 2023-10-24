@@ -47,7 +47,7 @@ export class OpenningHoursComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.openPart('table data','openning-carsouel','')
+    this.openPart('table data','openning-hours-carsouel','')
   }
 
     // ------------------------------------- open part ------------------------------------------
@@ -70,13 +70,13 @@ export class OpenningHoursComponent implements OnInit {
     showdata(type:string){
       this.datalist=[]
       this.edit_control=type;
-      if(type=="openning-carsouel"){
+      if(type=="openning-hours-carsouel"){
         this.dataServ.getOpenningCarsoul().subscribe(data=>{
           for (const key in data) {
             this.datalist.push(data[key])
           }
         })
-      }else  if(type=="openning-products"){
+      }else  if(type=="openning-hours-products"){
         this.dataServ.getOpenningImages().subscribe(data=>{
           for (const key in data) {
             this.datalist.push(data[key])
@@ -94,12 +94,12 @@ export class OpenningHoursComponent implements OnInit {
       img:this.CarasoulURL,
     })
     // add carasoul
-    if(edit_control=="openning-carsouel" && sectionViewController =="add")
+    if(edit_control=="openning-hours-carsouel" && sectionViewController =="add")
     {
       this.dataServ.create(this.openningImg.value,"openningCarasoul","add");
     }
     // edit carasoul
-    else if(edit_control=="openning-carsouel" && sectionViewController =="edit"){
+    else if(edit_control=="openning-hours-carsouel" && sectionViewController =="edit"){
       this.dataServ.getOpenningCarsoul().subscribe(data=>{
         for (const key in data) {
           if(this.updateObject.id==data[key].id){
@@ -121,10 +121,10 @@ export class OpenningHoursComponent implements OnInit {
     this.openningImg.patchValue({
       img:this.productURL
     })
-    if(edit_control=="openning-products" && sectionViewController =="add"){
+    if(edit_control=="openning-hours-products" && sectionViewController =="add"){
       this.dataServ.create(this.openningImg.value,"openningImages","add");
     }
-    else if(edit_control=="openning-products" && sectionViewController =="edit"){
+    else if(edit_control=="openning-hours-products" && sectionViewController =="edit"){
       this.dataServ.getOpenningImages().subscribe(data=>{
         this.openningImg.patchValue({
           id:Number(this.updateObject.id)
@@ -151,10 +151,10 @@ export class OpenningHoursComponent implements OnInit {
   // --------------------------------------- update part ---------------------------------------
   update(item:any,sectionViewController:string){
     this.updateObject=item;
-    if(this.edit_control=='openning-carsouel' && sectionViewController=='edit')
+    if(this.edit_control=='openning-hours-carsouel' && sectionViewController=='edit')
       {
         this.sectionViewController=sectionViewController
-      } else if(this.edit_control=='openning-products' && sectionViewController=='edit')
+      } else if(this.edit_control=='openning-hours-products' && sectionViewController=='edit')
       {
         this.sectionViewController=sectionViewController
       }
@@ -174,7 +174,7 @@ export class OpenningHoursComponent implements OnInit {
   }
   deleteItem(item:any,sectionViewController:string){
     //----------- delete carasoul -----------
-    if(this.edit_control=='openning-carsouel' && sectionViewController=='delete')
+    if(this.edit_control=='openning-hours-carsouel' && sectionViewController=='delete')
     {
       this.sectionViewController=sectionViewController;
       this.dataServ.getOpenningCarsoul().subscribe(data=>{
@@ -186,7 +186,7 @@ export class OpenningHoursComponent implements OnInit {
         }
       })
       // ----------- delete content -----------
-    } else if(this.edit_control=='openning-products' && sectionViewController=='delete')
+    } else if(this.edit_control=='openning-hours-products' && sectionViewController=='delete')
     {
       this.sectionViewController=sectionViewController;
       this.dataServ.getOpenningImages().subscribe(data=>{

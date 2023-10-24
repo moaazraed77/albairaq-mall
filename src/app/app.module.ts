@@ -33,6 +33,7 @@ import { DashLoginComponent } from './components/dash-login/dash-login.component
 import { ClothingComponent } from './components/clothing/clothing.component';
 import { AccessoriesComponent } from './components/accessories/accessories.component';
 import { PerfumesComponent } from './components/perfumes/perfumes.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { PerfumesComponent } from './components/perfumes/perfumes.component';
     DashLoginComponent,
     ClothingComponent,
     AccessoriesComponent,
-    PerfumesComponent
+    PerfumesComponent,
+    ErrorComponent
   ],
   imports: [ 
     BrowserModule,

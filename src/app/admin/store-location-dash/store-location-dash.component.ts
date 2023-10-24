@@ -22,6 +22,10 @@ export class StoreLocationDashComponent implements OnInit {
   sectionViewController: string = "";
   edit_control: string = "";
   uploading: string = "";
+  // for check delete
+  deletedObject: any;
+  // for popup deleted item show
+  showDeleteDiv:boolean=false;
   // for updating data
   updateObject: any;
   // for adding data
@@ -41,11 +45,12 @@ export class StoreLocationDashComponent implements OnInit {
  openPart(part:string,type:string,action:string){
     this.partViewController=part;
     this.sectionViewController=action;
-    this.carsouelFormControl=action;
     this.edit_control=type;
+    this.carsouelFormControl=action;
     if(part=="table data"){
       this.showdata(type);
     }
+    this.showDeleteDiv=false
   }
   //--------------------------------------- for view the data in table---------------------------------------
   showdata(type:string){
@@ -88,6 +93,17 @@ export class StoreLocationDashComponent implements OnInit {
     this.sectionViewController=sectionViewController
   }
   // --------------------------------------- delete part ----------------------------------------------------
+  DeleteSure(item:any){
+    this.deletedObject=item;
+    this.showDeleteDiv=true;
+  }
+  deleteDone(){
+    this.deleteItem(this.deletedObject,"delete");
+    this.showDeleteDiv=false;
+  }
+  cancel_delete(){
+    this.showDeleteDiv=false;
+  }
   deleteItem(item:any,sectionViewController:string){
       if(this.edit_control=='carsouel' && sectionViewController=='delete')
       {
@@ -107,7 +123,6 @@ export class StoreLocationDashComponent implements OnInit {
   // ------------------- funcion to upload img file and get image url ---- for storeLocation Product -------------
   async uploadstoreLocationCarasoul(event:any){
     this.uploading="uploadingstoreLocationCarasoul";
-    let date=new Date()
     const file=event.target.files[0];
     if(file){
       const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
