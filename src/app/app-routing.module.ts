@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:"services" , component: ServicessComponent},
   {path:"admin" , component: DashLoginComponent},
 
-  {path:"**" , component: ErrorComponent}
+  // {path:"**" , component: ErrorComponent}
 ];
 
 @NgModule({
