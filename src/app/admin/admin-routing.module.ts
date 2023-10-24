@@ -13,11 +13,11 @@ import { PerfumesDashComponent } from './perfumes-dash/perfumes-dash.component';
 import { ClothingDashComponent } from './clothing-dash/clothing-dash.component';
 import { AdminGuard } from './services/admin.guard';
 import { OpenningHoursComponent } from '../admin/openning-hours/openning-hours.component';
+import { ErrorComponent } from '../components/error/error.component';
 
 const routes: Routes = [
   {
     path:"admin",component:AdminComponent,children:[
-      // {path:"",component:DashComponent},
       {path:"dash",component:DashComponent,canActivate:[AdminGuard]},
       {path:"dining",component:DiningDashComponent ,canActivate:[AdminGuard]},
       {path:"entertainment",component:EntertainmentDashComponent ,canActivate:[AdminGuard]},

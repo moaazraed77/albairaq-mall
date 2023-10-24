@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -12,11 +12,25 @@ import { DataService } from '../services/data.service';
 export class AdminComponent implements OnInit {
 
   hideSideBar:boolean=true;
-  constructor(private route:Router,private fb:FormBuilder, private dataServ:DataService , private http:HttpClient) { 
+
+  // websiteLinks:string[]=["", "dining", "entertainment", "services", "about", "contactus", "store-location", "clothing", "accessories", "perfumes", "openning-hours", ]
+
+  constructor(private route:Router, private http:HttpClient) { 
     if(sessionStorage.getItem("Admin")!="AdminisTrue"){
       this.route.navigate(["/dash-login"])
       this.hideSideBar=false;
     }
+
+    // route.events.subscribe( val =>{
+    //   if( val instanceof NavigationEnd){
+    //     let endLink=val.url.split("/").pop()?.toString()!;
+    //     if(this.websiteLinks.includes(endLink)){
+    //       this.hideSideBar=true;
+    //     }else{
+    //       this.hideSideBar=false;
+    //     }
+    //   }
+    // })
    }
 
   ngOnInit(): void {

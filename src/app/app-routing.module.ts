@@ -13,7 +13,7 @@ import { DashLoginComponent } from './components/dash-login/dash-login.component
 import { AccessoriesComponent } from './components/accessories/accessories.component';
 import { PerfumesComponent } from './components/perfumes/perfumes.component';
 import { ClothingComponent } from './components/clothing/clothing.component';
-import { ErrorComponent } from './components/error/error.component';
+// import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
@@ -29,9 +29,10 @@ const routes: Routes = [
   {path:"store-location" , component:StoreLocationComponent},
   {path:"contact-us" , component:ContactUsComponent},
   {path:"services" , component: ServicessComponent},
-  {path:"admin" , component: DashLoginComponent},
-
+  {path:"albiraq-0-admin-0-mall" , component: DashLoginComponent},
   // {path:"**" , component: ErrorComponent}
+
+  // {path:"" , component: }
 ];
 
 @NgModule({
