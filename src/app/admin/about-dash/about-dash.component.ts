@@ -33,10 +33,10 @@ export class AboutDashComponent implements OnInit {
     id:[new Date().getTime()]
   })
   About=this.fb.group({
+    title:["",],
     paragraph:["",Validators.required],
     id:[new Date().getTime()]
   })
-
 
   constructor(private route:Router,private fb:FormBuilder , private database:Database, private dataServ:DataService , private http:HttpClient, private firestorage:AngularFireStorage) { 
   }
@@ -59,6 +59,7 @@ export class AboutDashComponent implements OnInit {
   }
   EmptyFormInputs(){
     this.About.patchValue({
+      title:"",
       paragraph:""
     })
   }
@@ -99,11 +100,8 @@ export class AboutDashComponent implements OnInit {
             this.dataServ.getAboutContent().subscribe(data=>{
               for (const key in data) {
                 if(this.updateObject.id==data[key].id){
-                  this.About.patchValue({
-                    id:Number(this.updateObject.id)
-              })
-              this.dataServ.create(this.About.value,"AboutContent",key);
-              break;
+                  this.dataServ.create(this.About.value,"AboutContent",key);
+                  break;
             }
           }
         })
@@ -139,7 +137,9 @@ export class AboutDashComponent implements OnInit {
       } else if(this.edit_control=='content' && sectionViewController=='edit')
       {
         this.About.patchValue({
-          paragraph:item.paragraph
+          title:item.title,
+          paragraph:item.paragraph,
+          id:item.id,
         })
         this.sectionViewController=sectionViewController
       }

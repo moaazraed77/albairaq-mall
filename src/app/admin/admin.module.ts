@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashComponent } from './dash/dash.component';
 import { DiningDashComponent } from './dining-dash/dining-dash.component';
 import { EntertainmentDashComponent } from './entertainment-dash/entertainment-dash.component';
-import { ServicesDashComponent } from './services-dash/services-dash.component';
 import { AboutDashComponent } from './about-dash/about-dash.component';
 import { ContactusDashComponent } from './contactus-dash/contactus-dash.component';
 import { StoreLocationDashComponent } from './store-location-dash/store-location-dash.component';
@@ -15,13 +14,15 @@ import { AccessoriesDashComponent } from './accessories-dash/accessories-dash.co
 import { ClothingDashComponent } from './clothing-dash/clothing-dash.component';
 import { AdminGuard } from './services/admin.guard';
 import { OpenningHoursComponent } from './openning-hours/openning-hours.component';
+import { AlbairaqTowerDashComponent } from './albairaq-tower-dash/albairaq-tower-dash.component';
+import { CafesDashComponent } from './cafes-dash/cafes-dash.component';
+import { ShoesDashComponent } from './shoes-dash/shoes-dash.component';
 
 @NgModule({
   declarations: [
     DashComponent,
     DiningDashComponent,
     EntertainmentDashComponent,
-    ServicesDashComponent,
     AboutDashComponent,
     ContactusDashComponent,
     StoreLocationDashComponent,
@@ -29,6 +30,9 @@ import { OpenningHoursComponent } from './openning-hours/openning-hours.componen
     AccessoriesDashComponent,
     ClothingDashComponent,
     OpenningHoursComponent,
+    AlbairaqTowerDashComponent,
+    CafesDashComponent,
+    ShoesDashComponent,
   ],
   imports: [
     CommonModule,

@@ -9,37 +9,51 @@
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a routerLink="/admin/dash" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}" class="nav-link text-white" aria-current="page" >
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          <i class="bi bi-house-door"></i>
           Home
         </a>
       </li>
       <li>
         <a class="nav-link text-white" routerLink="clothing" [routerLinkActive]="'active'">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          <i class="bi bi-bag-check"></i>
           clothing
         </a>
       </li>
       <li>
+        <a class="nav-link text-white" routerLink="shoes" [routerLinkActive]="'active'">
+          <i class="bi bi-award"></i>
+          shoes
+        </a>
+      </li>
+      <li>
         <a class="nav-link text-white" routerLink="perfumes" [routerLinkActive]="'active'">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          <i class="bi bi-suit-heart"></i>
           perfumes
         </a>
       </li>
       <li>
         <a class="nav-link text-white" routerLink="accessories" [routerLinkActive]="'active'">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          <i class="bi bi-diamond-half"></i>
           Accessories
         </a>
       </li>
       <li>
         <a class="nav-link text-white" routerLink="dining" [routerLinkActive]="'active'">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cake" viewBox="0 0 16 16">
+            <path d="m7.994.013-.595.79a.747.747 0 0 0 .101 1.01V4H5a2 2 0 0 0-2 2v3H2a2 2 0 0 0-2 2v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a2 2 0 0 0-2-2h-1V6a2 2 0 0 0-2-2H8.5V1.806A.747.747 0 0 0 8.592.802l-.598-.79ZM4 6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v.414a.911.911 0 0 1-.646-.268 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0A.911.911 0 0 1 4 6.414V6Zm0 1.414c.49 0 .98-.187 1.354-.56a.914.914 0 0 1 1.292 0c.748.747 1.96.747 2.708 0a.914.914 0 0 1 1.292 0c.374.373.864.56 1.354.56V9H4V7.414ZM1 11a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.793l-.354.354a.914.914 0 0 1-1.293 0 1.914 1.914 0 0 0-2.707 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0L1 11.793V11Zm11.646 1.854a1.915 1.915 0 0 0 2.354.279V15H1v-1.867c.737.452 1.715.36 2.354-.28a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.708 0a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.707 0a.914.914 0 0 1 1.293 0Z"/>
+          </svg>
           Dining
         </a>
       </li>
       <li>
+        <a class="nav-link text-white" routerLink="cafes" [routerLinkActive]="'active'">
+          <i class="bi bi-cup-hot"></i>
+          Cafes
+        </a>
+      </li>
+      <li>
         <a class="nav-link text-white" routerLink="entertainment" [routerLinkActive]="'active'">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          <i class="bi bi-discord"></i>
           Entertainment
         </a>
       </li>
@@ -51,7 +65,7 @@
         <strong>More</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item drop-item-edit" routerLink="services">          services        </a></li>
+        <li><a class="dropdown-item drop-item-edit" routerLink="Albairaq-tower">  Albairaq tower   </a></li>
         <li><a class="dropdown-item drop-item-edit" routerLink="about">About Albairaq</a></li>
         <li><a class="dropdown-item drop-item-edit" routerLink="store-location">store location</a></li>
         <li><a class="dropdown-item drop-item-edit" routerLink="openning-hours">openning hours</a></li>

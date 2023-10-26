@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { homePhoto } from '../../interfaces/home.interface';
-import { EntertainmentData } from '../../interfaces/Entertainment.interface';
+import { homePhoto } from 'src/app/interfaces/home.interface';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-entertainment',
-  templateUrl: './entertainment.component.html',
-  styleUrls: ['./entertainment.component.scss']
+  selector: 'app-albairaq-tower',
+  templateUrl: './albairaq-tower.component.html',
+  styleUrls: ['./albairaq-tower.component.scss']
 })
-export class EntertainmentComponent implements OnInit {
+export class AlbairaqTowerComponent implements OnInit {
 
   constructor(private dataServ:DataService) {
-    if(sessionStorage.getItem("runCarsouel")!="entertainmentReloaded"){
-      sessionStorage.setItem("runCarsouel","entertainmentReloaded")
+    if(sessionStorage.getItem("runCarsouel")!="albairaqTowerReloaded"){
+      sessionStorage.setItem("runCarsouel","albairaqTowerReloaded")
       location.reload();
     }
    }
@@ -24,12 +23,12 @@ export class EntertainmentComponent implements OnInit {
   imageShow:any[]=[];
 
   ngOnInit(): void {
-    this.dataServ.getEntertainmentCarsoul().subscribe(data =>{
+    this.dataServ.getAlbairaqTowerCarasoul().subscribe(data =>{
       for (const key in data) {
         this.carasoulImages.push(data[key])
       }
     })
-    this.dataServ.getEntertainmentImages().subscribe(data =>{
+    this.dataServ.getAlbairaqTowerImages().subscribe(data =>{
       for (const key in data) {
         this.images.push(data[key])
       }

@@ -13,15 +13,18 @@
     background-color: white;
     padding: 0%;
 }
+.title{
+    color: #BC0EC2;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    padding: 6px;
+}
 .paragraph{
     font-family: 'Fira Sans', sans-serif;
-    border:  1px solid #BC0EC2;
-    font-weight: 700;
-    padding: 10px;
-    text-align: center;
 }
 .data{
-    padding: 20px;
+    padding: 7px 20px;
 }
 p{
     margin-bottom: 1px;

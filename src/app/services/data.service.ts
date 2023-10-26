@@ -33,6 +33,13 @@ export class DataService {
   getDiningImages():Observable<any[]>{
     return this.http.get<any[]>(`${this.databaseURL}/diningImages.json`)
   }
+  // get Cafes data
+  getCafesCarsoul():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/cafesCarasoul.json`)
+  }
+  getCafesImages():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/cafesImages.json`)
+  }
   // get Entertainment data
   getEntertainmentCarsoul():Observable<any[]>{
     return this.http.get<any[]>(`${this.databaseURL}/entertainmentCarasoul.json`)
@@ -77,6 +84,14 @@ export class DataService {
   getclothingImages():Observable<any[]>{
     return this.http.get<any[]>(`${this.databaseURL}/clothingImages.json`)
   }
+  // get shoes carasoul
+  getshoesCarasoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/shoesCarasoul.json`)
+  }
+  // get  shoes
+  getshoesImages():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/shoesImages.json`)
+  }
   // get  perfumes Carasoul
   getperfumesCarasoul():Observable<homePhoto[]>{
     return this.http.get<homePhoto[]>(`${this.databaseURL}/perfumesCarasoul.json`)
@@ -92,6 +107,14 @@ export class DataService {
   // get  accessories
   getaccessoriesImages():Observable<any[]>{
     return this.http.get<any[]>(`${this.databaseURL}/accessoriesImages.json`)
+  }
+  // / get  Albairaq Tower carasoul
+  getAlbairaqTowerCarasoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/albairaqTowerCarasoul.json`)
+  }
+  // get  Albairaq Tower
+  getAlbairaqTowerImages():Observable<any[]>{
+    return this.http.get<any[]>(`${this.databaseURL}/albairaqTowerImages.json`)
   }
   
   

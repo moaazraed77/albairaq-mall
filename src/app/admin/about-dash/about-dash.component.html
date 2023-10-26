@@ -33,6 +33,10 @@
   <div class="col-12 dash-content p-2" *ngIf="sectionViewController == 'add' || (sectionViewController== 'edit' && edit_control=='content')">
     <form [formGroup]="About" class="card p-2" (ngSubmit)="sendAboutData()" >
         <div class="form-group">
+          <label for="title">About title : </label>
+          <input type="text" class="form-control" id="title" formControlName="title" >
+        </div>
+        <div class="form-group">
           <label for="logo">About Pragraph : </label>
           <textarea type="text" class="form-control" id="logo" formControlName="paragraph" cols="5" rows="7"></textarea>
         </div>
@@ -48,6 +52,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col" *ngIf="edit_control=='carsouel'">carasoul</th>
+          <th scope="col" *ngIf="edit_control=='content'">title</th>
           <th scope="col" *ngIf="edit_control=='content'">paragraph</th>
           <th scope="col"></th>
         </tr>
@@ -56,6 +61,7 @@
         <tr *ngFor="let item of datalist;let i=index">
           <th scope="row" class="item">{{i+1}}</th>
           <td *ngIf="edit_control=='carsouel'"><img [src]="item.img" class="imgView" alt=""></td>
+          <td *ngIf="edit_control=='content'" class="paragraphContent"><p>{{item.title}}</p></td>
           <td *ngIf="edit_control=='content'" class="paragraphContent"><p>{{item.paragraph}}</p></td>
           <td class="item">
             <button class="btn btn-warning m-1" (click)="openPart('form',edit_control,'edit');update(item,'edit')">edit</button>  
@@ -79,6 +85,5 @@
     </div>
   </div>
 </div>
-
 
 

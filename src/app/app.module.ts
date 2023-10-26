@@ -27,13 +27,15 @@ import { EntertainmentComponent } from './components/entertainment/entertainment
 import { OpeningHoursComponent } from './components/opening-hours/opening-hours.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ServicessComponent } from './components/servicess/servicess.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashLoginComponent } from './components/dash-login/dash-login.component';
 import { ClothingComponent } from './components/clothing/clothing.component';
 import { AccessoriesComponent } from './components/accessories/accessories.component';
 import { PerfumesComponent } from './components/perfumes/perfumes.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AlbairaqTowerComponent } from './components/albairaq-tower/albairaq-tower.component';
+import { CafesComponent } from './components/cafes/cafes.component';
+import { ShoesComponent } from './components/shoes/shoes.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,6 @@ import { ErrorComponent } from './components/error/error.component';
     DiningComponent,
     EntertainmentComponent,
     AboutComponent,
-    ServicessComponent,
     OpeningHoursComponent,
     MallLocationComponent,
     StoreLocationComponent,
@@ -54,7 +55,10 @@ import { ErrorComponent } from './components/error/error.component';
     ClothingComponent,
     AccessoriesComponent,
     PerfumesComponent,
-    ErrorComponent
+    ErrorComponent,
+    CafesComponent,
+    ShoesComponent,
+    AlbairaqTowerComponent
   ],
   imports: [ 
     BrowserModule,

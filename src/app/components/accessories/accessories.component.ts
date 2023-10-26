@@ -32,7 +32,7 @@ export class AccessoriesComponent implements OnInit {
       for (const key in data) {
         this.images.push(data[key])
       }
-      this.images.reverse()
+      // this.images.reverse()
     })
     
     $(function () {
