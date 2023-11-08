@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private route:Router, private http:HttpClient) { 
     if(sessionStorage.getItem("Admin")!="AdminisTrue"){
-      this.route.navigate(["/dash-login"])
+      this.route.navigate(["/not-found"])
       this.hideSideBar=false;
     }
 
