@@ -62,7 +62,6 @@ import { ShoesComponent } from './components/shoes/shoes.component';
   ],
   imports: [ 
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
@@ -71,6 +70,7 @@ import { ShoesComponent } from './components/shoes/shoes.component';
     AngularFireStorageModule,
     AngularFireModule,
     AdminModule,
+    AppRoutingModule, // note that we put   AppRoutingModule   after  AdminModule  to get  error-page  wrok fine 
     FontAwesomeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)), provideDatabase(() => getDatabase()), provideStorage(() => getStorage()), NgbModule,
   ],

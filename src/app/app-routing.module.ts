@@ -15,7 +15,7 @@ import { ClothingComponent } from './components/clothing/clothing.component';
 import { AlbairaqTowerComponent } from './components/albairaq-tower/albairaq-tower.component';
 import { ShoesComponent } from './components/shoes/shoes.component';
 import { CafesComponent } from './components/cafes/cafes.component';
-// import { ErrorComponent } from './components/error/error.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
@@ -34,7 +34,7 @@ const routes: Routes = [
   {path:"contact-us" , component:ContactUsComponent},
   {path:"abairaq-tower" , component: AlbairaqTowerComponent},
   {path:"albiraq-0-admin-0-mall" , component: DashLoginComponent},
-  // {path:"**" , component: ErrorComponent}
+  {path:"**" , component: ErrorComponent}
 
   // {path:"" , component: }
 ];

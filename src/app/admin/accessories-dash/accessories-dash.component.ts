@@ -81,6 +81,7 @@ export class AccessoriesDashComponent implements OnInit {
     this.uploadingCarasoul="null";
     setTimeout(()=> location.reload(),700)
   }
+  
   // ------------- product function for accessories -----------------
   sendProducts(edit_control:string,sectionViewController:string){
     this.accessoriesImg.patchValue({
