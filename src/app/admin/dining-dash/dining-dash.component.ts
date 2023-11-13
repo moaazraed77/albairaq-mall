@@ -117,7 +117,6 @@ export class DiningDashComponent implements OnInit  {
       })
     }
     this.uploadingCarasoul="null";
-    setTimeout(()=> location.reload(),700)
   }
   // ------------- product function for dining -----------------
   sendProducts(edit_control:string,sectionViewController:string){
@@ -151,7 +150,6 @@ export class DiningDashComponent implements OnInit  {
       })
     }
     this.uploadingImg="null";
-    setTimeout(()=> location.reload(),700)
   }
 
   // --------------------------------------- update part ---------------------------------------
@@ -207,7 +205,6 @@ export class DiningDashComponent implements OnInit  {
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
 
 

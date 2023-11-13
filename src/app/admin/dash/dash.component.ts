@@ -115,7 +115,6 @@ export class DashComponent implements OnInit {
       })
     }
     this.uploadingCarasoul="null";
-    setTimeout(()=> location.reload(),700)
   }
 
   // ---- send product function for home ----
@@ -140,7 +139,6 @@ export class DashComponent implements OnInit {
       })
     }
     this.uploadingImg="null";
-    setTimeout(()=> location.reload(),700)
   }
 
   // --------------------------------------- update part ---------------------------------------
@@ -193,7 +191,6 @@ export class DashComponent implements OnInit {
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 700);
  }
 
   // --------------------------------------------  upload photos -----------------------------------------

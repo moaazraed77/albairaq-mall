@@ -86,7 +86,6 @@ export class AboutDashComponent implements OnInit {
         })
       }
     this.uploading="null";
-    setTimeout(() => { location.reload() }, 500);
   }
 
   // ----------------------------- Data function for About -----------------------------
@@ -106,7 +105,6 @@ export class AboutDashComponent implements OnInit {
           }
         })
       }
-      setTimeout(() => { location.reload() }, 500);
     }
   }
 
@@ -182,7 +180,6 @@ export class AboutDashComponent implements OnInit {
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 500);
   }
 
   // -------------- funcion to upload img file and get image url ---- for About Product --------------

@@ -79,7 +79,6 @@ export class AccessoriesDashComponent implements OnInit {
       })
     }
     this.uploadingCarasoul="null";
-    setTimeout(()=> location.reload(),700)
   }
   
   // ------------- product function for accessories -----------------
@@ -114,7 +113,6 @@ export class AccessoriesDashComponent implements OnInit {
       })
     }
     this.uploadingImg="null";
-    setTimeout(()=> location.reload(),700)
   }
 
   // ------------------------------------- open part ------------------------------------------
@@ -208,7 +206,6 @@ export class AccessoriesDashComponent implements OnInit {
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
 
 

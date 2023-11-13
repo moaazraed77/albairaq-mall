@@ -118,7 +118,6 @@ export class EntertainmentDashComponent implements OnInit {
     }
     this.uploadingCarasoul="null";
     console.log(this.entertainmentImg.value)
-    setTimeout(()=> location.reload(),700)
   }
   // ------------- product function for entertainment -----------------
   sendProducts(edit_control:string,sectionViewController:string){
@@ -152,7 +151,6 @@ export class EntertainmentDashComponent implements OnInit {
       })
     }
     this.uploadingImg="null";
-    setTimeout(()=> location.reload(),700)
   }
 
   // --------------------------------------- update part ---------------------------------------
@@ -208,7 +206,6 @@ export class EntertainmentDashComponent implements OnInit {
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
 
 

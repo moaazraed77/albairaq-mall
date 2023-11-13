@@ -7,15 +7,14 @@ import { Database } from '@angular/fire/database';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-openning-hours',
-  templateUrl: './openning-hours.component.html',
-  styleUrls: ['./openning-hours.component.scss']
+  selector: 'app-mall-location',
+  templateUrl: './mall-location.component.html',
+  styleUrls: ['./mall-location.component.scss']
 })
-export class OpenningHoursComponent implements OnInit {
+export class MallLocationComponent implements OnInit {
   
   // data variables
   parttext:string="";
-  productURL:string="";
   CarasoulURL:string="";
   datalist:any[]=[];
   databaseURL:any="";
@@ -24,7 +23,7 @@ export class OpenningHoursComponent implements OnInit {
   partViewController:string="";
   sectionViewController:string="";
   edit_control:string="";
-  viewController:string="openning";
+  viewController:string="";
   uploadingImg:string="null";
   uploadingCarasoul:string="null";
   // for check update
@@ -34,7 +33,7 @@ export class OpenningHoursComponent implements OnInit {
   // for popup deleted item show
   showDeleteDiv:boolean=false;
   // for adding 
-  openningImg=this.fb.group({
+  MallLocation=this.fb.group({
     img:[""],
     id:[new Date().getTime()]
   })
@@ -47,7 +46,7 @@ export class OpenningHoursComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.openPart('table data','openning-hours-carsouel','')
+    this.openPart('table data','mall-location-carsouel','')
   }
 
     // ------------------------------------- open part ------------------------------------------
@@ -70,14 +69,8 @@ export class OpenningHoursComponent implements OnInit {
     showdata(type:string){
       this.datalist=[]
       this.edit_control=type;
-      if(type=="openning-hours-carsouel"){
-        this.dataServ.getOpenningCarsoul().subscribe(data=>{
-          for (const key in data) {
-            this.datalist.push(data[key])
-          }
-        })
-      }else  if(type=="openning-hours-products"){
-        this.dataServ.getOpenningImages().subscribe(data=>{
+      if(type=="mall-location-carsouel"){
+        this.dataServ.getMallLocationCarsoul().subscribe(data=>{
           for (const key in data) {
             this.datalist.push(data[key])
           }
@@ -85,76 +78,43 @@ export class OpenningHoursComponent implements OnInit {
       }
     }
   
+
 // ------------------------------------- send data to add to database -----------------------------------
   
-  // ------------- Carasoul function for openning -----------------
+  // ------------- Carasoul function for MallLocation -----------------
   sendCarasoul(edit_control:string,sectionViewController:string){
-    this.openningImg.patchValue({
+    this.MallLocation.patchValue({
       img:this.CarasoulURL,
     })
     // add carasoul
-    if(edit_control=="openning-hours-carsouel" && sectionViewController =="add")
+    if(edit_control=="mall-location-carsouel" && sectionViewController =="add")
     {
-      this.dataServ.create(this.openningImg.value,"openningCarasoul","add");
+      this.dataServ.create(this.MallLocation.value,"MallLocationCarasoul","add");
     }
     // edit carasoul
-    else if(edit_control=="openning-hours-carsouel" && sectionViewController =="edit"){
-      this.dataServ.getOpenningCarsoul().subscribe(data=>{
+    else if(edit_control=="mall-location-carsouel" && sectionViewController =="edit"){
+      this.dataServ.getMallLocationCarsoul().subscribe(data=>{
         for (const key in data) {
           if(this.updateObject.id==data[key].id){
-            this.openningImg.patchValue({
+            this.MallLocation.patchValue({
               id:Number(this.updateObject.id)
             })
-            this.dataServ.create(this.openningImg.value,"openningCarasoul",key);
+            this.dataServ.create(this.MallLocation.value,"MallLocationCarasoul",key);
             break;
           }
         }
       })
     }
     this.uploadingCarasoul="null";
-    console.log(this.openningImg.value)
   }
-  // ------------- product function for openning -----------------
-  sendProducts(edit_control:string,sectionViewController:string){
-    this.openningImg.patchValue({
-      img:this.productURL
-    })
-    if(edit_control=="openning-hours-products" && sectionViewController =="add"){
-      this.dataServ.create(this.openningImg.value,"openningImages","add");
-    }
-    else if(edit_control=="openning-hours-products" && sectionViewController =="edit"){
-      this.dataServ.getOpenningImages().subscribe(data=>{
-        this.openningImg.patchValue({
-          id:Number(this.updateObject.id)
-        })
-        // code for if there is no change for one of product elements
-        if(this.openningImg.get("img")?.value==""){
-          this.openningImg.patchValue({
-            img:this.updateObject.img
-          })
-        }
-        for (const key in data) {
-          if(this.updateObject.id==data[key].id){
-            this.dataServ.create(this.openningImg.value,"openningImages",key);
-            break;
-          }
-        }
-      })
-    }
-    this.uploadingImg="null";
-  }
-
 
   // --------------------------------------- update part ---------------------------------------
   update(item:any,sectionViewController:string){
     this.updateObject=item;
-    if(this.edit_control=='openning-hours-carsouel' && sectionViewController=='edit')
+    if(this.edit_control=='mall-location-carsouel' && sectionViewController=='edit')
       {
         this.sectionViewController=sectionViewController
-      } else if(this.edit_control=='openning-hours-products' && sectionViewController=='edit')
-      {
-        this.sectionViewController=sectionViewController
-      }
+      } 
   }
 
   // --------------------------------------- delete part ---------------------------------------
@@ -171,25 +131,13 @@ export class OpenningHoursComponent implements OnInit {
   }
   deleteItem(item:any,sectionViewController:string){
     //----------- delete carasoul -----------
-    if(this.edit_control=='openning-hours-carsouel' && sectionViewController=='delete')
+    if(this.edit_control=='mall-location-carsouel' && sectionViewController=='delete')
     {
       this.sectionViewController=sectionViewController;
-      this.dataServ.getOpenningCarsoul().subscribe(data=>{
+      this.dataServ.getMallLocationCarsoul().subscribe(data=>{
         for (const key in data) {
           if(item.id==data[key].id){
-            this.dataServ.delete("openningCarasoul",key);
-            break;
-          }
-        }
-      })
-      // ----------- delete content -----------
-    } else if(this.edit_control=='openning-hours-products' && sectionViewController=='delete')
-    {
-      this.sectionViewController=sectionViewController;
-      this.dataServ.getOpenningImages().subscribe(data=>{
-        for (const key in data) {
-          if(item.id==data[key].id){
-            this.dataServ.delete("openningImages",key);
+            this.dataServ.delete("MallLocationCarasoul",key);
             break;
           }
         }
@@ -200,7 +148,7 @@ export class OpenningHoursComponent implements OnInit {
 
   // --------------------------------------------  upload photos -----------------------------------------
 
-  // funcion to upload img file and get image url   ---- for openning carasoul -------
+  // funcion to upload img file and get image url   ---- for MallLocation carasoul -------
   async uploadCarasoul(event:any,edit_control:string){
     this.edit_control=edit_control
     this.uploadingCarasoul="uploadingCarasoul";
@@ -212,20 +160,6 @@ export class OpenningHoursComponent implements OnInit {
       this.CarasoulURL=url;
     }
     this.uploadingCarasoul="CarasoulUploaded";
-  }
-
-  // funcion to upload img file and get image url ---- for product -------
-  async uploadImg(event:any,edit_control:string){
-    this.edit_control=edit_control
-    this.uploadingImg="uploadingImg";
-    const file=event.target.files[0];
-    if(file){
-      const path=`alBairaq/${file.name}${new Date().getTime()}`; // we make name of file in firebase storage 
-      const uploadTask = await this.firestorage.upload(path,file)
-      const url =await uploadTask.ref.getDownloadURL()
-      this.productURL=url;
-    }
-    this.uploadingImg="imgUploaded";
   }
 
 }

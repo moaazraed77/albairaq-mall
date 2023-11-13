@@ -116,20 +116,31 @@ export class DataService {
   getAlbairaqTowerImages():Observable<any[]>{
     return this.http.get<any[]>(`${this.databaseURL}/albairaqTowerImages.json`)
   }
-  
+  // / get  Mall location carasoul
+  getMallLocationCarsoul():Observable<homePhoto[]>{
+    return this.http.get<homePhoto[]>(`${this.databaseURL}/MallLocationCarasoul.json`)
+  }
   
   // create the data
   create(data:any , position:string,key:string){
     if(key=="add")
-      this.http.post(`${this.databaseURL}/${position}.json`,data).subscribe();
+      this.http.post(`${this.databaseURL}/${position}.json`,data).subscribe(()=>{
+        location.reload();
+      });
     else
-      this.http.put(`${this.databaseURL}/${position}/${key}.json`,data).subscribe();
+      this.http.put(`${this.databaseURL}/${position}/${key}.json`,data).subscribe(()=>{
+        location.reload();
+      });
   }
   sendFeedback(data:any){
-    this.http.post(`${this.databaseURL}/feedback.json`,data).subscribe();
+    this.http.post(`${this.databaseURL}/feedback.json`,data).subscribe(()=>{
+      location.reload();
+    });
   }
   // delete the data
   delete(position:string,key:string){
-    this.http.delete(`${this.databaseURL}/${position}/${key}.json`).subscribe();
+    this.http.delete(`${this.databaseURL}/${position}/${key}.json`).subscribe(()=>{
+      location.reload();
+    });
   }
 }

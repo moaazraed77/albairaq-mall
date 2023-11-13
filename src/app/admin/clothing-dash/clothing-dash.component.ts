@@ -79,7 +79,6 @@ export class ClothingDashComponent implements OnInit  {
       })
     }
     this.uploadingCarasoul="null";
-    setTimeout(()=> location.reload(),700)
   }
   // ------------- product function for clothing -----------------
   sendProducts(edit_control:string,sectionViewController:string){
@@ -113,7 +112,6 @@ export class ClothingDashComponent implements OnInit  {
       })
     }
     this.uploadingImg="null";
-    setTimeout(()=> location.reload(),700)
   }
 
   // ------------------------------------- open part ------------------------------------------
@@ -207,7 +205,6 @@ export class ClothingDashComponent implements OnInit  {
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
 
 

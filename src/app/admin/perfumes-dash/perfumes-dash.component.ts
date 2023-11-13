@@ -81,7 +81,6 @@ export class PerfumesDashComponent implements OnInit {
       })
     }
     this.uploadingCarasoul="null";
-    setTimeout(()=> location.reload(),700)
   }
   // ------------- product function for perfumes -----------------
   sendProducts(edit_control:string,sectionViewController:string){
@@ -115,7 +114,6 @@ export class PerfumesDashComponent implements OnInit {
       })
     }
     this.uploadingImg="null";
-    setTimeout(()=> location.reload(),700)
   }
 
   // ------------------------------------- open part ------------------------------------------
@@ -209,7 +207,6 @@ export class PerfumesDashComponent implements OnInit {
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
 
 

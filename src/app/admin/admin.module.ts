@@ -17,6 +17,7 @@ import { OpenningHoursComponent } from './openning-hours/openning-hours.componen
 import { AlbairaqTowerDashComponent } from './albairaq-tower-dash/albairaq-tower-dash.component';
 import { CafesDashComponent } from './cafes-dash/cafes-dash.component';
 import { ShoesDashComponent } from './shoes-dash/shoes-dash.component';
+import { MallLocationComponent } from './mall-location/mall-location.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ShoesDashComponent } from './shoes-dash/shoes-dash.component';
     AlbairaqTowerDashComponent,
     CafesDashComponent,
     ShoesDashComponent,
+    MallLocationComponent,
   ],
   imports: [
     CommonModule,

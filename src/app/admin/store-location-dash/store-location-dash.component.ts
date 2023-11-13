@@ -85,7 +85,6 @@ export class StoreLocationDashComponent implements OnInit {
         })
       }
     this.uploading="null";
-    setTimeout(() => { location.reload() }, 500);
   }
   // --------------------------------------- update part ----------------------------------------------------
   update(item:any,sectionViewController:string){
@@ -117,7 +116,6 @@ export class StoreLocationDashComponent implements OnInit {
           }
         })
       } 
-      setTimeout(() => { this.showdata(this.edit_control) }, 500);
   }
 
   // ------------------- funcion to upload img file and get image url ---- for storeLocation Product -------------

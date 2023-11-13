@@ -51,7 +51,6 @@ export class CafesDashComponent implements OnInit {
     this.openPart('table data','cafes-carsouel','')
   }
 
-
     // ------------------------------------- open part ------------------------------------------
     openPart(part:string,type:string,action:string){
       this.parttext=`the show of ${type}`
@@ -89,7 +88,6 @@ export class CafesDashComponent implements OnInit {
         })
       }
     }
-  
 
 // ------------------------------------- send data to add to database -----------------------------------
   
@@ -118,7 +116,6 @@ export class CafesDashComponent implements OnInit {
       })
     }
     this.uploadingCarasoul="null";
-    setTimeout(()=> location.reload(),700)
   }
   // ------------- product function for cafes -----------------
   sendProducts(edit_control:string,sectionViewController:string){
@@ -152,7 +149,6 @@ export class CafesDashComponent implements OnInit {
       })
     }
     this.uploadingImg="null";
-    setTimeout(()=> location.reload(),700)
   }
 
   // --------------------------------------- update part ---------------------------------------
@@ -208,7 +204,6 @@ export class CafesDashComponent implements OnInit {
         }
       })
     }
-    setTimeout(() => { this.showdata(this.edit_control) }, 700);
   }
 
 

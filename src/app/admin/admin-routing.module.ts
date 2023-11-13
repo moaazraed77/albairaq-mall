@@ -15,6 +15,7 @@ import { OpenningHoursComponent } from '../admin/openning-hours/openning-hours.c
 import { AlbairaqTowerDashComponent } from './albairaq-tower-dash/albairaq-tower-dash.component';
 import { CafesDashComponent } from './cafes-dash/cafes-dash.component';
 import { ShoesDashComponent } from './shoes-dash/shoes-dash.component';
+import { MallLocationComponent } from './mall-location/mall-location.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
       {path:"about",component:AboutDashComponent ,canActivate:[AdminGuard]},
       {path:"contactus",component:ContactusDashComponent ,canActivate:[AdminGuard]},
       {path:"store-location",component:StoreLocationDashComponent ,canActivate:[AdminGuard]},
+      {path:"mall-location",component:MallLocationComponent ,canActivate:[AdminGuard]},
       {path:"clothing",component:ClothingDashComponent ,canActivate:[AdminGuard]},
       {path:"shoes",component:ShoesDashComponent ,canActivate:[AdminGuard]},
       {path:"accessories",component:AccessoriesDashComponent ,canActivate:[AdminGuard]},
