@@ -32,8 +32,7 @@
               "node_modules/font-awesome/css/font-awesome.css",
               "src/assets/shared-styles/home-shared-style.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -103,8 +102,21 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "albiraq-mall:build:production",
+            "firebaseProject": "albairaq-mall",
+            "firebaseHostingSite": "albairaq-mall"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

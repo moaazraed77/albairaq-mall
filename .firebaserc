@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "albairaq-mall"
+  },
+  "targets": {
+    "albairaq-mall": {
+      "hosting": {
+        "albiraq-mall": [
+          "albairaq-mall"
+        ]
+      }
+    }
   }
 }

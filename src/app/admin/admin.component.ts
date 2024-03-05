@@ -36,4 +36,9 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logout(){
+    sessionStorage.removeItem("Admin");
+    this.route.navigate(["/"])
+  }
+
 }

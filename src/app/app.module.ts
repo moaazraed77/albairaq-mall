@@ -36,6 +36,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { AlbairaqTowerComponent } from './components/albairaq-tower/albairaq-tower.component';
 import { CafesComponent } from './components/cafes/cafes.component';
 import { ShoesComponent } from './components/shoes/shoes.component';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { ShoesComponent } from './components/shoes/shoes.component';
     AdminModule,
     AppRoutingModule, // note that we put   AppRoutingModule   after  AdminModule  to get  error-page  wrok fine 
     FontAwesomeModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)), provideDatabase(() => getDatabase()), provideStorage(() => getStorage()), NgbModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)), provideDatabase(() => getDatabase()), provideStorage(() => getStorage()), NgbModule, provideAuth(() => getAuth()),
   ],
   providers: [
      // write this special code for upload img 

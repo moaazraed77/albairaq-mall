@@ -18,7 +18,7 @@
     }
   ],
   "storage": {
-    "rules": "firebase.json"
+    "rules": "storage.rules"
   },
   "hosting": {
     "public": "docs",
